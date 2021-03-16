@@ -3,16 +3,11 @@ package browserstack.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import browserstack.TestRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
 public class CommonSteps extends TestRunner {
-
-	//public ThreadLocal<WebDriver> driver = this.driver;
 
  
     @Given("^I navigate to website$")

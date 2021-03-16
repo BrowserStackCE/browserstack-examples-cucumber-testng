@@ -28,11 +28,6 @@ public class Utility {
         return localOptions;
     }
 
-    public static void setSessionStatus(WebDriver webDriver, String status, String reason) {
-        JavascriptExecutor jse = (JavascriptExecutor)webDriver;
-        jse.executeScript(String.format("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}",status,reason));
-    }
-
     public static JSONObject getCombinedCapability(Map<String, String> envCapabilities, JSONObject config, JSONObject caps) {
         JSONObject capabilities = new JSONObject();
         Iterator it = envCapabilities.entrySet().iterator();

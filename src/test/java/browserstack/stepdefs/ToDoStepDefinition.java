@@ -1,8 +1,6 @@
 package browserstack.stepdefs;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 import browserstack.TestRunner;
@@ -11,8 +9,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ToDoStepDefinition extends TestRunner {
-
-	//public ThreadLocal<WebDriver> driver = this.driver;
 
 	
 	@Given("^user is on home Page$")

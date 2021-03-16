@@ -4,22 +4,52 @@
   "key": "XaqpcHttuyFzXSzC3uNM",
   "capabilities": {
     "browserstack.debug": false,
-    "browserstack.local": true,
+    "browserstack.local": false,
     "name": "BStackDemoTestNG",
     "build": "BStack Build Number 1"
   },
   "environments": {
-    "chrome": {
+    "win_chrome": {
       "browser": "Chrome",
       "browser_version": "latest",
       "os" : "Windows",
       "os_version" : "10"
     },
-    "firefox": {
+    "win_firefox": {
       "browser": "Firefox",
       "browser_version": "latest",
       "os" : "Windows",
       "os_version" : "10"
+    },
+     "mac_safari": {
+      "browser": "Safari",
+      "browser_version": "latest",
+      "os" : "OS X",
+      "os_version" : "Big Sur"
+    },
+     "mac_chrome": {
+      "browser": "Firefox",
+      "browser_version": "latest",
+      "os" : "OS X",
+      "os_version" : "Big Sur"
+    }, 
+     "mac_firefox": {
+      "browser": "Firefox",
+      "browser_version": "latest",
+      "os" : "OS X",
+      "os_version" : "Big Sur"
+    }, 
+     "android_chrome": {
+      "os": "Android",
+      "os_version": "11.0",
+      "device": "Samsung Galaxy S20",
+      "realMobile": true
+    }, 
+     "iphone_safari": {
+       "os": "iPhone",
+       "os_version": "13.0",
+       "device": "iPhone XS",
+       "realMobile": true
     }
   }
 }

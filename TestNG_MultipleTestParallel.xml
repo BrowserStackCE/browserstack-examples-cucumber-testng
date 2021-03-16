@@ -2,22 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="BDD Test Suite" verbose="1" parallel="tests"
 	thread-count="3" >
- <test name="Chrome" annotations="JDK"
+<test name="Chrome" annotations="JDK"
 		preserve-order="true">
-        <parameter name="environment" value="remote"/>
-         <parameter name="browser" value="chrome"/>
+        <parameter name="environment" value="remote"/> 
+         <parameter name="browser" value="win_chrome"/>
          <parameter name="url" value="http://bstackdemo.com/"/>
         <classes>
             <class name="browserstack.TestRunner" />
         </classes>
 </test>
- <!-- <test name="Firefox" annotations="JDK"
+<test name="Firefox" annotations="JDK"
 		preserve-order="true">
-        <parameter name="environment" value="remote"/>
-         <parameter name="browser" value="firefox"/>
+        <parameter name="environment" value="remote"/> 
+         <parameter name="browser" value="win_firefox"/>
          <parameter name="url" value="http://bstackdemo.com/"/>
         <classes>
             <class name="browserstack.TestRunner" />
         </classes>
-</test> -->
+</test>
+
 </suite>

@@ -2,7 +2,6 @@ package browserstack;
 
 import java.io.FileReader;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -19,32 +18,30 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.browserstack.local.Local;
-
-import browserstack.utils.AllureReportConfigurationSetup;
 import browserstack.utils.OsUtility;
-
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 
-@CucumberOptions(features = "src/test/resources/com/browserstack", glue = { "browserstack.stepdefs" }, tags = {
-		"~@Ignore" }, format = { "pretty", "html:target/cucumber-reports/cucumber-pretty",
-				"json:target/cucumber-reports/CucumberTestReport.json",
-				"rerun:target/cucumber-reports/rerun.txt" }, plugin = "json:target/cucumber-reports/CucumberTestReport.json")
 
+@CucumberOptions(features = "src/test/resources/com/browserstack", glue = { "browserstack.stepdefs" }, tags = {
+		"~@Ignore" })
+@Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
 public class TestRunner {
 
 	private TestNGCucumberRunner testNGCucumberRunner;
 	protected static final String URL = "https://bstackdemo.com";
 	protected static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    private static final String PASSED = "passed";
+    private static final String FAILED = "failed";
 	
     private Local local;
     protected WebDriverWait wait;
@@ -58,7 +55,6 @@ public class TestRunner {
 	@BeforeClass(alwaysRun = true)
 	public void setUpCucumber() {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-		AllureReportConfigurationSetup.prepareAllureResultsFolder();
 	}
 
 	@BeforeMethod(alwaysRun = true)
@@ -66,7 +62,6 @@ public class TestRunner {
 	public void setUpClass(@Optional("browserstack.conf.json") String configfile, @Optional("local") String environment, @Optional("chrome") String browser, @Optional("http://localhost:3000") String url) throws Exception {
 
 
-		
 		 if (environment.equalsIgnoreCase("local")) {
 	            if (OsUtility.isMac()) {
 	                System.setProperty("webdriver.chrome.driver", chromeDriverBaseLocation+ "/chromeDriverMac/chromedriver");
@@ -143,7 +138,7 @@ public class TestRunner {
 		testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
 	}
 
-	@DataProvider
+	@DataProvider(parallel = true)	
 	public Object[][] features() {
 		return testNGCucumberRunner.provideFeatures();
 	}
@@ -156,7 +151,7 @@ public class TestRunner {
 	}
 
 	@AfterMethod
-	public void close() {
+	public void close() {	 
 		driver.get().quit();
 	}
 }

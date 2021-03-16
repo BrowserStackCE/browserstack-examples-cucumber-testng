@@ -2,17 +2,12 @@ package browserstack.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
-
 import browserstack.TestRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
 public class LoginPageSteps extends TestRunner {
-
-	//public ThreadLocal<WebDriver> driver = this.driver;
 
 	@And("^I press Log In Button$")
 	public void iPressLogin() throws InterruptedException {

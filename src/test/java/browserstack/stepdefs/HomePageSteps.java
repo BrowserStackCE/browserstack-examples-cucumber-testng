@@ -7,9 +7,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 import browserstack.TestRunner;
@@ -18,7 +16,6 @@ import cucumber.api.java.en.Then;
 
 public class HomePageSteps extends TestRunner {
 
-	//public ThreadLocal<WebDriver> driver = this.driver;
 
     @And("^I add two products to cart$")
     public void iAddProductsToCart() throws InterruptedException {
@@ -98,7 +95,7 @@ public class HomePageSteps extends TestRunner {
             int int_random = rand.nextInt(upperbound-1); 
             driver.get().findElement(By.xpath("(//span[@class='MuiIconButton-label'])["+int_random+"]")).click();
              int_random = rand.nextInt(upperbound-1); 
-            driver.get().findElement(By.xpath("(//span[@class='MuiIconButton-label'])[\"+int_random+\"]")).click();
+            driver.get().findElement(By.xpath("(//span[@class='MuiIconButton-label'])["+int_random+"]")).click();
             driver.get().findElement(By.linkText("Favourites")).click();	
             assertTrue(driver.get().findElements(By.xpath("//div[@class='shelf-stopper']")).size()>0);
     
