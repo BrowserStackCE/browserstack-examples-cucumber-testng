@@ -1,6 +1,7 @@
 package browserstack;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +19,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -26,6 +28,8 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.browserstack.local.Local;
+
+import browserstack.utils.AllureReportConfigurationSetup;
 import browserstack.utils.OsUtility;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
@@ -33,7 +37,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 
 
 @CucumberOptions(features = "src/test/resources/com/browserstack", glue = { "browserstack.stepdefs" }, tags = {
-		"~@Ignore" })
+		"~@Ignore" }, monochrome = true)
 @Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
 public class TestRunner {
 
@@ -55,6 +59,8 @@ public class TestRunner {
 	@BeforeClass(alwaysRun = true)
 	public void setUpCucumber() {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+		//AllureReportConfigurationSetup.prepareAllureResultsFolder();
+		
 	}
 
 	@BeforeMethod(alwaysRun = true)
@@ -147,6 +153,8 @@ public class TestRunner {
 	public void tearDownClass() throws Exception {
 
 		testNGCucumberRunner.finish();
+		
+		
 
 	}
 
@@ -154,4 +162,6 @@ public class TestRunner {
 	public void close() {	 
 		driver.get().quit();
 	}
+	
+	
 }
