@@ -1,0 +1,25 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "sanketmali4",
+  "key": "XaqpcHttuyFzXSzC3uNM",
+  "capabilities": {
+    "browserstack.debug": false,
+    "browserstack.local": true,
+    "name": "BStackDemoTestNG",
+    "build": "BStack Build Number 1"
+  },
+  "environments": {
+    "chrome": {
+      "browser": "Chrome",
+      "browser_version": "latest",
+      "os" : "Windows",
+      "os_version" : "10"
+    },
+    "firefox": {
+      "browser": "Firefox",
+      "browser_version": "latest",
+      "os" : "Windows",
+      "os_version" : "10"
+    }
+  }
+}
