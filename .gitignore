@@ -8,4 +8,7 @@ build
 /allure-results/*
 /Screenshots/*
 .classpath
-.project
+*.project
+*.jar
+*.properties
+*.prefs
