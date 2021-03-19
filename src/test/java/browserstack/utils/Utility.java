@@ -5,6 +5,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import browserstack.stepdefs.ThreadLocalDriver;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -54,5 +60,30 @@ public class Utility {
         }
         return singleConfig;
     }
-
+    
+    public  static void waitforLoad(WebDriver driver) {
+    	try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 JavascriptExecutor executor = (JavascriptExecutor)driver;
+    	    if((Boolean) executor.executeScript("return window.jQuery != undefined")){
+    	        while(!(Boolean) executor.executeScript("return jQuery.active == 0")){
+ 
+    	        }
+    	    }
+    }
+    
+    public static void waitforElement(WebElement element) {
+    	try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
+    	  wait.until(ExpectedConditions.visibilityOf(element));
+    }
 }

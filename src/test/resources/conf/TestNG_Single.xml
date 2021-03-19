@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="5" parallel="classes"
-	thread-count="5" >
+<suite name="BDD Test Suite" verbose="1"
+	thread-count="0" >
  <test name="Chrome" annotations="JDK"
 		preserve-order="true">
-        <parameter name="environment" value="remote"/> 
          <parameter name="browser" value="win_chrome"/>
-         <parameter name="url" value="http://bstackdemo.com/"/>
+           <!-- <parameter name="environment" value="remote"/>
+           
+            <parameter name="url" value="http://bstackdemo.com/"/> -->
         <classes>
-            <class name="browserstack.TestRunner" />
+            <class name="browserstack.SingleTestRunner" />
         </classes>
 </test>
-
-
 </suite>

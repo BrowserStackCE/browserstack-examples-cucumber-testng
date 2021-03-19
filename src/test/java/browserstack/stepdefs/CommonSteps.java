@@ -3,28 +3,29 @@ package browserstack.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import browserstack.TestRunner;
+
+import browserstack.utils.Utility;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
-public class CommonSteps extends TestRunner {
+public class CommonSteps extends BaseTest {
 
  
     @Given("^I navigate to website$")
     public void iNavigateToWebsite() {
-    	driver.get().get(TestRunner.URL);
+    	ThreadLocalDriver.getWebDriver().get(BaseTest.URL);
     }
 
     @And("^I click on \"([^\"]*)\" link$")
     public void iClickOnLink(String linkText) throws InterruptedException {
-    	driver.get().findElement(By.linkText(linkText)).click();
-        Thread.sleep(2000);
+    	ThreadLocalDriver.getWebDriver().findElement(By.linkText(linkText)).click();
+    	Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
     }
     
 
     @And("^I type \"([^\"]*)\" in \"([^\"]*)\" input$")
     public void iTypeInInput(String text, String inputName) {
-    	driver.get().findElement(By.id(inputName)).sendKeys(text);
+    	ThreadLocalDriver.getWebDriver().findElement(By.id(inputName)).sendKeys(text);
     }
     
     
@@ -33,13 +34,13 @@ public class CommonSteps extends TestRunner {
     @And("^I type \"([^\"]*)\" in \"([^\"]*)\"$")
     public void iTypeIn(String text,String inputName) throws InterruptedException {
         if(inputName.equalsIgnoreCase("username")){
-        	driver.get().findElement(By.xpath("//*[@id=\"username\"]/div/div[1]")).click();
-        	driver.get().findElement(By.id("react-select-2-input")).sendKeys(text);
-        	driver.get().findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
+        	ThreadLocalDriver.getWebDriver().findElement(By.xpath("//*[@id=\"username\"]/div/div[1]")).click();
+        	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(text);
+        	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
         } else if (inputName.equalsIgnoreCase("password")) {
-        	driver.get().findElement(By.xpath("//*[@id=\"password\"]/div/div[1]")).click();
-        	driver.get().findElement(By.id("react-select-3-input")).sendKeys(text);
-        	driver.get().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
+        	ThreadLocalDriver.getWebDriver().findElement(By.xpath("//*[@id=\"password\"]/div/div[1]")).click();
+        	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(text);
+        	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
         }
     }
 

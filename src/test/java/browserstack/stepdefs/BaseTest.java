@@ -1,73 +1,49 @@
-package browserstack;
+package browserstack.stepdefs;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 import com.browserstack.local.Local;
-
-import browserstack.utils.AllureReportConfigurationSetup;
 import browserstack.utils.OsUtility;
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+public class BaseTest {
 
-@CucumberOptions(features = "src/test/resources/com/browserstack", glue = { "browserstack.stepdefs" }, tags = {
-		"~@Ignore" }, monochrome = true)
-@Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
-public class TestRunner {
-
-	private TestNGCucumberRunner testNGCucumberRunner;
-	protected static final String URL = "https://bstackdemo.com";
-	protected static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private static final String PASSED = "passed";
-    private static final String FAILED = "failed";
-	
-    private Local local;
-    protected WebDriverWait wait;
+    public WebDriverWait wait;
     protected String chromeDriverBaseLocation = System.getProperty("user.dir")+ "/src/test/resources/chromeDriver";
+    private Local local;
+    private TestNGCucumberRunner testNGCucumberRunner;
+	protected static String URL = "http://localhost:3000";
 
+	  public WebDriver getDriver() {
+	        return ThreadLocalDriver.getWebDriver();
+	    }
 
-   public WebDriver getDriver() {
-        return driver.get();
-    }
-
-	@BeforeClass(alwaysRun = true)
-	public void setUpCucumber() {
-		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-		//AllureReportConfigurationSetup.prepareAllureResultsFolder();
-		
-	}
-
-	@BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
 	@Parameters({ "configfile", "environment", "browser", "url" })
 	public void setUpClass(@Optional("browserstack.conf.json") String configfile, @Optional("local") String environment, @Optional("chrome") String browser, @Optional("http://localhost:3000") String url) throws Exception {
 
-
+    	
 		 if (environment.equalsIgnoreCase("local")) {
 	            if (OsUtility.isMac()) {
 	                System.setProperty("webdriver.chrome.driver", chromeDriverBaseLocation+ "/chromeDriverMac/chromedriver");
@@ -78,12 +54,11 @@ public class TestRunner {
 	            if (OsUtility.isUnix()) {
 	                System.setProperty("webdriver.chrome.driver",chromeDriverBaseLocation+ "/chromeDriverLinux/chromedriver");
 	            }
-	            driver.set(new ChromeDriver());
+	            ThreadLocalDriver.setWebDriver(new ChromeDriver());
 	        } else if (environment.equalsIgnoreCase("remote")) {
 	            JSONParser parser = new JSONParser();
 	            JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/config/" + configfile));
 	            JSONObject envs = (JSONObject) config.get("environments");
-
 	            DesiredCapabilities capabilities = new DesiredCapabilities();
 
 	            Map<String, String> envCapabilities = (Map<String, String>) envs.get(browser);
@@ -114,7 +89,7 @@ public class TestRunner {
 
 	            capabilities.setCapability("browserstack.appiumLogs", "false");
 	            capabilities.setCapability("browserstack.seleniumLogs", "false");
-	          //  capabilities.setCapability("browserstack.geoLocation", "IN");
+	            capabilities.setCapability("browserstack.geoLocation", "IN");
 
 	            if (capabilities.getCapability("browserstack.local") != null
 	                    && capabilities.getCapability("browserstack.local") == "true") {
@@ -127,41 +102,23 @@ public class TestRunner {
 	                local.start(options);
 	            }
 
-	            driver.set(new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@" + config.get("server") + "/wd/hub"), capabilities));
+	            ThreadLocalDriver.setWebDriver(new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@" + config.get("server") + "/wd/hub"), capabilities));
 	        } else if (environment.equalsIgnoreCase("docker")) {
 	            DesiredCapabilities dc = new DesiredCapabilities();
 	            dc.setBrowserName("chrome");
 	            dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-	            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc));
+	            ThreadLocalDriver.setWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc));
 	        }
-	       getDriver().get(url);
-	        wait = new WebDriverWait(getDriver(), 50);
-	        getDriver().manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+		 ThreadLocalDriver.getWebDriver().get(url);
+	        wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 50);	
+	        ThreadLocalDriver.getWebDriver().manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+	        ThreadLocalDriver.getWebDriver().manage().window().maximize();
+	        URL =url;
 	}
 
-	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-	public void feature(CucumberFeatureWrapper cucumberFeature) {
-		testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
-	}
+    @AfterMethod
+    public synchronized void teardown(){
+        ThreadLocalDriver.getWebDriver().quit();
+    }
 
-	@DataProvider(parallel = true)	
-	public Object[][] features() {
-		return testNGCucumberRunner.provideFeatures();
-	}
-
-	@AfterClass(alwaysRun = true)
-	public void tearDownClass() throws Exception {
-
-		testNGCucumberRunner.finish();
-		
-		
-
-	}
-
-	@AfterMethod
-	public void close() {	 
-		driver.get().quit();
-	}
-	
-	
 }

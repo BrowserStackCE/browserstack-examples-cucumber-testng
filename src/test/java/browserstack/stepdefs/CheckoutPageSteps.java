@@ -2,22 +2,24 @@ package browserstack.stepdefs;
 
 
 import org.openqa.selenium.By;
-import browserstack.TestRunner;
+
+import browserstack.utils.Utility;
 import cucumber.api.java.en.And;
 
-public class CheckoutPageSteps extends TestRunner{
+public class CheckoutPageSteps extends BaseTest{
 	
     @And("I type \"([^\"]*)\" in Post Code")
     public void iTypeInPostCode(String postCode) {
-    	driver.get().findElement(By.cssSelector(".dynamic-form-field--postCode #provinceInput")).sendKeys(postCode);
+    	ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".dynamic-form-field--postCode #provinceInput")).sendKeys(postCode);
     }
 
     @And("I click on Checkout Button")
     public void iClickOnCheckoutButton() throws InterruptedException {
-    	driver.get().findElement(By.id("checkout-shipping-continue")).click();
-        Thread.sleep(1500);
-        driver.get().findElement(By.cssSelector(".button")).click();
-        Thread.sleep(1000);
+    	ThreadLocalDriver.getWebDriver().findElement(By.id("checkout-shipping-continue")).click();
+    	Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
+    	Utility.waitforElement(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".button")));
+        ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".button")).click();
+        Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
     }
 
 }

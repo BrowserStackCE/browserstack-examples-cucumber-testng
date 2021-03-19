@@ -29,6 +29,11 @@
 		<cucmberjvm.version>1.0.5</cucmberjvm.version>
 		<cucmbertestng.version>1.2.5</cucmbertestng.version>
 		<cucmberreporting.version>3.8.0</cucmberreporting.version>
+		<test-name>e2e.feature</test-name>
+		<application-url>http://bstackdemo.com/</application-url>
+		
+		
+
 	</properties>
 
 	<dependencies>
@@ -84,7 +89,7 @@
 			<version>${testng.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.workerframework.messagebuilder/worker-example-message-builder -->
-	
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -176,7 +181,29 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>local-single</id>
+			<id>on-prem</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<argLine>-Dcucumber.options="src/test/resources/com/browserstack/${test-name}"
+							</argLine>
+							<systemPropertyVariables>
+								<environment>local</environment>
+								<url>${application-url}</url>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>on-prem-suite</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -185,9 +212,10 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>local</environment>
+								<url>${application-url}</url>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestNG_Single.xml</suiteXmlFile>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>
@@ -195,48 +223,28 @@
 			</build>
 		</profile>
 		<profile>
-			<id>docker-single</id>
+			<id>docker</id>
 			<build>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
+							<argLine>-Dcucumber.options="src/test/resources/com/browserstack/${test-name}"
+							</argLine>
 							<systemPropertyVariables>
 								<environment>docker</environment>
+								<url>${application-url}</url>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestNG_Single.xml</suiteXmlFile>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
-		<profile>
-			<id>remote-single</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<systemPropertyVariables>
-								<environment>remote</environment>
-							</systemPropertyVariables>
-							<suiteXmlFiles>
-								<suiteXmlFile>TestNG_Single.xml</suiteXmlFile>
-							</suiteXmlFiles>
-							<property>
-								<name>dataproviderthreadcount</name>
-								<value>1</value>
-							</property>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
+			<profile>
 			<id>docker-parallel</id>
 			<build>
 				<plugins>
@@ -246,9 +254,10 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>docker</environment>
+								<url>${application-url}</url>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestNG_SameTestParallel.xml</suiteXmlFile>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>
@@ -256,7 +265,50 @@
 			</build>
 		</profile>
 		<profile>
-			<id>remote-parallel</id>
+			<id>bstack-single</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<argLine>-Dcucumber.options="src/test/resources/com/browserstack/${test-name}"
+							</argLine>
+							<systemPropertyVariables>
+								<environment>remote</environment>
+								<url>${application-url}</url>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bstack-local</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<argLine>-Dcucumber.options="src/test/resources/com/browserstack/${test-name}"
+							</argLine>
+							<systemPropertyVariables>
+								<environment>remote</environment>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bstack-local-parallel</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -267,19 +319,71 @@
 								<environment>remote</environment>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestNG_SameTestParallel.xml</suiteXmlFile>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							<properties>
-								<property>
-									<name>dataproviderthreadcount</name>
-									<value>20</value>
-								</property>
-							</properties>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
-
+		<profile>
+			<id>bstack-local-parallel-browsers</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemPropertyVariables>
+								<environment>remote</environment>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bstack-parallel</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemPropertyVariables>
+								<environment>remote</environment>
+								<url>${application-url}</url>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bstack-parallel-browsers</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemPropertyVariables>
+								<environment>remote</environment>
+								<url>${application-url}</url>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 </project>

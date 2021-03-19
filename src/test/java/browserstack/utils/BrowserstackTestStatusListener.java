@@ -4,8 +4,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
+import browserstack.stepdefs.BaseTest;
 
-import browserstack.TestRunner;
 
 public class BrowserstackTestStatusListener extends TestListenerAdapter {
 
@@ -21,15 +21,16 @@ public class BrowserstackTestStatusListener extends TestListenerAdapter {
     @Override
     public void onTestSuccess(ITestResult result) {
         Object currentClass = result.getInstance();
-        WebDriver driver = ((TestRunner) currentClass).getDriver();
+        WebDriver driver = ((BaseTest) currentClass).getDriver();
         markTestStatus("passed", "", driver);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         Object currentClass = result.getInstance();
-        WebDriver driver = ((TestRunner) currentClass).getDriver();
+        WebDriver driver = ((BaseTest) currentClass).getDriver();
         markTestStatus("failed", result.getThrowable().getMessage(), driver);
     }
+
 
 }

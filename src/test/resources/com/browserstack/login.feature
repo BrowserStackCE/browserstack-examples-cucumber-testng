@@ -1,3 +1,4 @@
+
 Feature: Login Feature
 
   Scenario Outline: Login as "<username>"
@@ -8,11 +9,14 @@ Feature: Login Feature
     And I press Log In Button
     Then I should see user "<username>" logged in
     Then I click on Logout
-    Examples:
-      | username               | password       |
-      | fav_user               | testingisfun99 |
+    
+	Examples:
+      | username                 | password         |
+      | fav_user             | testingisfun99 |
       | image_not_loading_user | testingisfun99 |
       | existing_orders_user   | testingisfun99 |
+
+
       
    Scenario: Login as Locked User
     Given I navigate to website
