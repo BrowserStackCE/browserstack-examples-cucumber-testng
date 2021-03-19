@@ -9,6 +9,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 import org.testng.annotations.*;
 
 import browserstack.stepdefs.BaseTest;
+import browserstack.utils.AllureReportConfigurationSetup;
 
 
 @Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
@@ -25,6 +26,7 @@ public class ParallelTestRunner extends BaseTest   {
     public void setUpClass() {
         System.out.println("Cucumber Test Class Before");
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+        AllureReportConfigurationSetup.prepareAllureResultsFolder();
     }
 
     @Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")

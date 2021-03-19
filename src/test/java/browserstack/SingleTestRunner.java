@@ -9,6 +9,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 import org.testng.annotations.*;
 
 import browserstack.stepdefs.BaseTest;
+import browserstack.utils.AllureReportConfigurationSetup;
 
 
 @Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
@@ -28,26 +29,29 @@ public class SingleTestRunner extends BaseTest   {
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() {
+    	AllureReportConfigurationSetup.prepareAllureResultsFolder();
         System.out.println("Cucumber Test Class Before");
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+      
     }
 
     @Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")
     public void feature(CucumberFeatureWrapper cucumberFeature) {
-        System.out.println("Cucumber Test Class Inside Test");
+        System.out.println("Cucumber Test Started");
         System.out.println(cucumberFeature.getCucumberFeature());
         testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
     }
 
     @DataProvider
     public Object[][] features() {
-        System.out.println("Data Provider test Class");
         return testNGCucumberRunner.provideFeatures();
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownClass() throws Exception {
         testNGCucumberRunner.finish();
+        
     }
+    
 
 }

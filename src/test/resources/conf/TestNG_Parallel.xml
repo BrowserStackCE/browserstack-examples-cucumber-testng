@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="1" parallel="tests"
-	thread-count="3" >
-<test name="Chrome" annotations="JDK"
+<suite name="BDD Test Suite" verbose="1" parallel="tests" >
+<test name="Chrome" 
 		preserve-order="true">
          <parameter name="browser" value="win_chrome"/>
         <classes>

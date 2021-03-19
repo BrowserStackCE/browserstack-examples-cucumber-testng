@@ -67,7 +67,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Maven:
   ```sh
-  mvn install -P -Dcucumber.options="<Feature File Location>""
+  mvn install -P -Dcucumber.options="<Feature File Location>"
   ```
 
   Gradle:
@@ -109,7 +109,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
 # Docker
 
-Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. By taking advantage of Dockerï¿½s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
 ## Prerequisites
 
@@ -145,7 +145,7 @@ Docker is an open platform for developing, shipping, and running applications. D
 
   Maven:
   ```sh
-  mvn install -P docker -Dtest-name="<Test scenario name>"
+  mvn install -P docker -Dcucumber.options="<Feature File Location>"
   ```
 
   Gradle:
@@ -414,8 +414,7 @@ In this section, we will run the testcases to test internally hosted website in 
 
 ## Generating Allure Reports
 
-- Generate Report using the following command: `mvn allure:generate`
-- Serve the Allure report on a server: `mvn allure:serve`
+- Serve the Allure report on a server: `allure serve allure-results` 
 
 ## Addtional Resources
 
