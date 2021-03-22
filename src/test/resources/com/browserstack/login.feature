@@ -1,7 +1,9 @@
 
 Feature: Login Feature
 
+
   Scenario Outline: Login as "<username>"
+  	CSV Examples:data.csv
     Given I navigate to website
     And I click on "Sign In" link
     And I type "<username>" in "username"
@@ -10,12 +12,6 @@ Feature: Login Feature
     Then I should see user "<username>" logged in
     Then I click on Logout
     
-	Examples:
-      | username                 | password         |
-      | fav_user             | testingisfun99 |
-      | image_not_loading_user | testingisfun99 |
-      | existing_orders_user   | testingisfun99 |
-
 
       
    Scenario: Login as Locked User

@@ -90,7 +90,8 @@ public class BaseTest {
 	            capabilities.setCapability("browserstack.appiumLogs", "false");
 	            capabilities.setCapability("browserstack.seleniumLogs", "false");
 	            capabilities.setCapability("browserstack.geoLocation", "IN");
-
+	           
+	            
 	            if (capabilities.getCapability("browserstack.local") != null
 	                    && capabilities.getCapability("browserstack.local") == "true") {
 	                local = new Local();

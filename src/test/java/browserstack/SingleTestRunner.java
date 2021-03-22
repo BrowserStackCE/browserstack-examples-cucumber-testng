@@ -2,6 +2,7 @@ package browserstack;
 
 
 import cucumber.api.CucumberOptions;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.testng.CucumberFeatureWrapper;
@@ -14,7 +15,7 @@ import browserstack.utils.AllureReportConfigurationSetup;
 
 @Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
 @CucumberOptions(
-        features = "src/test/resources/com/browserstack/login.feature",
+        features = "src/test/resources/com/browserstack",
         glue = "browserstack.stepdefs" ,
         format = {
                 "pretty",
@@ -32,12 +33,14 @@ public class SingleTestRunner extends BaseTest   {
     	AllureReportConfigurationSetup.prepareAllureResultsFolder();
         System.out.println("Cucumber Test Class Before");
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+       
       
     }
 
     @Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")
     public void feature(CucumberFeatureWrapper cucumberFeature) {
         System.out.println("Cucumber Test Started");
+        System.out.println(Scenario.class.getName());
         System.out.println(cucumberFeature.getCucumberFeature());
         testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
     }

@@ -12,3 +12,6 @@ build
 *.jar
 *.properties
 *.prefs
+*.DS_Store*
+.DS_Store
+.project
