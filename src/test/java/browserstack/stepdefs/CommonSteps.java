@@ -4,6 +4,7 @@ package browserstack.stepdefs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import browserstack.utils.DataHelper;
 import browserstack.utils.Utility;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -33,6 +34,9 @@ public class CommonSteps extends BaseTest {
 
     @And("^I type \"([^\"]*)\" in \"([^\"]*)\"$")
     public void iTypeIn(String text,String inputName) throws InterruptedException {
+    	
+    	
+    	
         if(inputName.equalsIgnoreCase("username")){
         	ThreadLocalDriver.getWebDriver().findElement(By.xpath("//*[@id=\"username\"]/div/div[1]")).click();
         	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(text);

@@ -11,11 +11,12 @@ import org.testng.annotations.*;
 
 import browserstack.stepdefs.BaseTest;
 import browserstack.utils.AllureReportConfigurationSetup;
+import browserstack.utils.DataHelper;
 
 
 @Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
 @CucumberOptions(
-        features = "src/test/resources/com/browserstack",
+        features = "src/test/resources/com/browserstack/login.feature",
         glue = "browserstack.stepdefs" ,
         format = {
                 "pretty",
@@ -39,6 +40,7 @@ public class SingleTestRunner extends BaseTest   {
 
     @Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")
     public void feature(CucumberFeatureWrapper cucumberFeature) {
+    	
         System.out.println("Cucumber Test Started");
         System.out.println(Scenario.class.getName());
         System.out.println(cucumberFeature.getCucumberFeature());
@@ -47,6 +49,10 @@ public class SingleTestRunner extends BaseTest   {
 
     @DataProvider
     public Object[][] features() {
+        System.out.println("Data Provider test Class");
+        
+        //return new Object[][] { { "data one" }, { "data two" } };
+     
         return testNGCucumberRunner.provideFeatures();
     }
 

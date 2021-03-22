@@ -4,6 +4,9 @@
  <test name="Chrome"
 		preserve-order="true">
          <parameter name="browser" value="win_chrome"/>
+         <parameter name="environment" value="local"/>
+          <parameter name="url" value="http://bstackdemo.com/"/>
+         
         <classes>
             <class name="browserstack.SingleTestRunner" />
         </classes>
