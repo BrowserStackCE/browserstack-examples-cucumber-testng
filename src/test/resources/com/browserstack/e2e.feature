@@ -1,11 +1,9 @@
 Feature: End to End Feature
 
+	@E2E
   Scenario: End to End Scenario
     Given I navigate to website
-    And I click on "Sign In" link
-    And I type "fav_user" in "username"
-    And I type "testingisfun99" in "password"
-    And I press Log In Button
+		And I SignIn as "fav_user" with "testingisfun99" password
     And I add two products to cart
     And I click on Buy Button
     And I type "first" in "firstNameInput" input

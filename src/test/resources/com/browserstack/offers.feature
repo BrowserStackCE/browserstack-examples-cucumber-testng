@@ -1,10 +1,7 @@
 Feature: Offers Feature
-
+	@Offers
   Scenario: Offers for mumbai geo-location
     Given I navigate to website
-    And I click on "Sign In" link
-    And I type "fav_user" in "username"
-    And I type "testingisfun99" in "password"
-    And I press Log In Button
+ 	 	And I SignIn as "fav_user" with "testingisfun99" password
     And I click on "Offers" link
     Then I should see Offer elements

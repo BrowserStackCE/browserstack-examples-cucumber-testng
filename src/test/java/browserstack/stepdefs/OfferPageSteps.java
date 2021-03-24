@@ -9,6 +9,7 @@ import cucumber.api.java.en.Then;
 
 public class OfferPageSteps extends BaseTest {
 
+	
     @Then("I should see Offer elements")
     public void iShouldSeeOfferElements() {
         try {

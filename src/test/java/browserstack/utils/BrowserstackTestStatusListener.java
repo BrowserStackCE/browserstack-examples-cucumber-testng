@@ -2,35 +2,69 @@ package browserstack.utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
 import browserstack.stepdefs.BaseTest;
+import browserstack.stepdefs.ThreadLocalDriver;
 
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
-public class BrowserstackTestStatusListener extends TestListenerAdapter {
+public class BrowserstackTestStatusListener implements ITestListener {
 
-    private void markTestStatus(String status, String reason, WebDriver driver) { 
-        try {
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"" + status + "\", \"reason\": \"" + reason + "\"}}");
-        } catch (Exception e) {
-            System.out.print("Error executing javascript");
-        }
-    }
+	
+	 public static void markTestStatus(String status, String reason, WebDriver driver) {
+			try {
+				JavascriptExecutor jse = (JavascriptExecutor) driver;
+				jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""
+						+ status + "\", \"reason\": \"" + reason + "\"}}");
+			} catch (Exception e) {
+				System.out.print("Error executing javascript");
+			}
+		}
+	
 
-    @Override
-    public void onTestSuccess(ITestResult result) {
-        Object currentClass = result.getInstance();
-        WebDriver driver = ((BaseTest) currentClass).getDriver();
-        markTestStatus("passed", "", driver);
-    }
+	@Override
+	public void onTestStart(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void onTestFailure(ITestResult result) {
-        Object currentClass = result.getInstance();
-        WebDriver driver = ((BaseTest) currentClass).getDriver();
-        markTestStatus("failed", result.getThrowable().getMessage(), driver);
-    }
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		// TODO Auto-generated method stub
+		markTestStatus("Passed","",ThreadLocalDriver.getWebDriver());
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		// TODO Auto-generated method stub
+		markTestStatus("Failed","",ThreadLocalDriver.getWebDriver());
+		
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStart(ITestContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

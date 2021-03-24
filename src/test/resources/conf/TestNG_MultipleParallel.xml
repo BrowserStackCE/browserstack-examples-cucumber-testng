@@ -2,16 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="BDD Test Suite" verbose="1" parallel="tests"
 	thread-count="2" >
+	<listeners>
+<listener class-name="browserstack.utils.BrowserstackTestStatusListener"/></listeners>
 <test name="Chrome" 
 		preserve-order="true">
-         <parameter name="browser" value="win_chrome"/>
         <classes>
             <class name="browserstack.ParallelTestRunner" />
         </classes>
 </test>
 <test name="Firefox"
 		preserve-order="true">
-         <parameter name="browser" value="win_firefox"/>
         <classes>
             <class name="browserstack.ParallelTestRunner" />
         </classes>

@@ -10,7 +10,9 @@ public class CheckoutPageSteps extends BaseTest{
 	
     @And("I type \"([^\"]*)\" in Post Code")
     public void iTypeInPostCode(String postCode) {
+        
     	ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".dynamic-form-field--postCode #provinceInput")).sendKeys(postCode);
+    
     }
 
     @And("I click on Checkout Button")

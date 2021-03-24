@@ -6,6 +6,8 @@ import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,6 +23,13 @@ import java.util.Map;
 public class Utility {
 
     private Utility(){}
+    
+    private static final String LOCATION_SCRIPT_FORMAT = "navigator.geolocation.getCurrentPosition = function(success){\n" +
+            "    var position = { \"coords\":{\"latitude\":\"%s\",\"longitude\":\"%s\"}};\n" +
+            "    success(position);\n" +
+            "}";
+    private static final String OFFER_LATITUDE = "19";
+    private static final String OFFER_LONGITUDE = "72";
 
     public static Map<String,String> getLocalOptions(JSONObject config) {
         Map<String, String> localOptions = new HashMap<String, String>();
@@ -61,6 +70,12 @@ public class Utility {
         return singleConfig;
     }
     
+    public static void mockGPS(WebDriver webDriver) {
+        String locationScript = String.format(LOCATION_SCRIPT_FORMAT, OFFER_LATITUDE, OFFER_LONGITUDE);
+        ((JavascriptExecutor) webDriver).executeScript(locationScript);
+    }
+
+    
     public  static void waitforLoad(WebDriver driver) {
     	try {
 			Thread.sleep(1500);
@@ -76,6 +91,7 @@ public class Utility {
     	    }
     }
     
+
     public static void waitforElement(WebElement element) {
     	try {
 			Thread.sleep(1500);
@@ -86,4 +102,26 @@ public class Utility {
     	 WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
     	  wait.until(ExpectedConditions.visibilityOf(element));
     }
+    
+    private static ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        Map<String, Object> prefs = new HashMap<>();
+        Map<String, Object> profile = new HashMap<>();
+        Map<String, Object> contentSettings = new HashMap<>();
+        contentSettings.put("geolocation", 1);
+        profile.put("managed_default_content_settings", contentSettings);
+        prefs.put("profile", profile);
+        options.setExperimentalOption("prefs", prefs);
+        return options;
+    }
+
+    private static FirefoxProfile getFirefoxProfile() {
+        FirefoxProfile firefoxProfile = new FirefoxProfile();
+        firefoxProfile.setPreference("geo.enabled", false);
+        firefoxProfile.setPreference("geo.provider.use_corelocation", false);
+        firefoxProfile.setPreference("geo.prompt.testing", false);
+        firefoxProfile.setPreference("geo.prompt.testing.allow", false);
+        return firefoxProfile;
+    }
+
 }

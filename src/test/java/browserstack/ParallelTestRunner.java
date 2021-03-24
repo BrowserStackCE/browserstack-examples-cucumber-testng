@@ -2,17 +2,17 @@ package browserstack;
 
 
 import cucumber.api.CucumberOptions;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 import org.testng.annotations.*;
-
 import browserstack.stepdefs.BaseTest;
+import browserstack.stepdefs.ThreadLocalDriver;
 import browserstack.utils.AllureReportConfigurationSetup;
 
 
-@Listeners(browserstack.utils.BrowserstackTestStatusListener.class)	
 @CucumberOptions(
         features = "src/test/resources/com/browserstack",
         glue = "browserstack.stepdefs"
@@ -43,8 +43,9 @@ public class ParallelTestRunner extends BaseTest   {
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDownClass() throws Exception {
-        testNGCucumberRunner.finish();
-    }
+    public void tearDownClass(Scenario scenario) throws Exception {
+    	 testNGCucumberRunner.finish();
+     }
+      
 
 }

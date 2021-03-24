@@ -1,7 +1,7 @@
 
 Feature: Login Feature
 
-
+@LoginValid
   Scenario Outline: Login as "<username>"
     Given I navigate to website
     And I click on "Sign In" link
@@ -11,8 +11,14 @@ Feature: Login Feature
     Then I should see user "<username>" logged in
     Then I click on Logout
     
+Examples:
+      | username             | password  |
+      | fav_user             | testingisfun99 |
+      | image_not_loading_user | testingisfun99 |
+      | existing_orders_user   | testingisfun99 |
 
-      
+
+ @LoginLocked 
    Scenario: Login as Locked User
     Given I navigate to website
     And I click on "Sign In" link

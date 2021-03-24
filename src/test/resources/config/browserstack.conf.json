@@ -1,55 +1,144 @@
 {
-  "server": "hub-cloud.browserstack.com",
   "user": "sanketmali4",
   "key": "XaqpcHttuyFzXSzC3uNM",
-  "capabilities": {
-    "browserstack.debug": false,
-    "browserstack.local": false,
-    "name": "BStackDemoTestNG",
-    "build": "BStack Build Number 1"
-  },
-  "environments": {
-    "win_chrome": {
-      "browser": "Chrome",
-      "browser_version": "latest",
-      "os" : "Windows",
-      "os_version" : "10"
+  "application_endpoint": "https://bstackdemo.com",
+  "tests": {
+    "parallel": {
+      "common_caps": {
+        "project": "BrowserStack Demo",
+        "build": "Automate Demo",
+        "name": "Parallel Test: ",
+        "browserstack.debug": "true",
+        "browserstack.networkLogs": "true",
+        "browserstack.console": "verbose"
+      },
+      "env_caps": [
+        {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Firefox",
+          "browser_version": "latest-1"
+        },
+        {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Chrome",
+          "browser_version": "latest-1"
+        },
+        {
+          "os": "OS X",
+          "os_version": "Big Sur",
+          "browser": "Chrome",
+          "browser_version": "latest"
+        },
+        {
+          "os": "OS X",
+          "os_version": "Catalina",
+          "browser": "Safari",
+          "browser_version": "13.0"
+        },
+        {
+          "os": "Android",
+          "os_version": "11.0",
+          "device": "Samsung Galaxy S20",
+          "realMobile": true
+        },
+        {
+          "os": "iPhone",
+          "os_version": "13.0",
+          "device": "iPhone XS",
+          "realMobile": true
+        }
+      ]
     },
-    "win_firefox": {
-      "browser": "Firefox",
-      "browser_version": "latest",
-      "os" : "Windows",
-      "os_version" : "10"
+    "single": {
+      "common_caps": {
+        "project": "BrowserStack",
+        "build": "Automate Demo",
+        "name": "Single Test: "
+      },
+      "env_caps": [
+        {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Chrome"
+        }
+      ]
     },
-     "mac_safari": {
-      "browser": "Safari",
-      "browser_version": "latest",
-      "os" : "OS X",
-      "os_version" : "Big Sur"
+    "local": {
+      "application_env": "dev",
+      "application_endpoint": "http://localhost:3000",
+      "common_caps": {
+        "project": "BrowserStack Demo",
+        "build": "Automate Demo",
+        "name": "Parallel Test: ",
+        "browserstack.debug": "true",
+        "browserstack.networkLogs": "true",
+        "browserstack.console": "verbose",
+        "browserstack.local": "true"
+      },
+      "env_caps": [
+        {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Firefox",
+          "browser_version": "latest-1"
+        },
+        {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Chrome",
+          "browser_version": "latest-1"
+        },
+        {
+          "os": "OS X",
+          "os_version": "Big Sur",
+          "browser": "Chrome",
+          "browser_version": "latest"
+        },
+        {
+          "os": "OS X",
+          "os_version": "Catalina",
+          "browser": "Safari",
+          "browser_version": "13.0"
+        },
+        {
+          "os": "Android",
+          "os_version": "11.0",
+          "device": "Samsung Galaxy S20",
+          "realMobile": true
+        },
+        {
+          "os": "iPhone",
+          "os_version": "13.0",
+          "device": "iPhone XS",
+          "realMobile": true
+        }
+      ],
+      "local_binding_caps": {
+        "force": "true",
+        "forceLocal": "true",
+        "verbose": "true",
+        "logFile": "local_test.log"
+      }
     },
-     "mac_chrome": {
-      "browser": "Firefox",
-      "browser_version": "latest",
-      "os" : "OS X",
-      "os_version" : "Big Sur"
-    }, 
-     "mac_firefox": {
-      "browser": "Firefox",
-      "browser_version": "latest",
-      "os" : "OS X",
-      "os_version" : "Big Sur"
-    }, 
-     "android_chrome": {
-      "os": "Android",
-      "os_version": "11.0",
-      "device": "Samsung Galaxy S20",
-      "realMobile": true
-    }, 
-     "iphone_safari": {
-       "os": "iPhone",
-       "os_version": "13.0",
-       "device": "iPhone XS",
-       "realMobile": true
+    "mobile": {
+      "common_caps": {
+        "project": "BrowserStack",
+        "build": "Automate Demo",
+        "name": "Mobile Parallel Test"
+      },
+      "env_caps": [
+        {
+          "device": "Google Pixel",
+          "realMobile": true
+        },
+        {
+          "device": "iPhone 11",
+          "os_version": "13",
+          "realMobile": true
+        }
+      ]
     }
   }
 }
