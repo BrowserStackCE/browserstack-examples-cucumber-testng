@@ -50,9 +50,9 @@ public class BaseTest {
 	
 
 	@BeforeMethod(alwaysRun = true)
-	@Parameters({ "configfile", "environment", "browser", "url","test","env_cap_id","settestname"})
-	public void setUpClass(@Optional("browserstack.conf.json") String configfile, @Optional("local") String environment,
-			@Optional("chrome") String browser, @Optional("http://localhost:3000") String url,
+	@Parameters({ "environment", "browser","test","env_cap_id","settestname"})
+	public void setUpClass( @Optional("local") String environment,
+			@Optional("chrome") String browser,
 			@Optional("single") String test, @Optional("0") int env_cap_id,@Optional("BStack test name") String settestname) throws Exception {
 		JSONParser parser = new JSONParser();
 		JSONObject config = (JSONObject) parser
@@ -88,7 +88,7 @@ public class BaseTest {
 			caps.merge(new DesiredCapabilities(commonCapabilities));
 			caps.merge(new DesiredCapabilities(envCapabilities));
 			if (test.equals("local")) {
-				url = (String) envs.get("application_endpoint");
+				URL = (String) envs.get("application_endpoint");
 				caps.merge(new DesiredCapabilities(localCapabilities));
 			}
 

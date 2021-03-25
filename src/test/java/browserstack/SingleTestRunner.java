@@ -23,7 +23,7 @@ import browserstack.utils.Utility;
 ;
 
 
-@CucumberOptions(features = "src/test/resources/com/browserstack/e2e.feature", glue = "browserstack.stepdefs", format = {
+@CucumberOptions(features = "src/test/resources/com/browserstack", glue = "browserstack.stepdefs", format = {
 		"pretty", "html:target/cucumber-reports/cucumber-pretty",
 		"json:target/cucumber-reports/CucumberTestReport.json", "rerun:target/cucumber-reports/rerun.txt", })
 public class SingleTestRunner extends BaseTest {
@@ -36,7 +36,6 @@ public class SingleTestRunner extends BaseTest {
 	//@Parameters({"featurePath"})
 	@BeforeClass(alwaysRun = true)
 	public void setUpClass() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		//System.out.print(featurePath);
 		AllureReportConfigurationSetup.prepareAllureResultsFolder();
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 	  RuntimeOptionsFactory runtimeOptionsFactory = new RuntimeOptionsFactory(this.getClass());

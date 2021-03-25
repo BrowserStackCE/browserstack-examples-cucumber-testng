@@ -23,7 +23,7 @@ public class HomePageSteps extends BaseTest {
     
     public void iAddProductsToCart() throws InterruptedException {
   
-    	// wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 30);
+    	 wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 60);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 > .shelf-item__buy-btn"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.float-cart__close-btn"))).click();
         ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#\\32 > .shelf-item__buy-btn")).click();
