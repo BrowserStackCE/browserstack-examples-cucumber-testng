@@ -123,5 +123,11 @@ public class Utility {
         firefoxProfile.setPreference("geo.prompt.testing.allow", false);
         return firefoxProfile;
     }
+    
+    public static String TrimText(String text)
+    {
+    	text=text.substring(text.lastIndexOf("/") + 1);
+    	return text.substring(0, text.length()-8);
+    }
 
 }

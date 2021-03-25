@@ -318,9 +318,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration><argLine>-Dsettestname="${settestname}"
-							</argLine>
-						
+						<configuration>
 							<systemPropertyVariables>
 								<environment>remote</environment>
 							</systemPropertyVariables>
@@ -340,8 +338,6 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-						<argLine>-Dsettestname="${settestname}"
-							</argLine>
 							<systemPropertyVariables>
 								<environment>remote</environment>
 							</systemPropertyVariables>
@@ -361,8 +357,6 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-						<argLine>-Dsettestname="${settestname}"
-							</argLine>
 							<systemPropertyVariables>
 								<environment>remote</environment>
 								<url>${application-url}</url>

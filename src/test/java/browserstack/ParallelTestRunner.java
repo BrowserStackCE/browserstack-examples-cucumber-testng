@@ -3,14 +3,17 @@ package browserstack;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import cucumber.runtime.RuntimeOptions;
+import cucumber.runtime.RuntimeOptionsFactory;
+import jdk.internal.org.jline.utils.Log;
+
 import org.testng.annotations.*;
 import browserstack.stepdefs.BaseTest;
-import browserstack.stepdefs.ThreadLocalDriver;
 import browserstack.utils.AllureReportConfigurationSetup;
+import browserstack.utils.Utility;
 
 
 @CucumberOptions(
@@ -21,29 +24,32 @@ import browserstack.utils.AllureReportConfigurationSetup;
 public class ParallelTestRunner extends BaseTest   {
 
     private TestNGCucumberRunner testNGCucumberRunner;
+    public static String testName = null;;
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() {
-        System.out.println("Cucumber Test Class Before");
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
         AllureReportConfigurationSetup.prepareAllureResultsFolder();
+        RuntimeOptionsFactory runtimeOptionsFactory = new RuntimeOptionsFactory(this.getClass());
+  	  RuntimeOptions runtimeoptions = runtimeOptionsFactory.create();
+  	 testName =Utility.TrimText(runtimeoptions.getFeaturePaths().get(0));
     }
 
     @Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")
     public void feature(CucumberFeatureWrapper cucumberFeature) {
-        System.out.println("Cucumber Test Class Inside Test");
-        System.out.println(cucumberFeature.getCucumberFeature());
         testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
+        
     }
+    
+
 
     @DataProvider(parallel = true)	
     public Object[][] features() {
-        System.out.println("Data Provider test Class");
         return testNGCucumberRunner.provideFeatures();
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDownClass(Scenario scenario) throws Exception {
+    public void tearDownClass() throws Exception {
     	 testNGCucumberRunner.finish();
      }
       

@@ -14,11 +14,16 @@ import org.testng.annotations.Parameters;
 import com.browserstack.local.Local;
 
 import browserstack.SingleTestRunner;
+import browserstack.utils.Log;
 import browserstack.utils.OsUtility;
 import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.testng.TestNGCucumberRunner;
+
+
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -27,13 +32,12 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import org.graalvm.compiler.nodes.memory.MemoryCheckpoint.Single;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class BaseTest {
 
-	public WebDriverWait wait;
+	public static WebDriverWait wait;
 	protected String chromeDriverBaseLocation = System.getProperty("user.dir") + "/src/test/resources/chromeDriver";
 	private Local local;
 	private TestNGCucumberRunner testNGCucumberRunner;
@@ -44,8 +48,9 @@ public class BaseTest {
 	}
 
 	
+
 	@BeforeMethod(alwaysRun = true)
-	@Parameters({ "configfile", "environment", "browser", "url","test","env_cap_id","settestname" })
+	@Parameters({ "configfile", "environment", "browser", "url","test","env_cap_id","settestname"})
 	public void setUpClass(@Optional("browserstack.conf.json") String configfile, @Optional("local") String environment,
 			@Optional("chrome") String browser, @Optional("http://localhost:3000") String url,
 			@Optional("single") String test, @Optional("0") int env_cap_id,@Optional("BStack test name") String settestname) throws Exception {
@@ -53,8 +58,7 @@ public class BaseTest {
 		JSONObject config = (JSONObject) parser
 				.parse(new FileReader("src/test/resources/config/browserstack.conf.json"));
 		URL = (String) config.get("application_endpoint");
-	
-
+		
 		if (environment.equalsIgnoreCase("local")) {
 			if (OsUtility.isMac()) {
 				System.setProperty("webdriver.chrome.driver",
@@ -69,6 +73,7 @@ public class BaseTest {
 						chromeDriverBaseLocation + "/chromeDriverLinux/chromedriver");
 			}
 			ThreadLocalDriver.setWebDriver(new ChromeDriver());
+			wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 120);
 		} else if (environment.equalsIgnoreCase("remote")) {
 			JSONObject profilesJson = (JSONObject) config.get("tests");
 			JSONObject envs = (JSONObject) profilesJson.get(test);
@@ -79,7 +84,7 @@ public class BaseTest {
 			Map<String, String> localCapabilities = (Map<String, String>) envs.get("local_binding_caps");
 
 			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setCapability("name",SingleTestRunner.TestName);
+			
 			caps.merge(new DesiredCapabilities(commonCapabilities));
 			caps.merge(new DesiredCapabilities(envCapabilities));
 			if (test.equals("local")) {
@@ -111,15 +116,17 @@ public class BaseTest {
 				options.put("localIdentifier", uuid.toString());
 				local.start(options);
 			}
-	
+			Log.INFO("testname"+SingleTestRunner.testName);
+		
+			caps.setCapability("name",SingleTestRunner.testName);
 
 			ThreadLocalDriver.setWebDriver(new RemoteWebDriver(
 					new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), caps));
 
 			ThreadLocalDriver.getWebDriver().get(URL);
-			//wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 50);
+			wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 120);
 			ThreadLocalDriver.getWebDriver().manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-			ThreadLocalDriver.getWebDriver().manage().window().maximize();
+			
 
 		}
 	}

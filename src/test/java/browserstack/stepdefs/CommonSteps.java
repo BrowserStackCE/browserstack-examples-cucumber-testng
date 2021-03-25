@@ -3,8 +3,8 @@ package browserstack.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import browserstack.utils.DataHelper;
 import browserstack.utils.Utility;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -46,6 +46,8 @@ public class CommonSteps extends BaseTest {
         	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(text);
         	ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
         }
+       
+    	wait.until(ExpectedConditions.invisibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input"))));
     }
 
    

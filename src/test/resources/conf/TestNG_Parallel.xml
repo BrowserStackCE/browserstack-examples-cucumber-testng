@@ -4,7 +4,7 @@
 <listeners>
 <listener class-name="browserstack.utils.BrowserstackTestStatusListener"/></listeners>
 <test name="Chrome" 
-		preserve-order="true">    
+		preserve-order="true"> 
         <classes>
             <class name="browserstack.ParallelTestRunner" />
         </classes>

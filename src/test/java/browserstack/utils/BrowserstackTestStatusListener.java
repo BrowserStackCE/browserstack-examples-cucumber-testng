@@ -18,7 +18,7 @@ public class BrowserstackTestStatusListener implements ITestListener {
 				jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""
 						+ status + "\", \"reason\": \"" + reason + "\"}}");
 			} catch (Exception e) {
-				System.out.print("Error executing javascript");
+				Log.ERROR("Error executing javascript");
 			}
 		}
 	

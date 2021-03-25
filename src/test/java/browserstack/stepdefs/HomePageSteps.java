@@ -8,6 +8,8 @@ import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import browserstack.utils.Utility;
@@ -18,22 +20,25 @@ public class HomePageSteps extends BaseTest {
 
 
     @And("^I add two products to cart$")
+    
     public void iAddProductsToCart() throws InterruptedException {
-    	ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#\\31 > .shelf-item__buy-btn")).click();
-    	Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
-      ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#__next > div > div > div.float-cart.float-cart--open > div.float-cart__close-btn")).click();
-      ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#\\32 > .shelf-item__buy-btn")).click();
-      Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
+  
+    	// wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 > .shelf-item__buy-btn"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.float-cart__close-btn"))).click();
+        ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#\\32 > .shelf-item__buy-btn")).click();
     }
 
     @And("^I click on Buy Button$")
     public void iClickOnBuyButton() throws InterruptedException {
+    	wait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".buy-btn"))));
       ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".buy-btn")).click();
       Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
     }
 
     @And("^I press the Apple Vendor Filter$")
     public void iPressTheAppleVendorFilter() throws InterruptedException {
+    	wait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".filters-available-size:nth-child(2) .checkmark"))));
       ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".filters-available-size:nth-child(2) .checkmark")).click();
       Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
     }

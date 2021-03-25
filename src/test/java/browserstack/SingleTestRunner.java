@@ -1,50 +1,59 @@
 package browserstack;
 
 import cucumber.api.CucumberOptions;
+import cucumber.api.Scenario;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import cucumber.runtime.RuntimeOptions;
+import cucumber.runtime.RuntimeOptionsFactory;
+import jdk.internal.org.jline.utils.Log;
 
-import org.testng.Reporter;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+import java.util.Collection;
+import java.util.Map;
+
 import org.testng.annotations.*;
 
+
 import browserstack.stepdefs.BaseTest;
-import browserstack.stepdefs.ThreadLocalDriver;
 import browserstack.utils.AllureReportConfigurationSetup;
-import browserstack.utils.DataHelper;
+import browserstack.utils.Utility;
+;
 
 
 @CucumberOptions(features = "src/test/resources/com/browserstack/e2e.feature", glue = "browserstack.stepdefs", format = {
 		"pretty", "html:target/cucumber-reports/cucumber-pretty",
 		"json:target/cucumber-reports/CucumberTestReport.json", "rerun:target/cucumber-reports/rerun.txt", })
 public class SingleTestRunner extends BaseTest {
-
 	private TestNGCucumberRunner testNGCucumberRunner;
-	public static String TestName = null;
-	String featureName = null;
-	CucumberFeatureWrapper cucumberFeature;
+	ClassLoader classLoader = this.getClass().getClassLoader();
+	public static String testName = null;
+	Scenario scenario;
+	
 
+	//@Parameters({"featurePath"})
 	@BeforeClass(alwaysRun = true)
-	public void setUpClass() {
+	public void setUpClass() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		//System.out.print(featurePath);
 		AllureReportConfigurationSetup.prepareAllureResultsFolder();
-		System.out.println("Cucumber Test Class Before");
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-		System.out.println(cucumberFeature.getCucumberFeature().toString());
+	  RuntimeOptionsFactory runtimeOptionsFactory = new RuntimeOptionsFactory(this.getClass());
+	  RuntimeOptions runtimeoptions = runtimeOptionsFactory.create();
+	 testName =Utility.TrimText(runtimeoptions.getFeaturePaths().get(0));
+
 
 	}
+	
 
 	@Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")
 	public void feature(CucumberFeatureWrapper cucumberFeature) {
-
-		System.out.println("Cucumber Test Started");
-		System.out.println(cucumberFeature);
 		testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
-		TestName = cucumberFeature.toString();
-
 	}
 
 	@DataProvider
 	public Object[][] features() {
-		System.out.println("Data Provider test Class");
 		return testNGCucumberRunner.provideFeatures();
 	}
 
@@ -53,5 +62,6 @@ public class SingleTestRunner extends BaseTest {
 
 		testNGCucumberRunner.finish();
 	}
-
+	
+	
 }

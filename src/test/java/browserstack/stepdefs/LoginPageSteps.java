@@ -31,7 +31,6 @@ public class LoginPageSteps extends BaseTest {
 	
 	 @And("^I SignIn as \"([^\"]*)\" with \"([^\"]*)\" password$")
 	    public void iSignInAsWithPassword(String username, String password) {
-	        WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 10);
 	        ThreadLocalDriver.getWebDriver().findElement(By.linkText("Sign In")).click();
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username > div > div:nth-child(1)"))).click();
 	        ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(username);
