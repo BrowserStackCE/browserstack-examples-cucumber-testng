@@ -116,10 +116,7 @@ public class BaseTest {
 				options.put("localIdentifier", uuid.toString());
 				local.start(options);
 			}
-			Log.INFO("testname"+SingleTestRunner.testName);
-		
-			caps.setCapability("name",SingleTestRunner.testName);
-
+			caps.setCapability("name",settestname);
 			ThreadLocalDriver.setWebDriver(new RemoteWebDriver(
 					new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), caps));
 

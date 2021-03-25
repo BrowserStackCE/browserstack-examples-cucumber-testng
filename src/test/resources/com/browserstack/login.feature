@@ -12,8 +12,8 @@ Feature: Login Feature
     Then I click on Logout
     
 Examples:
-      | username             | password  |
-      | fav_user             | testingisfun99 |
+      | username               | password  |
+      | fav_user               | testingisfun99 |
       | image_not_loading_user | testingisfun99 |
       | existing_orders_user   | testingisfun99 |
 

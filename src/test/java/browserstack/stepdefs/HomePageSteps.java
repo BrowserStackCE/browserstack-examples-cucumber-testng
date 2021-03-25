@@ -6,6 +6,7 @@ import static org.testng.Assert.assertTrue;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -63,6 +64,9 @@ public class HomePageSteps extends BaseTest {
     @Then("^I should see no image loaded$")
     public void iShouldSeeNoImageLoaded() {
         try {
+        	
+        	wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 60);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='iPhone 12']")));
             String src =ThreadLocalDriver.getWebDriver().findElement(By.xpath("//img[@alt='iPhone 12']")).getAttribute("src");
             Assert.assertEquals("", src);
         } catch (NoSuchElementException e) {
@@ -94,18 +98,20 @@ public class HomePageSteps extends BaseTest {
     @Then("I should be able to add items to favourites")
     public void clickOnFavourites() {
         try {
-        	
+        	Thread.sleep(2000);
+        	WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 60);
         	Random rand = new Random(); //instance of random class
             int upperbound = ThreadLocalDriver.getWebDriver().findElements(By.xpath("//span[@class='MuiIconButton-label']")).size(); 
             int int_random = rand.nextInt(upperbound-1); 
-           ThreadLocalDriver.getWebDriver().findElement(By.xpath("(//span[@class='MuiIconButton-label'])["+int_random+"]")).click();
-             int_random = rand.nextInt(upperbound-1); 
+            JavascriptExecutor js = (JavascriptExecutor)ThreadLocalDriver.getWebDriver();	
+            js.executeScript("arguments[0].click();",  ThreadLocalDriver.getWebDriver().findElement(By.xpath("(//div[@class='shelf-stopper']/button)["+int_random+"]")) );
+            int_random = rand.nextInt(upperbound-1); 
+            js.executeScript("arguments[0].click();",  ThreadLocalDriver.getWebDriver().findElement(By.xpath("(//div[@class='shelf-stopper']/button)["+int_random+"]")) );
              Utility.waitforLoad(ThreadLocalDriver.getWebDriver());
-           ThreadLocalDriver.getWebDriver().findElement(By.xpath("(//span[@class='MuiIconButton-label'])["+int_random+"]")).click();
            ThreadLocalDriver.getWebDriver().findElement(By.linkText("Favourites")).click();	
             assertTrue(ThreadLocalDriver.getWebDriver().findElements(By.xpath("//div[@class='shelf-stopper']")).size()>0);
     
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException | InterruptedException e) {
             throw new AssertionError("Error in page load");
         }
     }

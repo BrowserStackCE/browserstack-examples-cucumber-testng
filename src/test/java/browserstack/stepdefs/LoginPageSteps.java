@@ -31,26 +31,25 @@ public class LoginPageSteps extends BaseTest {
 	
 	 @And("^I SignIn as \"([^\"]*)\" with \"([^\"]*)\" password$")
 	    public void iSignInAsWithPassword(String username, String password) {
-	        ThreadLocalDriver.getWebDriver().findElement(By.linkText("Sign In")).click();
+		 WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 60);
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign In")));
+	       ThreadLocalDriver.getWebDriver().findElement(By.linkText("Sign In")).click();
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username > div > div:nth-child(1)"))).click();
-	        ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(username);
-	        ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
-	        ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#password > div > div:nth-child(1)")).click();
-	        ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(password);
-	        ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
-	        ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".Button_root__24MxS")).click();
+	       ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(username);
+	       ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
+	       ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("#password > div > div:nth-child(1)")).click();
+	       ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(password);
+	       ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
+	       ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".Button_root__24MxS")).click();
 	        Utility.mockGPS(ThreadLocalDriver.getWebDriver());
+	       
 	    }
 
 	@Then("I click on Logout")
 	public void iShouldbeAbleToLogout() {
-		try {
-			if (ThreadLocalDriver.getWebDriver().findElement(By.linkText("Logout")).isDisplayed()) {
-				ThreadLocalDriver.getWebDriver().findElement(By.linkText("Logout")).click();
-			}
-		} catch (NoSuchElementException e) {
-				e.printStackTrace();
-		}
+		WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 60);
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Logout")));
+		ThreadLocalDriver.getWebDriver().findElement(By.linkText("Logout")).click();
 	}
 
 }
