@@ -1,10 +1,15 @@
 package browserstack;
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.CucumberFeatureWrapper;
-import cucumber.api.testng.TestNGCucumberRunner;
+
 import org.testng.annotations.*;
+
 import browserstack.stepdefs.BaseTest;
 import browserstack.utils.AllureReportConfigurationSetup;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.FeatureWrapper;
+import io.cucumber.testng.PickleWrapper;
+import io.cucumber.testng.TestNGCucumberRunner;
 
 
 
@@ -15,32 +20,40 @@ import browserstack.utils.AllureReportConfigurationSetup;
                 )
 public class ParallelTestRunner extends BaseTest   {
 
-    private TestNGCucumberRunner testNGCucumberRunner;
-    public static String testName = null;;
+	private TestNGCucumberRunner testNGCucumberRunner;
+	
+	@BeforeClass(alwaysRun = true)
+	public void setUpClass() {
+		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 
-    @BeforeClass(alwaysRun = true)
-    public void setUpClass() {
-        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-        AllureReportConfigurationSetup.prepareAllureResultsFolder();
-    
-    }
+	}
 
-    @Test(groups = "cucumber", description = "Runs LoginCandiate Feature", dataProvider = "features")
-    public void feature(CucumberFeatureWrapper cucumberFeature) {
-        testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
-        
-    }
-    
+	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "scenarios")
+	public void feature(PickleWrapper pickleWrapper, FeatureWrapper featureWrapper) {
+		System.out.println(" I am in Testng");
+		testNGCucumberRunner.runScenario(pickleWrapper.getPickle());
 
-    @DataProvider(parallel = true)	
-    public Object[][] features() {
-        return testNGCucumberRunner.provideFeatures();
-    }
+	}
 
-    @AfterClass(alwaysRun = true)
-    public void tearDownClass() throws Exception {
-    	 testNGCucumberRunner.finish();
-     }
-      
+	@DataProvider(parallel = true)
+	public Object[][] scenarios() {
+		System.out.println(" I am in Data Provder");
+		return testNGCucumberRunner.provideScenarios();
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void tearDownClass() {
+		if (testNGCucumberRunner == null) {
+			return;
+		}
+		testNGCucumberRunner.finish();
+
+	}
+
+	@Before
+	public void setUp(Scenario scenario) throws Exception {
+
+		System.out.println("scenario nanme" + scenario);
+	}
 
 }

@@ -16,8 +16,10 @@ import browserstack.stepdefs.ThreadLocalDriver;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class Utility {
@@ -30,6 +32,20 @@ public class Utility {
             "}";
     private static final String OFFER_LATITUDE = "19";
     private static final String OFFER_LONGITUDE = "72";
+    
+    private static Object SYNCHRONIZER = new Object();
+    private static String epochTime = null;
+
+    public static String getEpochTime() {
+        if (epochTime == null) {
+            synchronized (SYNCHRONIZER) {
+                if (epochTime == null) {
+                    epochTime = String.valueOf(Instant.now().toEpochMilli());
+                }
+            }
+        }
+        return epochTime;
+    }
 
     public static Map<String,String> getLocalOptions(JSONObject config) {
         Map<String, String> localOptions = new HashMap<String, String>();
@@ -42,6 +58,12 @@ public class Utility {
         }
         return localOptions;
     }
+    
+    public static void setSessionStatus(WebDriver webDriver, String status, String reason) {
+        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
+        jse.executeScript(String.format("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}", status, reason));
+    }
+
 
     public static JSONObject getCombinedCapability(Map<String, String> envCapabilities, JSONObject config, JSONObject caps) {
         JSONObject capabilities = new JSONObject();
@@ -123,6 +145,15 @@ public class Utility {
         firefoxProfile.setPreference("geo.prompt.testing.allow", false);
         return firefoxProfile;
     }
+    
+    public static boolean isAscendingOrder(List<WebElement> priceWebElement, int length) {
+        if (priceWebElement == null || length < 2)
+            return true;
+        if (Integer.parseInt(priceWebElement.get(length - 2).getText()) > Integer.parseInt(priceWebElement.get(length - 1).getText()))
+            return false;
+        return isAscendingOrder(priceWebElement, length - 1);
+    }
+
     
     public static String TrimText(String text)
     {

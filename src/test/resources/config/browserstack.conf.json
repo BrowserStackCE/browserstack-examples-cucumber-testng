@@ -1,6 +1,6 @@
 {
-	"user": "",
-	"key": "",
+	"user": "sanketmali4",
+	"key": "XaqpcHttuyFzXSzC3uNM",
 	"application_endpoint": "https://bstackdemo.com",
 	"tests": {
 		"parallel": {
@@ -62,7 +62,43 @@
 					"os": "Windows",
 					"os_version": "10",
 					"browser": "Chrome"
-				}
+				},
+				 {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Internet Explorer",
+          "browser_version": "11.0"
+        },
+        {
+          "os": "Windows",
+          "os_version": "10",
+          "browser": "Chrome",
+          "browser_version": "latest-1"
+        },
+        {
+          "os": "OS X",
+          "os_version": "Big Sur",
+          "browser": "Chrome",
+          "browser_version": "latest"
+        },
+        {
+          "os": "OS X",
+          "os_version": "Catalina",
+          "browser": "Safari",
+          "browser_version": "13.0"
+        },
+        {
+          "os": "Android",
+          "os_version": "11.0",
+          "device": "Samsung Galaxy S20",
+          "realMobile": true
+        },
+        {
+          "os": "iPhone",
+          "os_version": "13.0",
+          "device": "iPhone XS",
+          "realMobile": true
+        }
 			]
 		},
 		"local": {

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="1" parallel="tests" >
-<listeners>
-<listener class-name="browserstack.utils.BrowserstackTestStatusListener"/></listeners>
+<suite name="BDD Test Suite" verbose="1" parallel = "classes" data-provider-thread-count="2">
 <test name="Chrome" 
 		preserve-order="true"> 
         <classes>

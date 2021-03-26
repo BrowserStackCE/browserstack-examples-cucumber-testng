@@ -9,48 +9,37 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import browserstack.utils.Utility;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 
-public class CommonSteps extends BaseTest {
+
+public class CommonSteps  {
 
  
-    @Given("^I navigate to website$")
-    public void iNavigateToWebsite() {
-    	ThreadLocalDriver.getWebDriver().get(BaseTest.URL);
-    }
+	  @Given("I navigate to website")
+	    public void iNavigateToWebsite() {
+	        ThreadLocalDriver.getWebDriver().get(BaseTest.URL);
+	    }
 
-    @And("^I click on \"([^\"]*)\" link$")
-    public void iClickOnLink(String linkText) throws InterruptedException {
-    	 WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 60);
-         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(linkText)));
-         wait.until(ExpectedConditions.elementToBeClickable(By.linkText(linkText)));
-         ThreadLocalDriver.getWebDriver().findElement(By.linkText(linkText)).click();
-    }
-    
+	    @And("I click on {string} link")
+	    public void iClickOnLink(String linkText) {
+	        WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(linkText))).click();
+	    }
 
-    @And("^I type \"([^\"]*)\" in \"([^\"]*)\" input$")
-    public void iTypeInInput(String text, String inputName) {
-    	ThreadLocalDriver.getWebDriver().findElement(By.id(inputName)).sendKeys(text);
-    }
-    
-    
-    
-
-    @And("^I type \"([^\"]*)\" in \"([^\"]*)\"$")
-    public void iTypeIn(String text,String inputName) throws InterruptedException {
-    	WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
-        if(inputName.equalsIgnoreCase("username")){
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username > div > div:nth-child(1)"))).click();
-            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(text);
-            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
-        } else if (inputName.equalsIgnoreCase("password")) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#password > div > div:nth-child(1)"))).click();
-            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(text);
-            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
-        }
-    }
-    
+	    @And("I type {string} in {string}")
+	    public void iTypeIn(String text, String inputName) {
+	        WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
+	        if(inputName.equalsIgnoreCase("username")){
+	            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username > div > div:nth-child(1)"))).click();
+	            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(text);
+	            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
+	        } else if (inputName.equalsIgnoreCase("password")) {
+	            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#password > div > div:nth-child(1)"))).click();
+	            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(text);
+	            ThreadLocalDriver.getWebDriver().findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
+	        }
+	    }
 
    
 }
