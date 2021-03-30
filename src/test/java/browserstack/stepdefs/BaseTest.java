@@ -1,6 +1,9 @@
 package browserstack.stepdefs;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,29 +35,26 @@ public class BaseTest {
 	protected String chromeDriverBaseLocation = System.getProperty("user.dir") + "/src/test/resources/chromeDriver";
 	private Local local;
 	protected static String URL = "http://localhost:3000";
-	public DesiredCapabilities caps= new DesiredCapabilities();
+	public DesiredCapabilities caps = new DesiredCapabilities();
 	private static String username;
 	private static String accessKey;
-	  private static final String PASSED = "passed";
-	    private static final String FAILED = "failed";
-	    private static final String REPO_NAME = "browserstack-examples-cucumber-testng - ";
+	private static final String PASSED = "passed";
+	private static final String FAILED = "failed";
+	private static final String REPO_NAME = "browserstack-examples-cucumber-testng - ";
 
 	public WebDriver getDriver() {
 		return ThreadLocalDriver.getWebDriver();
 	}
 
-	
-
 	@BeforeMethod
-	@Parameters({ "environment", "browser","test","env_cap_id","settestname"})
-	public void setUpClass( @Optional("remote") String environment,
-			@Optional("chrome") String browser,
-			@Optional("single") String test, @Optional("3") int env_cap_id,@Optional("BStack test name") String settestname) throws Exception {
+	@Parameters({ "environment", "browser", "test", "env_cap_id", "settestname" })
+	public void setUpClass(@Optional("local") String environment, @Optional("chrome") String browser,
+			@Optional("single") String test, @Optional("3") int env_cap_id,
+			@Optional("BStack test name") String settestname) throws Exception {
 		JSONParser parser = new JSONParser();
 		JSONObject config = (JSONObject) parser
 				.parse(new FileReader("src/test/resources/config/browserstack.conf.json"));
 		URL = (String) config.get("application_endpoint");
-		System.out.print("Scenarion name "+ Scenario.class.getName());
 		if (environment.equalsIgnoreCase("local")) {
 			if (OsUtility.isMac()) {
 				System.setProperty("webdriver.chrome.driver",
@@ -69,8 +69,17 @@ public class BaseTest {
 						chromeDriverBaseLocation + "/chromeDriverLinux/chromedriver");
 			}
 			ThreadLocalDriver.setWebDriver(new ChromeDriver());
-			wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 120);
-		} else if (environment.equalsIgnoreCase("remote")) {
+		
+			
+		} 
+		
+		else if(environment.equalsIgnoreCase("docker"))
+		{
+			DesiredCapabilities dc = new DesiredCapabilities();
+            dc.setBrowserName("chrome");
+            dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+            ThreadLocalDriver.setWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc));
+		}else if (environment.equalsIgnoreCase("remote")) {
 			JSONObject profilesJson = (JSONObject) config.get("tests");
 			JSONObject envs = (JSONObject) profilesJson.get(test);
 
@@ -79,8 +88,8 @@ public class BaseTest {
 					.get("env_caps")).get(env_cap_id);
 			Map<String, String> localCapabilities = (Map<String, String>) envs.get("local_binding_caps");
 
-			 caps = new DesiredCapabilities();
-			
+			caps = new DesiredCapabilities();
+
 			caps.merge(new DesiredCapabilities(commonCapabilities));
 			caps.merge(new DesiredCapabilities(envCapabilities));
 			if (test.equals("local")) {
@@ -88,11 +97,11 @@ public class BaseTest {
 				caps.merge(new DesiredCapabilities(localCapabilities));
 			}
 
-			 username = System.getenv("BROWSERSTACK_USERNAME");
+			username = System.getenv("BROWSERSTACK_USERNAME");
 			if (username == null) {
 				username = (String) config.get("user").toString();
 			}
-			 accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+			accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
 			if (accessKey == null) {
 				accessKey = (String) config.get("key").toString();
 			}
@@ -107,53 +116,53 @@ public class BaseTest {
 				options.put("localIdentifier", uuid.toString());
 				local.start(options);
 			}
-		
-			
-			
 
 		}
 	}
-	
+
 	@Before
-	public synchronized void startup(Scenario scenario)
-	{
-		 setBuildAndTestName(caps, scenario);
-		try {
-			ThreadLocalDriver.setWebDriver(new RemoteWebDriver(
-					new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), caps));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public synchronized void startup(Scenario scenario) {
+		if (ThreadLocalDriver.getWebDriver()==null) {
+			setBuildAndTestName(caps, scenario);
+			try {
+				ThreadLocalDriver.setWebDriver(new RemoteWebDriver(
+						new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), caps));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		ThreadLocalDriver.getWebDriver().get(URL);
 		wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 120);
 		ThreadLocalDriver.getWebDriver().manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-		
+
 	}
-	
-	 private void setBuildAndTestName(DesiredCapabilities caps, Scenario scenario) {
-	        caps.setCapability("name", scenario.getName());
-	        String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-	        if (buildName == null) {
-	            buildName = Utility.getEpochTime();
-	        }
-	        caps.setCapability("build", REPO_NAME + buildName);
-	    }
 
+	private void setBuildAndTestName(DesiredCapabilities caps, Scenario scenario) {
+		caps.setCapability("name", scenario.getName());
+		String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+		if (buildName == null) {
+			buildName = Utility.getEpochTime();
+		}
+		caps.setCapability("build", REPO_NAME + buildName);
+	}
 
-	 @After
-	    public void teardown(Scenario scenario) throws Exception {
-	      
-	            if (scenario.isFailed()) {
-	                Utility.setSessionStatus(ThreadLocalDriver.getWebDriver(), FAILED, String.format("%s failed.", scenario.getName()));
-	            } else {
-	                Utility.setSessionStatus(ThreadLocalDriver.getWebDriver(), PASSED, String.format("%s passed.", scenario.getName()));
-	            }
-	        
-	        ThreadLocalDriver.getWebDriver().quit();
-	       // if (bstackLocal != null)Ω bstackLocal.stop();
-	    }
-
+	@After
+	public void teardown(Scenario scenario) throws Exception {
+		if(System.getProperty("environment").equalsIgnoreCase("remote"))
+			
+				{
+		if (scenario.isFailed()) {
+			Utility.setSessionStatus(ThreadLocalDriver.getWebDriver(), FAILED,
+					String.format("%s failed.", scenario.getName()));
+		} else {
+			Utility.setSessionStatus(ThreadLocalDriver.getWebDriver(), PASSED,
+					String.format("%s passed.", scenario.getName()));
+		}
+		}
+		ThreadLocalDriver.getWebDriver().quit();
+		// if (bstackLocal != null)Ω bstackLocal.stop();
+	}
 
 }

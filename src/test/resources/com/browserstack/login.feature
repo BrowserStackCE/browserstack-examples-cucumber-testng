@@ -1,5 +1,6 @@
 Feature: Login Feature
 
+	@Login-with-given-username
   Scenario Outline: Login with given username <username>
     Given I navigate to website
     And I click on "Sign In" link
@@ -12,7 +13,7 @@ Feature: Login Feature
       | 'fav_user'               | 'testingisfun99' |
       | 'image_not_loading_user' | 'testingisfun99' |
       | 'existing_orders_user'   | 'testingisfun99' |
-
+	@Login-as-Locked-User
   Scenario: Login as Locked User
     Given I navigate to website
     And I click on "Sign In" link

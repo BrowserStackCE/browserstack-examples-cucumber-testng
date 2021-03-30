@@ -46,3 +46,14 @@ publishing {
 tasks.named('test') {
     useTestNG()
 }
+
+task on_prem(type: Test) {
+    useTestNG()
+    if (project.hasProperty('test')) {
+        include '**/'+project.property('test')+'.class'
+    }else {
+        include '**/OrderTest.class'
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }

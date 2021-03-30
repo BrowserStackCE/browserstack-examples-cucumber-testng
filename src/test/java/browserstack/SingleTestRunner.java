@@ -10,9 +10,8 @@
 	
 	import browserstack.stepdefs.BaseTest;
 	
-	@CucumberOptions(features = { "src/test/resources/com/browserstack/login.feature" }, glue = {
+	@CucumberOptions(features = { "src/test/resources/com/browserstack" }, glue = {
 			"browserstack.stepdefs" })
-	
 	public class SingleTestRunner extends BaseTest{
 		private TestNGCucumberRunner testNGCucumberRunner;
 	
@@ -24,14 +23,12 @@
 	
 		@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "scenarios")
 		public void feature(PickleWrapper pickleWrapper, FeatureWrapper featureWrapper) {
-			System.out.println(" I am in Testng");
 			testNGCucumberRunner.runScenario(pickleWrapper.getPickle());
 	
 		}
 	
 		@DataProvider
 		public Object[][] scenarios() {
-			System.out.println(" I am in Data Provder");
 			return testNGCucumberRunner.provideScenarios();
 		}
 	
@@ -46,7 +43,6 @@
 	
 		@Before
 		public void setUp(Scenario scenario) throws Exception {
-	
-			System.out.println("scenario nanme" + scenario);
+
 		}
 	}
