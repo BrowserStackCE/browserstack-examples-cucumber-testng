@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="1" parallel="tests"
-	thread-count="2" >
+<suite name="BDD Test Suite" verbose="1"
+	thread-count="2" parallel="tests" >
 	<listeners>
 <listener class-name="browserstack.utils.BrowserstackTestStatusListener"/></listeners>
 <test name="Chrome" 
 		preserve-order="true">
+		<parameter name="env_cap_id" value="1"/>
         <classes>
             <class name="browserstack.ParallelTestRunner" />
         </classes>
 </test>
 <test name="Firefox"
 		preserve-order="true">
+		<parameter name="env_cap_id" value="3"/>
         <classes>
             <class name="browserstack.ParallelTestRunner" />
         </classes>

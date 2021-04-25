@@ -31,7 +31,7 @@ public class Utility {
             "    success(position);\n" +
             "}";
     private static final String OFFER_LATITUDE = "19";
-    private static final String OFFER_LONGITUDE = "72";
+    private static final String OFFER_LONGITUDE = "75";
     
     private static Object SYNCHRONIZER = new Object();
     private static String epochTime = null;
@@ -65,66 +65,13 @@ public class Utility {
     }
 
 
-    public static JSONObject getCombinedCapability(Map<String, String> envCapabilities, JSONObject config, JSONObject caps) {
-        JSONObject capabilities = new JSONObject();
-        Iterator it = envCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            capabilities.put(pair.getKey().toString(), pair.getValue().toString());
-        }
-        Map<String, String> commonCapabilities = (Map<String, String>) caps.get("common_caps");
-        it = commonCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            if(capabilities.get(pair.getKey().toString()) == null){
-                capabilities.put(pair.getKey().toString(), pair.getValue().toString());
-            }
-        }
-        JSONObject singleConfig = new JSONObject();
-        singleConfig.put("user",config.get("user"));
-        singleConfig.put("key",config.get("key"));
-        singleConfig.put("capabilities",capabilities);
-        if(caps.containsKey("application_endpoint")) {
-            singleConfig.put("application_endpoint",caps.get("application_endpoint"));
-        } else {
-            singleConfig.put("application_endpoint",config.get("application_endpoint"));
-        }
-        return singleConfig;
-    }
     
     public static void mockGPS(WebDriver webDriver) {
         String locationScript = String.format(LOCATION_SCRIPT_FORMAT, OFFER_LATITUDE, OFFER_LONGITUDE);
         ((JavascriptExecutor) webDriver).executeScript(locationScript);
     }
 
-    
-    public  static void waitforLoad(WebDriver driver) {
-    	try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	 JavascriptExecutor executor = (JavascriptExecutor)driver;
-    	    if((Boolean) executor.executeScript("return window.jQuery != undefined")){
-    	        while(!(Boolean) executor.executeScript("return jQuery.active == 0")){
- 
-    	        }
-    	    }
-    }
-    
-
-    public static void waitforElement(WebElement element) {
-    	try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	 WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
-    	  wait.until(ExpectedConditions.visibilityOf(element));
-    }
-    
+  
     private static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();

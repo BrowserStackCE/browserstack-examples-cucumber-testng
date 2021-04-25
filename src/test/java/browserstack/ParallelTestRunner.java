@@ -3,6 +3,7 @@ package browserstack;
 import org.testng.annotations.*;
 
 import browserstack.stepdefs.BaseTest;
+import browserstack.utils.AllureReportConfigurationSetup;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.testng.CucumberOptions;
@@ -17,6 +18,7 @@ public class ParallelTestRunner extends BaseTest {
 	@BeforeClass(alwaysRun = true)
 	public void setUpClass() {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+		AllureReportConfigurationSetup.prepareAllureResultsFolder();
 
 	}
 

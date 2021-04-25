@@ -3,6 +3,9 @@
 <suite name="BDD Test Suite" verbose="1">
  <test name="Chrome"
 		preserve-order="true">
+		<!--  <parameter name="environment" value="remote"/>
+		<parameter name="test" value="local"/>
+		<parameter name="env_cap_id" value="1"/>-->
         <classes>
             <class name="browserstack.SingleTestRunner" />
         </classes>

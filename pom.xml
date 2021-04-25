@@ -28,7 +28,7 @@
 		<cucmberjvm.version>1.0.5</cucmberjvm.version>
 		<cucmbertestng.version>1.2.5</cucmbertestng.version>
 		<cucmberreporting.version>3.8.0</cucmberreporting.version>
-		<test-name>@End-to-End-Feature</test-name>
+		<test-name>End to End Scenario</test-name>
 		<application-url>http://bstackdemo.com/</application-url>
 		<application-localhost-url>http://localhost:3000/</application-localhost-url>
 
@@ -140,7 +140,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<argLine>-Dcucumber.filter.tags="${test-name}"
+							<argLine>-Dcucumber.filter.name="${test-name}"
 							</argLine>
 							<systemPropertyVariables>
 								<environment>local</environment>
@@ -168,7 +168,7 @@
 								<url>${application-url}</url>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
+								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>
@@ -185,7 +185,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<argLine>-Dcucumber.filter.tags="${test-name}"
+							<argLine>-Dcucumber.filter.name="${test-name}"
 							</argLine>
 							<systemPropertyVariables>
 								<environment>docker</environment>
@@ -230,7 +230,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<argLine>-Dcucumber.filter.tags="${test-name}"
+							<argLine>-Dcucumber.filter.name="${test-name}"
 							</argLine>
 							<systemPropertyVariables>
 								<environment>remote</environment>
@@ -253,11 +253,14 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<argLine>-Dcucumber.filter.tags="${test-name}"
+							<argLine>-Dcucumber.filter.name="${test-name}"
 							</argLine>
+							
 							<systemPropertyVariables>
 								<environment>remote</environment>
 								<url>${application-localhost-url}</url>
+								<caps_type>local</caps_type>
+								<env_cap_id>2</env_cap_id>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
@@ -276,8 +279,9 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<systemPropertyVariables>
-								<environment>remote</environment>
+								<environment>remote</environment>	
 								<url>${application-localhost-url}</url>
+								<caps_type>local</caps_type>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
@@ -318,6 +322,7 @@
 							<systemPropertyVariables>
 								<environment>remote</environment>
 								<url>${application-localhost-url}</url>
+								<caps_type>local</caps_type>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
@@ -338,6 +343,28 @@
 							<systemPropertyVariables>
 								<environment>remote</environment>
 								<url>${application-url}</url>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bstack-parallel-mobile</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemPropertyVariables>
+								<environment>remote</environment>
+								<url>${application-url}</url>
+								<caps_type>mobile</caps_type>
+								<env_cap_id>2</env_cap_id>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>

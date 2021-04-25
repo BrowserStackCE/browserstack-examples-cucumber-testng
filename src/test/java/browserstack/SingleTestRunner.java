@@ -9,6 +9,7 @@
 	import org.testng.annotations.Test;
 	
 	import browserstack.stepdefs.BaseTest;
+import browserstack.utils.AllureReportConfigurationSetup;
 	
 	@CucumberOptions(features = { "src/test/resources/com/browserstack" }, glue = {
 			"browserstack.stepdefs" })
@@ -18,6 +19,7 @@
 		@BeforeClass(alwaysRun = true)
 		public void setUpClass() {
 			testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+			AllureReportConfigurationSetup.prepareAllureResultsFolder();
 	
 		}
 	
