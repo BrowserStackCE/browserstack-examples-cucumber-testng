@@ -47,18 +47,7 @@ public class Utility {
         return epochTime;
     }
 
-    public static Map<String,String> getLocalOptions(JSONObject config) {
-        Map<String, String> localOptions = new HashMap<String, String>();
-        JSONObject localOptionsJson = (JSONObject) ((JSONObject) ((JSONObject) config.get("tests")).get("local")).get("local_binding_caps");
-        for (Object o : localOptionsJson.entrySet()) {
-            Map.Entry pair = (Map.Entry) o;
-            if (localOptions.get(pair.getKey().toString()) == null) {
-                localOptions.put(pair.getKey().toString(), pair.getValue().toString());
-            }
-        }
-        return localOptions;
-    }
-    
+   
     public static void setSessionStatus(WebDriver webDriver, String status, String reason) {
         JavascriptExecutor jse = (JavascriptExecutor) webDriver;
         jse.executeScript(String.format("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}", status, reason));
@@ -72,26 +61,7 @@ public class Utility {
     }
 
   
-    private static ChromeOptions getChromeOptions() {
-        ChromeOptions options = new ChromeOptions();
-        Map<String, Object> prefs = new HashMap<>();
-        Map<String, Object> profile = new HashMap<>();
-        Map<String, Object> contentSettings = new HashMap<>();
-        contentSettings.put("geolocation", 1);
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        return options;
-    }
-
-    private static FirefoxProfile getFirefoxProfile() {
-        FirefoxProfile firefoxProfile = new FirefoxProfile();
-        firefoxProfile.setPreference("geo.enabled", false);
-        firefoxProfile.setPreference("geo.provider.use_corelocation", false);
-        firefoxProfile.setPreference("geo.prompt.testing", false);
-        firefoxProfile.setPreference("geo.prompt.testing.allow", false);
-        return firefoxProfile;
-    }
+   
     
     public static boolean isAscendingOrder(List<WebElement> priceWebElement, int length) {
         if (priceWebElement == null || length < 2)
@@ -102,10 +72,6 @@ public class Utility {
     }
 
     
-    public static String TrimText(String text)
-    {
-    	text=text.substring(text.lastIndexOf("/") + 1);
-    	return text.substring(0, text.length()-8);
-    }
+   
 
 }
