@@ -26,6 +26,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -38,7 +39,7 @@ import org.json.simple.parser.JSONParser;
 public class BaseTest {
 
 	public static WebDriverWait wait;
-	protected String chromeDriverBaseLocation = System.getProperty("user.dir") + "/src/test/resources/chromeDriver";
+	protected String driverBaseLocation = System.getProperty("user.dir") + "/src/test/resources/chromeDriver";
 	private Local local;
 	public static Map<String, String> options;
 	protected static String URL = "https://bstackdemo.com";
@@ -48,6 +49,7 @@ public class BaseTest {
 	private static final String PASSED = "passed";
 	private static final String FAILED = "failed";
 	private static final String REPO_NAME = "browserstack-examples-cucumber-testng - ";
+	 private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
 	public static String env = "";
 	public static JSONObject config;
 	public static ThreadLocal<Map<String, String>> envCapabilities= new ThreadLocal<Map<String,String>>();
@@ -64,18 +66,11 @@ public class BaseTest {
 		JSONParser parser = new JSONParser();
 		config = (JSONObject) parser.parse(new FileReader("src/test/resources/config/caps.json"));
 		if (environment.equalsIgnoreCase("local")) {
-			if (OsUtility.isMac()) {
-				System.setProperty("webdriver.chrome.driver",
-						chromeDriverBaseLocation + "/chromeDriverMac/chromedriver");
-			}
-			if (OsUtility.isWindows()) {
-				System.setProperty("webdriver.chrome.driver",
-						chromeDriverBaseLocation + "/chromeDriverWin/chromedriver.exe");
-			}
-			if (OsUtility.isUnix()) {
-				System.setProperty("webdriver.chrome.driver",
-						chromeDriverBaseLocation + "/chromeDriverLinux/chromedriver");
-			}
+			   if (OsUtility.isWindows()) {
+                   System.setProperty(WEBDRIVER_CHROME_DRIVER, Paths.get(driverBaseLocation, "/chromedriver.exe").toString());
+               } else {
+                   System.setProperty(WEBDRIVER_CHROME_DRIVER, Paths.get(driverBaseLocation, "/chromedriver").toString());
+               }
 			ThreadLocalDriver.setWebDriver(new ChromeDriver());
 
 		}
