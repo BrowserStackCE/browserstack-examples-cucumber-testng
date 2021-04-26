@@ -31,6 +31,7 @@
 		<test-name>End to End Scenario</test-name>
 		<application-url>http://bstackdemo.com/</application-url>
 		<application-localhost-url>http://localhost:3000/</application-localhost-url>
+		<parallel-count>10</parallel-count>
 
 
 
@@ -215,6 +216,7 @@
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
+							<data-provider-thread-count>10</data-provider-thread-count>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -255,7 +257,7 @@
 						<configuration>
 							<argLine>-Dcucumber.filter.name="${test-name}"
 							</argLine>
-							
+
 							<systemPropertyVariables>
 								<environment>remote</environment>
 								<url>${application-localhost-url}</url>
@@ -279,13 +281,16 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<systemPropertyVariables>
-								<environment>remote</environment>	
+								<environment>remote</environment>
 								<url>${application-localhost-url}</url>
 								<caps_type>local</caps_type>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
+							 <argLine>
+                                   -Ddataproviderthreadcount=${parallel-count}
+                                </argLine>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -306,6 +311,9 @@
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
+							  <argLine>
+                                   -Ddataproviderthreadcount=${parallel-count}
+                                </argLine>
 						</configuration>
 					</plugin>
 				</plugins>
