@@ -11,30 +11,26 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-		<cucumber.version>6.9.1</cucumber.version>
 		<selenium-java.version>3.141.59</selenium-java.version>
 		<browserstack-local-java.version>1.0.6</browserstack-local-java.version>
-		<slf4j.version>1.7.30</slf4j.version>
-		<logback.version>1.2.3</logback.version>
 		<json-simple.version>1.1.1</json-simple.version>
-		<aspectj.version>1.9.1</aspectj.version>
-		<testng.version>6.14.3</testng.version>
-		<cucmberjava.version>1.2.5</cucmberjava.version>
 		<comslang.version>3.11</comslang.version>
-		<webdrivermanager.version>4.3.1</webdrivermanager.version>
 		<alluretestng.version>2.12.0</alluretestng.version>
+		<slf4j.version>1.7.30</slf4j.version>		
+		<cucumber.version>6.9.1</cucumber.version>
+		<logback.version>1.2.3</logback.version>
 		<testng.version>6.14.3</testng.version>
-		<cucmberjava.version>1.2.5</cucmberjava.version>
-		<cucmberjvm.version>1.0.5</cucmberjvm.version>
-		<cucmbertestng.version>1.2.5</cucmbertestng.version>
-		<cucmberreporting.version>3.8.0</cucmberreporting.version>
+		<poi-ooxml.version>3.9</poi-ooxml.version>
+		<poi.version>4.1.2</poi.version>
+		<cucumber-java.version>6.8.2</cucumber-java.version>
+		<cucumber-core.version>6.8.2</cucumber-core.version>
+		<cucumber-picocontainer.version>6.8.2</cucumber-picocontainer.version>
+		<cucumber-jvm.version>6.8.2</cucumber-jvm.version>
+		<cucumber-testng.version>6.8.2</cucumber-testng.version>
 		<test-name>End to End Scenario</test-name>
 		<application-url>http://bstackdemo.com/</application-url>
 		<application-localhost-url>http://localhost:3000/</application-localhost-url>
-		<parallel-count>10</parallel-count>
-
-
-
+		<parallel-count>5</parallel-count>
 	</properties>
 
 	<dependencies>
@@ -62,12 +58,6 @@
 			<version>${comslang.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>${webdrivermanager.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
 			<version>${alluretestng.version}</version>
@@ -83,52 +73,47 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.github.workerframework.messagebuilder/worker-example-message-builder -->
-
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
+			<version>${poi-ooxml.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>4.1.2</version>
+			<version>${poi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>6.8.2</version>
+			<version>${cucumber-java.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-core</artifactId>
-			<version>6.8.2</version>
+			<version>${cucumber-core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<version>6.8.2</version>
+			<version>${cucumber-picocontainer.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-jvm</artifactId>
-			<version>6.8.2</version>
+			<version>${cucumber-jvm.version}</version>
 			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
-			<version>6.8.2</version>
+			<version>${cucumber-testng.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -383,8 +368,4 @@
 			</build>
 		</profile>
 	</profiles>
-
-
-
-
 </project>
