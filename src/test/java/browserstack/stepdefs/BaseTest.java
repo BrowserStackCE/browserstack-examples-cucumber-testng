@@ -64,7 +64,7 @@ public class BaseTest {
 			@Optional("single") String caps_type, @Optional("2") int env_cap_id,
 			@Optional("BStack test name") String settestname) throws Exception {
 		JSONParser parser = new JSONParser();
-		config = (JSONObject) parser.parse(new FileReader("src/test/resources/config/caps.json"));
+		config = (JSONObject) parser.parse(new FileReader("src/test/resources/config/bs.json"));
 		if (environment.equalsIgnoreCase("local")) {
 			   if (OsUtility.isWindows()) {
                    System.setProperty(WEBDRIVER_CHROME_DRIVER, Paths.get(driverBaseLocation, "/chromedriver.exe").toString());
