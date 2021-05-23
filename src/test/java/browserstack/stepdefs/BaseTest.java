@@ -64,6 +64,10 @@ public class BaseTest {
 			@Optional("single") String caps_type, @Optional("2") int env_cap_id,
 			@Optional("BStack test name") String settestname) throws Exception {
 		JSONParser parser = new JSONParser();
+		if(System.getProperty("application_endpoint") !=null)
+		{
+		URL = System.getProperty("application_endpoint");
+		}
 		config = (JSONObject) parser.parse(new FileReader("src/test/resources/config/bs.json"));
 		if (environment.equalsIgnoreCase("local")) {
 			   if (OsUtility.isWindows()) {
@@ -160,7 +164,7 @@ public class BaseTest {
 
 	@After
 	public void teardown(Scenario scenario) throws Exception {
-		if (System.getProperty("environment").equalsIgnoreCase("remote")) {
+	if (System.getProperty("environment").equalsIgnoreCase("remote")) {
 			if (scenario.isFailed()) {
 				Utility.setSessionStatus(ThreadLocalDriver.getWebDriver(), FAILED,
 						String.format("%s failed.", scenario.getName()));

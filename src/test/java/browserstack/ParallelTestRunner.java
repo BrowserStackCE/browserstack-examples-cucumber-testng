@@ -42,8 +42,4 @@ public class ParallelTestRunner extends BaseTest {
 
 	}
 
-	@Before
-	public void setUp(Scenario scenario) throws Exception {
-	}
-
 }

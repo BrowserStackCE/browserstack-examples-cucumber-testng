@@ -43,8 +43,5 @@ import browserstack.utils.AllureReportConfigurationSetup;
 	
 		}
 	
-		@Before
-		public void setUp(Scenario scenario) throws Exception {
-
-		}
+	
 	}

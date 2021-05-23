@@ -30,7 +30,7 @@
 		<test-name>End to End Scenario</test-name>
 		<application-url>http://bstackdemo.com/</application-url>
 		<application-localhost-url>http://localhost:3000/</application-localhost-url>
-		<parallel-count>5</parallel-count>
+		<parallel-count>10</parallel-count>
 	</properties>
 
 	<dependencies>
