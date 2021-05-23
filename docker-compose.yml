@@ -1,42 +1,43 @@
 version: "3"
 services:
-
-  hub:
-    image: selenium/hub:latest
-    ports:
-      - "4444:4444"
-
-    environment:
-      GRID_MAX_SESSION: 16
-      GRID_BROWSER_TIMEOUT: 3000
-      GRID_TIMEOUT: 3000
-
   chrome:
-    image: selenium/node-chrome
-    container_name: web-automation_chrome
-    environment:
-      HUB_PORT_4444_TCP_ADDR: hub
-      HUB_PORT_4444_TCP_PORT: 4444
-      NODE_MAX_SESSION: 4
-      NODE_MAX_INSTANCES: 4
+    image: selenium/node-chrome:4.0.0
     volumes:
       - /dev/shm:/dev/shm
-    ports:
-      - "9001:5900"
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SCREEN_WIDTH=2880
+      - SCREEN_HEIGHT=1800
     links:
-      - hub
+      - selenium-hub:hub
+    scale: 4
 
   firefox:
-    image: selenium/node-firefox
-    container_name: web-automation_firefox
-    environment:
-      HUB_PORT_4444_TCP_ADDR: hub
-      HUB_PORT_4444_TCP_PORT: 4444
-      NODE_MAX_SESSION: 2
-      NODE_MAX_INSTANCES: 2
+    image: selenium/node-firefox:4.0.0
     volumes:
       - /dev/shm:/dev/shm
-    ports:
-      - "9002:5900"
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SCREEN_WIDTH=2880
+      - SCREEN_HEIGHT=1800
     links:
-      - hub
+      - selenium-hub:hub
+    scale: 4
+
+  selenium-hub:
+    image: selenium/hub:4.0.0
+    container_name: selenium-hub
+    environment:
+      - GRID_MAX_SESSION=50
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"

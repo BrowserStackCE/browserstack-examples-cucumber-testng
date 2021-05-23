@@ -151,12 +151,20 @@ public class BaseTest {
 			if(!local.isRunning()) 
 			{
 				
-                UUID uuid = UUID.randomUUID();
+              /*  UUID uuid = UUID.randomUUID();
                 caps.setCapability("browserstack.localIdentifier", uuid.toString());
                options = new HashMap<String, String>();
                 options.put("key", accessKey);
                 options.put("localIdentifier", uuid.toString());
-                local.start(options);
+                local.start(options);*/
+				
+				 // You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
+				  HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
+				  bsLocalArgs.put("key", accessKey);
+
+				  // Starts the Local instance with the required arguments
+				  local.start(bsLocalArgs);
+				  
 			}
 			
 		}
