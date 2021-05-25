@@ -3,7 +3,6 @@
 <suite name="BDD Test Suite" verbose="1" parallel = "classes" data-provider-thread-count="5">
 <test name="Chrome"
 		preserve-order="true"> 
-		<parameter name="environment" value="remote"/>
         <classes>
             <class name="browserstack.ParallelTestRunner" />
         </classes>

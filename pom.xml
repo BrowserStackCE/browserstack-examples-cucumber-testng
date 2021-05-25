@@ -201,7 +201,9 @@
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							<data-provider-thread-count>10</data-provider-thread-count>
+							<argLine>
+                                   -Ddataproviderthreadcount=${parallel-count}
+                                </argLine>
 						</configuration>
 					</plugin>
 				</plugins>

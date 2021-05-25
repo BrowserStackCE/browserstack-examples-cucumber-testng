@@ -60,9 +60,9 @@ public class HomePageSteps   {
 	        String src = "";
 	        try {
 	            src = ThreadLocalDriver.getWebDriver().findElement(By.cssSelector("img[alt='iPhone 12']")).getAttribute("src");
-	            Assert.assertEquals(src.isEmpty(),true);
+	            Assert.assertEquals(src.isEmpty(),false);
 	        } catch (NoSuchElementException e) {
-	            throw new AssertionError("Error in logging in");
+	            throw new AssertionError("No Images are loaded");
 	        }
 	    }
 

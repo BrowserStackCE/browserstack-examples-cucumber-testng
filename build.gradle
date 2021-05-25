@@ -140,7 +140,9 @@ tasks.register('bstack-local-parallel', Test) {
 }
 tasks.register('bstack-parallel', Test) {
  	useTestNG() {
-     suites 'src/test/resources/conf/TestNG_Parallel.xml'    
+ 	systemProperty '-Ddataproviderthreadcount', '5'
+     suites 'src/test/resources/conf/TestNG_Parallel.xml' 
+  
     
      } 
     scanForTestClasses = false
@@ -149,10 +151,9 @@ tasks.register('bstack-parallel', Test) {
     failFast = true
     systemProperty "environment", "remote" 
     systemProperty "application_endpoint", "$APPLICATION_URL"
+    systemProperty '-Ddataproviderthreadcount', '5'
+    systemProperty 'data-provider-thread-count', '5'
   
-    
- 
- 
 }
 tasks.register('bstack-local-parallel-browsers', Test) {
  	useTestNG() {

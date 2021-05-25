@@ -71,6 +71,7 @@ public class BaseTest {
 			@Optional("single") String caps_type, @Optional("2") int env_cap_id,
 			@Optional("BStack test name") String settestname) throws Exception {
 		JSONParser parser = new JSONParser();
+		System.out.print(environment.equalsIgnoreCase("docker"));
 		if (System.getProperty("application_endpoint") != null) {
 			URL = System.getProperty("application_endpoint");
 		}
