@@ -1,6 +1,6 @@
 {
-  "user": "sanketmali4",
-  "key": "XaqpcHttuyFzXSzC3uNM",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
    "application_endpoint":"https://bstackdemo.com",
    "tests":{
       "parallel":{
