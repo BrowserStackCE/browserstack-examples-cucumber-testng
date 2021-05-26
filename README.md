@@ -489,4 +489,4 @@ In this section, we will run the test cases to test the internally hosted websit
 
 
 ## Open Issues
-- Parallel thread count is not working via gradle command line arguments , the thread count can be updated directly from the testng file
+- Parallel thread count is not working via gradle command line arguments & gradle profiles , the thread count can be updated directly from the testng runner file
