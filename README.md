@@ -487,5 +487,6 @@ In this section, we will run the test cases to test the internally hosted websit
 - Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
 
-[comment]: <> (## Open Issues)
+
+## Open Issues
 - Parallel thread count is not working via gradle command line arguments , the thread count can be updated directly from the testng file
