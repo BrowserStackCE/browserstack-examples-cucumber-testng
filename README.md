@@ -18,7 +18,7 @@ The Selenium tests are run on different platforms like on-prem, docker and Brows
 
 - Clone the repository
 
-- For this infrastructure configuration (i.e on-premise), create the `drivers` folder at `/src/test/resources` and ensure that the ChromeDriver executable is placed in the `/src/test/resources/drivers` folder.
+- For this infrastructure configuration (i.e on-premise) ensure that the ChromeDriver executable is placed in the `/src/test/resources/` folder.
 
 - Ensure you have the following dependencies installed on the machine
   - Java >= 8
@@ -68,7 +68,7 @@ For all the parallel run configuration profiles, you can configure the maximum p
 
   [docker-compose.yml](docker-compose.yml)
   
-  scale = 4
+  GRID_MAX_SESSION = 5
 
 - BrowserStack
 
@@ -91,7 +91,7 @@ This infrastructure points to running the tests on your own machine using a brow
 
 ## Prerequisites
 
-- For this infrastructure configuration (i.e on-premise), create the `drivers` folder at `/src/test/resources` and ensure that the ChromeDriver executable is placed in the `/src/test/resources/drivers` folder.
+- For this infrastructure configuration (i.e on-premise) ensure that the ChromeDriver executable is placed in the `/src/test/resources/` folder.
 
 Note: The ChromeDriver version must match the Chrome browser version on your machine.
 
