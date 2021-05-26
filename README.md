@@ -488,4 +488,4 @@ In this section, we will run the test cases to test the internally hosted websit
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
 
 [comment]: <> (## Open Issues)
-- Gradle run is still having issues 
+- Parallel thread count is not working via gradle command line arguments , the thread count can be updated directly from the testng file
