@@ -71,7 +71,6 @@ public class BaseTest {
 			@Optional("single") String caps_type, @Optional("2") int env_cap_id,
 			@Optional("BStack test name") String settestname) throws Exception {
 		JSONParser parser = new JSONParser();
-		System.out.print(environment.equalsIgnoreCase("docker"));
 		if (System.getProperty("application_endpoint") != null) {
 			URL = System.getProperty("application_endpoint");
 		}
@@ -92,6 +91,7 @@ public class BaseTest {
 			dc.setBrowserName("chrome");
 			dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			ThreadLocalDriver.setWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc));
+			
 		} else if (environment.equalsIgnoreCase("remote")) {
 
 			env = "remote";
