@@ -124,6 +124,7 @@ tasks.register('bstack-local-parallel-browsers', Test) {
      suites 'src/test/resources/conf/TestNG_MultipleParallel.xml'
      }
     systemProperty "environment", "remote"
+     systemProperty "caps_type", "local"
     systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
   
 }
@@ -134,14 +135,5 @@ tasks.register('bstack-parallel-browsers', Test) {
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_URL"
     
-}
-tasks.register('bstack-parallel-mobile', Test) {
- 	useTestNG() {
-     suites 'src/test/resources/conf/TestNG_Parallel.xml'
-     }
-    systemProperty "environment", "remote"
-    systemProperty "application_endpoint", "$APPLICATION_URL"
-    systemProperty "caps_type", "mobile"
-    systemProperty "env_cap_id", "1"
-
+    
 }

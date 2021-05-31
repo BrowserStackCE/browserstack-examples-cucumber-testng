@@ -353,30 +353,6 @@
 				</plugins>
 			</build>
 		</profile>
-		<profile>
-			<id>bstack-parallel-mobile</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-						 	<systemPropertyVariables>
-								<environment>remote</environment>
-									<application_endpoint>${application-url}</application_endpoint> 
-								<caps_type>mobile</caps_type>
-								<env_cap_id>2</env_cap_id>
-							</systemPropertyVariables>
-							<suiteXmlFiles>
-								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
-							</suiteXmlFiles>
-							 <argLine>
-                                   -Ddataproviderthreadcount=${parallel-count}
-                                </argLine>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+		
 	</profiles>
 </project>

@@ -14,12 +14,17 @@ import io.cucumber.testng.TestNGCucumberRunner;
 @CucumberOptions(features = "src/test/resources/com/browserstack", glue = "browserstack.stepdefs")
 public class ParallelTestRunner extends BaseTest {
 	private TestNGCucumberRunner testNGCucumberRunner;
+	
+	@BeforeSuite
+	public void setupReport()
+	{
+		AllureReportConfigurationSetup.prepareAllureResultsFolder();
+	}
 
 	@BeforeClass(alwaysRun = true)
 	public void setUpClass() {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-		AllureReportConfigurationSetup.prepareAllureResultsFolder();
-
+		
 	}
 
 	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "scenarios")

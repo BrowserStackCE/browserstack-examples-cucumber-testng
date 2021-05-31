@@ -93,9 +93,10 @@ public class HomePageSteps   {
 	        WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 10);
 	        try {
 	            WebDriverWait webDriverWait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 10);
-	            	Utility.waitForJSLoad(ThreadLocalDriver.getWebDriver());
-	            webDriverWait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".shelf-item__price > div.val > b"))));
+	            Utility.waitForJSLoad(ThreadLocalDriver.getWebDriver());
+	           // webDriverWait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".shelf-item__price > div.val > b"))));
 	            List<WebElement> priceWebElement = ThreadLocalDriver.getWebDriver().findElements(By.cssSelector(".shelf-item__price > div.val > b"));
+	            Utility.waitForJSLoad(ThreadLocalDriver.getWebDriver());
 	            Assert.assertTrue(Utility.isAscendingOrder(priceWebElement, priceWebElement.size()));
 	        } catch (NoSuchElementException e) {
 	            throw new AssertionError("Error in page load");
