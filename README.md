@@ -68,7 +68,9 @@ For all the parallel run configuration profiles, you can configure the maximum p
 
   [docker-compose.yml](docker-compose.yml)
   
+  NODE_MAX_INSTANCES = 5
   GRID_MAX_SESSION = 5
+ 
 
 - BrowserStack
 
@@ -361,7 +363,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   Maven:
   ```sh
-  mvn compile exec:java -P bstack-parallel-browsers
+  mvn test -P bstack-parallel-browsers
   ```
 
   Gradle:
@@ -456,7 +458,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
   Maven:
   ```sh
-  mvn compile exec:java -P bstack-local-parallel-browsers
+  mvn test -P bstack-local-parallel-browsers
   ```
 
   Gradle:
