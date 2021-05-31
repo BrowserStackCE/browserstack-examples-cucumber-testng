@@ -65,11 +65,11 @@
                "os_version":"10",
                "browser":"Chrome"
             },
-            {
+             {
                "os":"Windows",
                "os_version":"10",
-               "browser":"Internet Explorer",
-               "browser_version":"11.0"
+               "browser":"Firefox",
+               "browser_version":"latest-1"
             },
             {
                "os":"Windows",

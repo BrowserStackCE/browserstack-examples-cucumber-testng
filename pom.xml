@@ -361,7 +361,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<systemPropertyVariables>
+						 	<systemPropertyVariables>
 								<environment>remote</environment>
 									<application_endpoint>${application-url}</application_endpoint> 
 								<caps_type>mobile</caps_type>

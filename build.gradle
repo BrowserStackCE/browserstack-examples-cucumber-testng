@@ -37,10 +37,6 @@ tasks.register('on-prem', Test) {
     } else {
         systemProperty("cucumber.filter.name", "End to End Scenario")
     }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "local"
     systemProperty "application_endpoint", "$APPLICATION_URL"
 }
@@ -48,11 +44,7 @@ tasks.register('on-prem-suite', Test) {
  	useTestNG() {
         suites 'src/test/resources/conf/TestNG_Single.xml'
        }
-        
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
+
     systemProperty "environment", "local"
     systemProperty "application_endpoint", "$APPLICATION_URL"
     
@@ -66,10 +58,6 @@ tasks.register('docker', Test) {
     } else {
         systemProperty("cucumber.filter.name", "End to End Scenario")
     }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "docker"
     systemProperty "application_endpoint", "$APPLICATION_URL"
     
@@ -79,10 +67,6 @@ tasks.register('docker-parallel', Test) {
         suites 'src/test/resources/conf/TestNG_Parallel.xml'
        }
    
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "docker"
     systemProperty "application_endpoint", "$APPLICATION_URL"
  
@@ -96,10 +80,6 @@ tasks.register('bstack-single', Test) {
     } else {
         systemProperty("cucumber.filter.name", "End to End Scenario")
     }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_URL"
     
@@ -113,10 +93,6 @@ tasks.register('bstack-local', Test) {
     } else {
         systemProperty("cucumber.filter.name", "End to End Scenario")
     }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
     systemProperty "caps_type", "local"
@@ -127,10 +103,6 @@ tasks.register('bstack-local-parallel', Test) {
  	useTestNG() {
      suites 'src/test/resources/conf/TestNG_Parallel.xml'
      }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
     systemProperty "caps_type", "local"
@@ -140,13 +112,8 @@ tasks.register('bstack-local-parallel', Test) {
 tasks.register('bstack-parallel', Test) {
  	useTestNG() {
      suites 'src/test/resources/conf/TestNG_Parallel.xml' 
-  
-    
+
      } 
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "remote" 
     systemProperty "application_endpoint", "$APPLICATION_URL"
 
@@ -156,10 +123,6 @@ tasks.register('bstack-local-parallel-browsers', Test) {
  	useTestNG() {
      suites 'src/test/resources/conf/TestNG_MultipleParallel.xml'
      }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
   
@@ -168,10 +131,6 @@ tasks.register('bstack-parallel-browsers', Test) {
  	useTestNG() {
      suites 'src/test/resources/conf/TestNG_MultipleParallel.xml'
      }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures= false
-    failFast = true
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_URL"
     
@@ -180,10 +139,6 @@ tasks.register('bstack-parallel-mobile', Test) {
  	useTestNG() {
      suites 'src/test/resources/conf/TestNG_Parallel.xml'
      }
-    scanForTestClasses = false
-    testLogging.showStandardStreams(true)
-    ignoreFailures = false
-    failFast = true
     systemProperty "environment", "remote"
     systemProperty "application_endpoint", "$APPLICATION_URL"
     systemProperty "caps_type", "mobile"

@@ -39,7 +39,7 @@ public class BaseTest {
 	private static String accessKey;
 	private static final String PASSED = "passed";
 	private static final String FAILED = "failed";
-	private static final String REPO_NAME = "browserstack-examples-cucumber-testng - ";
+	private static final String REPO_NAME = "browserstack_examples_cucumber_testng_";
 	private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
 	public static String env = "";
 	public static JSONObject config;
@@ -104,6 +104,7 @@ public class BaseTest {
 			Map<String, String> localCapabilities = (Map<String, String>) envs.get("local_binding_caps");
 
 			caps.merge(new DesiredCapabilities(commonCapabilities));
+			
 			if (caps_type.equals("local")) {
 				URL = (String) envs.get("application_endpoint");
 				caps.merge(new DesiredCapabilities(localCapabilities));
@@ -129,9 +130,9 @@ public class BaseTest {
 			derivedCaps.merge(new DesiredCapabilities()).setCapability("name", scenario.getName());
 			String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
 			if (buildName == null) {
-				buildName = Utility.getEpochTime();
+				buildName =REPO_NAME + Utility.getEpochTime();
 			}
-			derivedCaps.setCapability("build", REPO_NAME + buildName);
+			derivedCaps.setCapability("build", buildName);
 			try {
 				ThreadLocal<DesiredCapabilities> dc = new ThreadLocal<DesiredCapabilities>();
 				dc.set(derivedCaps);
