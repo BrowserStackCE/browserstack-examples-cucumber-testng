@@ -12,14 +12,15 @@ import java.util.Properties;
 public class AllureReportConfigurationSetup {
 
 	// folders params
-	static String allureReportResultsFolder = "allure-results";
+	static String allureReportResultsFolder = System.getProperty("user.dir")+ "/target/"+"allure-results";
 	static String allureReportPropertiesFileName = "environment.properties";
 	static String allureReportPropertiesFilePath = allureReportResultsFolder + "/" + allureReportPropertiesFileName;
-	static String allureReportScreenshotsFolder = "Screenshots";
+	static String allureReportScreenshotsFolder = System.getProperty("user.dir")+ "/target/"+"Screenshots";
 
 	static File allureReportPropertiesFile = new File(allureReportPropertiesFilePath);
 
 	public static void prepareAllureResultsFolder() {
+		System.out.println("allure location "+allureReportResultsFolder);
 
 		// step 1. delete allure results folder
 		File allureResultsFolder = new File(allureReportResultsFolder);

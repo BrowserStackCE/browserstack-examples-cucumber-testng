@@ -175,6 +175,7 @@ public class BaseTest {
 		if (local != null) {
 			local.stop();
 		}
+		Utility.moveFolder();
 
 	}
 

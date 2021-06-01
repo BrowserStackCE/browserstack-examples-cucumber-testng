@@ -16,7 +16,8 @@
 		<json-simple.version>1.1.1</json-simple.version>
 		<comslang.version>3.11</comslang.version>
 		<alluretestng.version>2.12.0</alluretestng.version>
-		<slf4j.version>1.7.30</slf4j.version>		
+		<allure.version>2.10.0</allure.version>
+		<slf4j.version>1.7.30</slf4j.version>
 		<cucumber.version>6.9.1</cucumber.version>
 		<logback.version>1.2.3</logback.version>
 		<testng.version>6.14.3</testng.version>
@@ -61,6 +62,11 @@
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
 			<version>${alluretestng.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-maven</artifactId>
+			<version>${allure.version}</version>
 		</dependency>
 
 		<dependency>
@@ -130,7 +136,7 @@
 							</argLine>
 							<systemPropertyVariables>
 								<environment>local</environment>
-								<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
@@ -151,7 +157,7 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>local</environment>
-									<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
@@ -175,7 +181,7 @@
 							</argLine>
 							<systemPropertyVariables>
 								<environment>docker</environment>
-								<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
@@ -196,15 +202,15 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>docker</environment>
-									<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							 <argLine>
-                                   -Ddataproviderthreadcount=${parallel-count}
-                                </argLine>
-							</configuration>
+							<argLine>
+								-Ddataproviderthreadcount=${parallel-count}
+							</argLine>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -223,7 +229,7 @@
 							</argLine>
 							<systemPropertyVariables>
 								<environment>remote</environment>
-								<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Single.xml</suiteXmlFile>
@@ -247,7 +253,7 @@
 
 							<systemPropertyVariables>
 								<environment>remote</environment>
-									<application_endpoint>${application-localhost-url}</application_endpoint> 
+								<application_endpoint>${application-localhost-url}</application_endpoint>
 								<caps_type>local</caps_type>
 								<env_cap_id>2</env_cap_id>
 							</systemPropertyVariables>
@@ -269,15 +275,15 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>remote</environment>
-									<application_endpoint>${application-localhost-url}</application_endpoint> 
+								<application_endpoint>${application-localhost-url}</application_endpoint>
 								<caps_type>local</caps_type>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							 <argLine>
-                                   -Ddataproviderthreadcount=${parallel-count}
-                                </argLine>
+							<argLine>
+								-Ddataproviderthreadcount=${parallel-count}
+							</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -293,14 +299,14 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>remote</environment>
-									<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_Parallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							  <argLine>
-                                   -Ddataproviderthreadcount=${parallel-count}
-                                </argLine>
+							<argLine>
+								-Ddataproviderthreadcount=${parallel-count}
+							</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -316,15 +322,15 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>remote</environment>
-									<application_endpoint>${application-localhost-url}</application_endpoint> 
+								<application_endpoint>${application-localhost-url}</application_endpoint>
 								<caps_type>local</caps_type>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							 <argLine>
-                                   -Ddataproviderthreadcount=${parallel-count}
-                                </argLine>
+							<argLine>
+								-Ddataproviderthreadcount=${parallel-count}
+							</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -340,19 +346,19 @@
 						<configuration>
 							<systemPropertyVariables>
 								<environment>remote</environment>
-								<application_endpoint>${application-url}</application_endpoint> 
+								<application_endpoint>${application-url}</application_endpoint>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/resources/conf/TestNG_MultipleParallel.xml</suiteXmlFile>
 							</suiteXmlFiles>
-							 <argLine>
-                                   -Ddataproviderthreadcount=${parallel-count}
-                                </argLine>
+							<argLine>
+								-Ddataproviderthreadcount=${parallel-count}
+							</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
-		
+
 	</profiles>
 </project>
