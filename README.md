@@ -476,8 +476,8 @@ In this section, we will run the test cases to test the internally hosted websit
 
   In this section, we will generate and serve allure reports for maven test runs.
 
-- Generate Report using the following command: `mvn allure:report`
-- Serve the Allure report on a server: `mvn allure:serve`
+- Generate Report using the following command: `mvn io.qameta.allure:allure-maven:report`
+- Serve the Allure report on a server: `mvn io.qameta.allure:allure-maven:serve`
 
 ## Additional Resources
 
