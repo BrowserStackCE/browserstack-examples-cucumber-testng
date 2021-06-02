@@ -1,0 +1,17 @@
+target
+build
+.gradle
+.idea
+*.iml
+/test-output/*
+/target/*
+/allure-results/*
+/Screenshots/*
+.classpath
+*.project
+*.jar
+*.properties
+*.prefs
+*.DS_Store*
+.DS_Store
+.project

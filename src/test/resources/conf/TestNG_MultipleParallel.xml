@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">-->
+<suite name="BDD Test Suite" verbose="1"
+	thread-count="2"  data-provider-thread-count="5" parallel="tests" >
+	<listeners>
+<listener class-name="browserstack.utils.BrowserstackTestStatusListener"/></listeners>
+<test name="Chrome" 
+		preserve-order="true">
+		<parameter name="env_cap_id" value="1"/>
+		<parameter name="environment" value="remote"/>
+        <classes>
+            <class name="browserstack.ParallelTestRunner" />
+        </classes>
+</test>
+<test name="Firefox"
+		preserve-order="true">
+		<parameter name="environment" value="remote"/>
+		<parameter name="env_cap_id" value="3"/>
+        <classes>
+            <class name="browserstack.ParallelTestRunner" />
+        </classes>
+</test>
+<test name="iOS_Safari"
+		preserve-order="true">
+		<parameter name="caps_type" value="mobile"/>
+		<parameter name="environment" value="remote"/>
+		<parameter name="env_cap_id" value="1"/>
+        <classes>
+            <class name="browserstack.ParallelTestRunner" />
+        </classes>
+</test>
+<test name="Android_Chrome"
+		preserve-order="true">
+		<parameter name="caps_type" value="mobile"/>
+		<parameter name="environment" value="remote"/>
+		<parameter name="env_cap_id" value="0"/>
+        <classes>
+            <class name="browserstack.ParallelTestRunner" />
+        </classes>
+</test>
+
+</suite>

@@ -1,0 +1,139 @@
+buildscript {
+    ext {
+        TESTNG_VERSION = '7.3.0'
+        CUCUMBER_VERSION = '6.7.0'
+       	APPLICATION_URL = 'http://bstackdemo.com/'
+       	APPLICATION_LOCAL_URL = 'http://localhost:3000/'
+       	
+    }
+}
+plugins {
+    id 'java'
+}
+group 'com.dineshv'
+version '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: "$TESTNG_VERSION"
+    testImplementation group: 'io.cucumber', name: 'cucumber-java', version: "$CUCUMBER_VERSION"
+    testImplementation group: 'io.cucumber', name: 'cucumber-core', version: "$CUCUMBER_VERSION"
+    testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: "$CUCUMBER_VERSION"
+    testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: "$CUCUMBER_VERSION"
+	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.5'
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	implementation group: 'com.browserstack', name: 'browserstack-local-java', version: '1.0.6'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+	implementation group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+}
+	
+tasks.register('on-prem', Test) {
+ 	useTestNG() {
+        suites 'src/test/resources/conf/TestNG_Single.xml'
+       }
+         if (System.getProperty("test-name") != null) {
+        systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
+    } else {
+        systemProperty("cucumber.filter.name", "End to End Scenario")
+    }
+    systemProperty "environment", "local"
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+}
+tasks.register('on-prem-suite', Test) {
+ 	useTestNG() {
+        suites 'src/test/resources/conf/TestNG_Single.xml'
+       }
+
+    systemProperty "environment", "local"
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+    
+}
+tasks.register('docker', Test) {
+ 	useTestNG() {
+        suites 'src/test/resources/conf/TestNG_Single.xml'
+       }
+         if (System.getProperty("test-name") != null) {
+        systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
+    } else {
+        systemProperty("cucumber.filter.name", "End to End Scenario")
+    }
+    systemProperty "environment", "docker"
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+    
+}
+tasks.register('docker-parallel', Test) {
+ 	useTestNG() {
+        suites 'src/test/resources/conf/TestNG_Parallel.xml'
+       }
+   
+    systemProperty "environment", "docker"
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+ 
+}
+tasks.register('bstack-single', Test) {
+ 	useTestNG() {
+        suites 'src/test/resources/conf/TestNG_Single.xml'
+       }
+         if (System.getProperty("test-name") != null) {
+        systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
+    } else {
+        systemProperty("cucumber.filter.name", "End to End Scenario")
+    }
+    systemProperty "environment", "remote"
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+    
+}
+tasks.register('bstack-local', Test) {
+ 	useTestNG() {
+        suites 'src/test/resources/conf/TestNG_Single.xml'
+       }
+         if (System.getProperty("test-name") != null) {
+        systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
+    } else {
+        systemProperty("cucumber.filter.name", "End to End Scenario")
+    }
+    systemProperty "environment", "remote"
+    systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
+    systemProperty "caps_type", "local"
+    systemProperty "env_cap_id", "2"
+ 
+}
+tasks.register('bstack-local-parallel', Test) {
+ 	useTestNG() {
+     suites 'src/test/resources/conf/TestNG_Parallel.xml'
+     }
+    systemProperty "environment", "remote"
+    systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
+    systemProperty "caps_type", "local"
+    
+ 
+}
+tasks.register('bstack-parallel', Test) {
+ 	useTestNG() {
+     suites 'src/test/resources/conf/TestNG_Parallel.xml' 
+
+     } 
+    systemProperty "environment", "remote" 
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+
+  
+}
+tasks.register('bstack-local-parallel-browsers', Test) {
+ 	useTestNG() {
+     suites 'src/test/resources/conf/TestNG_MultipleParallel.xml'
+     }
+    systemProperty "environment", "remote"
+     systemProperty "caps_type", "local"
+    systemProperty "application_endpoint", "$APPLICATION_LOCAL_URL"
+  
+}
+tasks.register('bstack-parallel-browsers', Test) {
+ 	useTestNG() {
+     suites 'src/test/resources/conf/TestNG_MultipleParallel.xml'
+     }
+    systemProperty "environment", "remote"
+    systemProperty "application_endpoint", "$APPLICATION_URL"
+    
+    
+}
