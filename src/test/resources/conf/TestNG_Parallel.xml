@@ -4,7 +4,7 @@
 <test name="Chrome"
 		preserve-order="true"> 
         <classes>
-            <class name="browserstack.ParallelTestRunner" />
+            <class name="browserstack.TestRunner" />
         </classes>
 </test>
 

@@ -28,6 +28,8 @@
 		<cucumber-picocontainer.version>6.8.2</cucumber-picocontainer.version>
 		<cucumber-jvm.version>6.8.2</cucumber-jvm.version>
 		<cucumber-testng.version>6.8.2</cucumber-testng.version>
+		<jackson.version>2.12.2</jackson.version>
+		<lombok.version>1.18.12</lombok.version>
 		<test-name>End to End Scenario</test-name>
 		<application-url>http://bstackdemo.com/</application-url>
 		<application-localhost-url>http://localhost:3000/</application-localhost-url>
@@ -121,6 +123,27 @@
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber-testng.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<profiles>

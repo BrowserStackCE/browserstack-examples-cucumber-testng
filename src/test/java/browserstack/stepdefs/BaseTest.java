@@ -12,6 +12,10 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import com.browserstack.local.Local;
+
+import browserstack.driverconfig.Platform;
+import browserstack.driverconfig.WebDriverFactory;
+import browserstack.providers.ManagedWebDriver;
 import browserstack.utils.OsUtility;
 import browserstack.utils.Utility;
 import io.cucumber.java.After;
@@ -44,29 +48,32 @@ public class BaseTest {
 	public static String env = "";
 	public static JSONObject config;
 	public static ThreadLocal<Map<String, String>> envCapabilities = new ThreadLocal<Map<String, String>>();
+	private final String testMethodName;
+	private final WebDriverFactory webDriverFactory;
+	private final Platform platform;
+	private WebDriver webDriver;
 
 	public WebDriver getDriver() {
 		return ThreadLocalDriver.getWebDriver();
 	}
 
-	@BeforeSuite
+	// @BeforeSuite
 	public void before() throws Exception {
-		
-		
-		
-		if (System.getProperty("application_endpoint") != null && System.getProperty("application_endpoint").equals("http://localhost:3000/")) 
-		{
+
+		if (System.getProperty("application_endpoint") != null
+				&& System.getProperty("application_endpoint").equals("http://localhost:3000/")) {
 			local = new Local();
 			options = new HashMap<String, String>();
 			accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
 			options.put("key", accessKey);
 			local.start(options);
-		
+
 		}
 	}
 
-	@BeforeMethod
-	@Parameters({ "environment", "browser", "caps_type", "env_cap_id", "settestname" })
+	// @BeforeMethod
+	// @Parameters({ "environment", "browser", "caps_type", "env_cap_id",
+	// "settestname" })
 	public synchronized void setUpClass(@Optional("local") String environment, @Optional("chrome") String browser,
 			@Optional("single") String caps_type, @Optional("2") int env_cap_id,
 			@Optional("BStack test name") String settestname) throws Exception {
@@ -91,7 +98,7 @@ public class BaseTest {
 			dc.setBrowserName("chrome");
 			dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			ThreadLocalDriver.setWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc));
-			
+
 		} else if (environment.equalsIgnoreCase("remote")) {
 
 			env = "remote";
@@ -104,7 +111,7 @@ public class BaseTest {
 			Map<String, String> localCapabilities = (Map<String, String>) envs.get("local_binding_caps");
 
 			caps.merge(new DesiredCapabilities(commonCapabilities));
-			
+
 			if (caps_type.equals("local")) {
 				URL = (String) envs.get("application_endpoint");
 				caps.merge(new DesiredCapabilities(localCapabilities));
@@ -122,7 +129,7 @@ public class BaseTest {
 		}
 	}
 
-	@Before
+	// @Before
 	public void startup(Scenario scenario) throws Exception {
 		if (env == "remote") {
 			DesiredCapabilities derivedCaps = new DesiredCapabilities();
@@ -130,15 +137,17 @@ public class BaseTest {
 			derivedCaps.merge(new DesiredCapabilities()).setCapability("name", scenario.getName());
 			String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
 			if (buildName == null) {
-				buildName =REPO_NAME + Utility.getEpochTime();
+				buildName = REPO_NAME + Utility.getEpochTime();
 			}
 			derivedCaps.setCapability("build", buildName);
 			try {
 				ThreadLocal<DesiredCapabilities> dc = new ThreadLocal<DesiredCapabilities>();
 				dc.set(derivedCaps);
 				dc.get().merge(new DesiredCapabilities(envCapabilities.get()));
+
 				ThreadLocalDriver.setWebDriver(new RemoteWebDriver(
 						new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), dc.get()));
+
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -151,7 +160,7 @@ public class BaseTest {
 
 	}
 
-	@After
+	// @After
 	public void teardown(Scenario scenario) throws Exception {
 		if (System.getProperty("environment").equalsIgnoreCase("remote")) {
 			if (scenario.isFailed()) {
@@ -169,7 +178,7 @@ public class BaseTest {
 
 	}
 
-	@AfterSuite
+	// @AfterSuite
 	public void tearDown() throws Exception {
 
 		if (local != null) {
@@ -177,6 +186,24 @@ public class BaseTest {
 		}
 		Utility.moveFolder();
 
+	}
+
+	public BaseTest(String testMethodName, Platform platform, WebDriverFactory webDriverFactory) {
+		this.testMethodName = testMethodName;
+		this.platform = platform;
+		this.webDriverFactory = webDriverFactory;
+	}
+
+	@BeforeMethod
+	public WebDriver createDriver() throws MalformedURLException {
+
+		String[] specificCapabilities = new String[0];
+
+		if (this.webDriver == null) {
+			this.webDriver = this.webDriverFactory.createWebDriverForPlatform(platform, testMethodName,
+					specificCapabilities);
+		}
+		return this.webDriver;
 	}
 
 }
