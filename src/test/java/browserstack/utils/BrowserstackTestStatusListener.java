@@ -2,8 +2,6 @@ package browserstack.utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import browserstack.stepdefs.BaseTest;
-import browserstack.stepdefs.ThreadLocalDriver;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -30,13 +28,13 @@ public class BrowserstackTestStatusListener implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
-		markTestStatus("Passed", "", ThreadLocalDriver.getWebDriver());
+		markTestStatus("Passed", "", null);
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
-		markTestStatus("Failed", "", ThreadLocalDriver.getWebDriver());
+		markTestStatus("Failed", "", null);
 
 	}
 

@@ -1,28 +1,16 @@
 package browserstack.utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.List;
+
 import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import browserstack.stepdefs.ThreadLocalDriver;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class Utility {
 
@@ -72,7 +60,7 @@ public class Utility {
 
 	public static boolean waitForJSLoad(WebDriver driver) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-	
+
 
 		// wait for Javascript to load
 		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
@@ -84,16 +72,16 @@ public class Utility {
 		};
 		return wait.until(jsLoad);
 	}
-	
+
 	public static void moveFolder()
 	{
 		File from = new File(System.getProperty("user.dir")+"/allure-results");
         File to = new File(System.getProperty("user.dir")+"/target/"+"allure-results");
- 
+
         try {
-            FileUtils.copyDirectory(from, to);  
+            FileUtils.copyDirectory(from, to);
             FileUtils.deleteDirectory(new File(System.getProperty("user.dir")+"/allure-results"));
-            
+
         }
         catch (IOException ex) {
             ex.printStackTrace();

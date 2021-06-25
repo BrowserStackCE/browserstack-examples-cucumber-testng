@@ -9,12 +9,12 @@ import org.testng.Assert;
 
 import io.cucumber.java.en.Then;
 
-public class OfferPageSteps   {
+public class OfferPageSteps extends AbstractBaseSteps {
 
-	
+
 	  @Then("I should see Offer elements")
 	    public void iShouldSeeOfferElements() {
-	        WebDriverWait wait = new WebDriverWait(ThreadLocalDriver.getWebDriver(), 5);
+	        WebDriverWait wait = new WebDriverWait(getWebDriver(), 5);
 	        wait.until(ExpectedConditions.urlContains("offers"));
 	        try {
 	            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".p-6")));

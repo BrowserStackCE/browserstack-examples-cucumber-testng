@@ -1,7 +1,14 @@
 package browserstack.driverconfig;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,14 +28,8 @@ import org.openqa.selenium.safari.SafariOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class WebDriverFactory {
 
@@ -95,25 +96,29 @@ public class WebDriverFactory {
         return webDriverConfiguration;
     }
 
-    public WebDriver createWebDriverForPlatform(Platform platform, String testName, String[] specificCapabilitiesKeys) throws MalformedURLException {
+    public WebDriver createWebDriverForPlatform(Platform platform, String testName, String[] specificCapabilitiesKeys) {
         WebDriver webDriver = null;
-        Map<String, Object> specificCapabilitiesMap = new LinkedHashMap<>();
-        if (webDriverConfiguration.getSpecificCapabilities() != null && specificCapabilitiesKeys.length > 0) {
-            Arrays.stream(specificCapabilitiesKeys)
-                    .forEach(specificCapabilityKey -> webDriverConfiguration
-                            .getSpecificCapabilities()
-                            .getSpecificCapabilities(specificCapabilityKey)
-                            .forEach(caps -> caps.getCapabilityMap().forEach(specificCapabilitiesMap::put)));
-        }
-        switch (this.webDriverConfiguration.getDriverType()) {
-            case onPremDriver:
-                webDriver = createOnPremWebDriver(platform, specificCapabilitiesMap);
-                break;
-            case onPremGridDriver:
-                webDriver = createOnPremGridWebDriver(platform, specificCapabilitiesMap);
-                break;
-            case cloudDriver:
-                webDriver = createRemoteWebDriver(platform, testName, specificCapabilitiesMap);
+        try {
+            Map<String, Object> specificCapabilitiesMap = new LinkedHashMap<>();
+            if (webDriverConfiguration.getSpecificCapabilities() != null && specificCapabilitiesKeys.length > 0) {
+                Arrays.stream(specificCapabilitiesKeys)
+                  .forEach(specificCapabilityKey -> webDriverConfiguration
+                                                      .getSpecificCapabilities()
+                                                      .getSpecificCapabilities(specificCapabilityKey)
+                                                      .forEach(caps -> caps.getCapabilityMap().forEach(specificCapabilitiesMap::put)));
+            }
+            switch (this.webDriverConfiguration.getDriverType()) {
+                case onPremDriver:
+                    webDriver = createOnPremWebDriver(platform, specificCapabilitiesMap);
+                    break;
+                case onPremGridDriver:
+                    webDriver = createOnPremGridWebDriver(platform, specificCapabilitiesMap);
+                    break;
+                case cloudDriver:
+                    webDriver = createRemoteWebDriver(platform, testName, specificCapabilitiesMap);
+            }
+        } catch (Throwable throwable) {
+            throw new Error(throwable);
         }
         return webDriver;
     }
@@ -124,6 +129,10 @@ public class WebDriverFactory {
 
     public DriverType getDriverType() {
         return webDriverConfiguration.getDriverType();
+    }
+
+    public boolean isCloudDriver() {
+        return webDriverConfiguration.getDriverType() == DriverType.cloudDriver;
     }
 
     public List<Platform> getPlatforms() {
