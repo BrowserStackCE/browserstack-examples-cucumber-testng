@@ -25,6 +25,7 @@
 		<jackson.version>2.12.2</jackson.version>
 		<capabilities.config.file>capabilities.yml</capabilities.config.file>
 		<parallel.count>5</parallel.count>
+		 <test-name>.*</test-name>
 	</properties>
 
 	<dependencies>
@@ -129,6 +130,8 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/conf/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
+				  	<argLine>-Dcucumber.filter.name="${test-name}"
+							</argLine>
 					<properties>
 						<property>
 							<name>parallel</name>
@@ -161,7 +164,9 @@
         <profile>
             <id>bstack-parallel</id>
             <properties>
-                <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
+                <test-name>.*</test-name>  
+             
             </properties>
         </profile>
 
@@ -170,14 +175,16 @@
             <id>on-prem-suite</id>
             <properties>
                 <capabilities.config.file>capabilities-on-prem-suite.yml</capabilities.config.file>
+                  
             </properties>
         </profile>
 
 
         <profile>
-            <id>bstack-single</id>
+            <id>bstack-single</id>  
             <properties>
                 <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
+                <test-name>End to End Scenario</test-name>
             </properties>
         </profile>
 
@@ -209,7 +216,8 @@
         <profile>
             <id>bstack-local</id>
             <properties>
-                <capabilities.config.file>capabilities-bstack-local.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-local-single.yml</capabilities.config.file>
+                <test-name>End to End Scenario</test-name>
             </properties>
         </profile>
 
@@ -217,7 +225,7 @@
         <profile>
             <id>bstack-local-parallel-browsers</id>
             <properties>
-                <capabilities.config.file>capabilities-bstack-local-parallel-browsers.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-local-parallel-browsers.yml</capabilities.config.file>      
             </properties>
         </profile>
 
@@ -225,7 +233,8 @@
         <profile>
             <id>bstack-local-parallel</id>
             <properties>
-                <capabilities.config.file>capabilities-bstack-local-parallel.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-local-single.yml</capabilities.config.file>
+              
             </properties>
         </profile>
 	</profiles>
