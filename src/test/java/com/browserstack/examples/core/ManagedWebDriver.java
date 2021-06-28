@@ -1,9 +1,9 @@
-package browserstack.providers;
+package com.browserstack.examples.core;
 
 import org.openqa.selenium.WebDriver;
 
-import browserstack.driverconfig.Platform;
-import browserstack.driverconfig.WebDriverFactory;
+import com.browserstack.examples.core.config.Platform;
+import com.browserstack.examples.core.WebDriverFactory;
 
 /**
  * Created with IntelliJ IDEA.

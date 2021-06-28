@@ -1,9 +1,9 @@
-package browserstack.stepdefs;
+package com.browserstack.examples.stepdefs;
 
 import org.openqa.selenium.WebDriver;
 
-import browserstack.driverconfig.WebDriverFactory;
-import browserstack.providers.WebDriverManager;
+import com.browserstack.examples.core.WebDriverFactory;
+import com.browserstack.examples.core.WebDriverManager;
 
 /**
  * Created with IntelliJ IDEA.

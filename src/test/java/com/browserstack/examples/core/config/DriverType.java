@@ -1,4 +1,4 @@
-package browserstack.driverconfig;
+package com.browserstack.examples.core.config;
 
 public enum DriverType {
     cloudDriver,

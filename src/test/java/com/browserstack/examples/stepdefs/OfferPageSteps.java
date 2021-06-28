@@ -1,4 +1,4 @@
-package browserstack.stepdefs;
+package com.browserstack.examples.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;

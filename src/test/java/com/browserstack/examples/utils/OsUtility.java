@@ -1,4 +1,4 @@
-package browserstack.utils;
+package com.browserstack.examples.utils;
 
 public class OsUtility {
     private static String OS = null;

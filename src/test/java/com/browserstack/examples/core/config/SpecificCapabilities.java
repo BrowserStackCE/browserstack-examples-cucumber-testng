@@ -1,10 +1,10 @@
-package browserstack.driverconfig;
-
-import com.fasterxml.jackson.annotation.JsonAnySetter;
+package com.browserstack.examples.core.config;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 public class SpecificCapabilities {
 

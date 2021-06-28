@@ -1,4 +1,4 @@
-package browserstack.providers;
+package com.browserstack.examples.core;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

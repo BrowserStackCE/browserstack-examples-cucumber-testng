@@ -1,4 +1,4 @@
-package browserstack;
+package com.browserstack.examples.tests;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,10 +9,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import browserstack.driverconfig.Platform;
-import browserstack.driverconfig.WebDriverFactory;
-import browserstack.providers.ManagedWebDriver;
-import browserstack.providers.WebDriverManager;
+import com.browserstack.examples.core.config.Platform;
+import com.browserstack.examples.core.WebDriverFactory;
+import com.browserstack.examples.core.ManagedWebDriver;
+import com.browserstack.examples.core.WebDriverManager;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
@@ -24,6 +24,8 @@ import io.cucumber.testng.TestNGCucumberRunner;
  * @author Anirudha Khanna
  */
 @CucumberOptions(
+  features = "classpath:features",
+  glue = "com.browserstack.examples.stepdefs"
 )
 public class RunWebDriverCucumberTests {
 

@@ -1,11 +1,11 @@
-package browserstack.stepdefs;
+package com.browserstack.examples.stepdefs;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import browserstack.driverconfig.WebDriverFactory;
-import browserstack.providers.WebDriverManager;
+import com.browserstack.examples.core.WebDriverFactory;
+import com.browserstack.examples.core.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 

@@ -1,4 +1,4 @@
-package browserstack.driverconfig;
+package com.browserstack.examples.core.config;
 
 import com.browserstack.local.Local;
 import org.apache.commons.lang3.RandomStringUtils;

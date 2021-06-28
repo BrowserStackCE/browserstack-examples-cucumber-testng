@@ -1,4 +1,4 @@
-package browserstack.driverconfig;
+package com.browserstack.examples.core;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,6 +28,13 @@ import org.openqa.selenium.safari.SafariOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.browserstack.examples.core.config.BrowserType;
+import com.browserstack.examples.core.config.CommonCapabilities;
+import com.browserstack.examples.core.config.DriverType;
+import com.browserstack.examples.core.config.LocalFactory;
+import com.browserstack.examples.core.config.Platform;
+import com.browserstack.examples.core.config.RemoteDriverConfig;
+import com.browserstack.examples.core.config.WebDriverConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
