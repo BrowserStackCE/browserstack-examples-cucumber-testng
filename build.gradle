@@ -9,45 +9,43 @@ plugins {
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri('https://repository.jboss.org/nexus/content/groups/public-jboss/')
-    }
-
-    maven {
-        url = uri('https://repo1.maven.org/maven2/')
-    }
-
-    maven {
-        url = uri('https://repository.jboss.org/nexus/content/groups/public')
-    }
-
-    maven {
-        url = uri('https://oss.sonatype.org/content/repositories/snapshots')
-    }
-
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
+    mavenCentral()
+    google()
+//    maven {
+//        url = uri('https://repository.jboss.org/nexus/content/groups/public-jboss/')
+//    }
+//
+//    maven {
+//        url = uri('https://repo1.maven.org/maven2/')
+//    }
+//
+//    maven {
+//        url = uri('https://repository.jboss.org/nexus/content/groups/public')
+//    }
+//
+//    maven {
+//        url = uri('https://oss.sonatype.org/content/repositories/snapshots')
+//    }
+//
+//    maven {
+//        url = uri('https://repo.maven.apache.org/maven2/')
+//    }
 }
 
 dependencies {
-    implementation 'com.browserstack:browserstack-local-java:1.0.6'
-    implementation 'org.apache.commons:commons-lang3:3.11'
-    implementation 'io.qameta.allure:allure-testng:2.12.0'
-    implementation 'io.qameta.allure:allure-maven:2.10.0'
-    implementation 'org.slf4j:slf4j-api:1.7.30'
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'org.testng:testng:6.14.3'
-    implementation 'org.apache.poi:poi-ooxml:3.9'
-    implementation 'org.apache.poi:poi:4.1.2'
-    implementation 'io.cucumber:cucumber-java:6.8.2'
-    implementation 'io.cucumber:cucumber-core:6.8.2'
-    implementation 'io.cucumber:cucumber-jvm:6.8.2'
-    implementation 'io.cucumber:cucumber-testng:6.8.2'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+    implementation 'io.cucumber:cucumber-jvm:6.10.4'
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
-    testImplementation 'io.cucumber:cucumber-picocontainer:6.8.2'
+    testImplementation 'com.browserstack:browserstack-local-java:1.0.6'
+    testImplementation 'org.apache.commons:commons-lang3:3.11'
+    testImplementation 'org.slf4j:slf4j-api:1.7.30'
+    testImplementation 'ch.qos.logback:logback-classic:1.2.3'
+    testImplementation 'org.testng:testng:7.4.0'
+    testImplementation 'io.cucumber:cucumber-java:6.10.4'
+    testImplementation 'io.cucumber:cucumber-core:6.10.4'
+    testImplementation 'io.cucumber:cucumber-picocontainer:6.10.4'
+    testImplementation 'io.cucumber:cucumber-testng:6.10.4'
+    testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.2'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
 }
 
 group = 'com.browserstack'
