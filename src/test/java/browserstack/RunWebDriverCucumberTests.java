@@ -13,6 +13,7 @@ import browserstack.driverconfig.Platform;
 import browserstack.driverconfig.WebDriverFactory;
 import browserstack.providers.ManagedWebDriver;
 import browserstack.providers.WebDriverManager;
+import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
@@ -22,6 +23,8 @@ import io.cucumber.testng.TestNGCucumberRunner;
  *
  * @author Anirudha Khanna
  */
+@CucumberOptions(
+)
 public class RunWebDriverCucumberTests {
 
     private TestNGCucumberRunner testNGCucumberRunner;
