@@ -62,5 +62,9 @@ publishing {
 }
 
 tasks.named('test') {
-    useTestNG()
+    useTestNG() {
+        suites 'src/test/resources/conf/testng.xml'
+        parallel = 'methods'
+        threadCount = 30
+    }
 }
