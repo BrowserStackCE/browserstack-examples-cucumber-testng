@@ -90,6 +90,7 @@ public class WebDriverFactory {
 
     private WebDriverConfiguration parseWebDriverConfig() {
         String capabilitiesConfigFile = System.getProperty(CAPABILITIES_FILE_PROP, DEFAULT_CAPABILITIES_FILE);
+        System.out.println(CAPABILITIES_FILE_PROP);
         LOGGER.debug("Using capabilities configuration from FILE :: {}", capabilitiesConfigFile);
         URL resourceURL = WebDriverFactory.class.getClassLoader().getResource(capabilitiesConfigFile);
 

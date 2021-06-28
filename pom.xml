@@ -1,145 +1,232 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.browserstack</groupId>
-    <artifactId>browserstack-examples-cucumber-testng</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.browserstack</groupId>
+	<artifactId>browserstack-examples-cucumber-testng</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <selenium-java.version>3.141.59</selenium-java.version>
-        <browserstack-local-java.version>1.0.6</browserstack-local-java.version>
-        <json-simple.version>1.1.1</json-simple.version>
-        <comslang.version>3.11</comslang.version>
-        <alluretestng.version>2.12.0</alluretestng.version>
-        <allure.version>2.10.0</allure.version>
-        <slf4j.version>1.7.30</slf4j.version>
-        <cucumber.version>6.9.1</cucumber.version>
-        <logback.version>1.2.3</logback.version>
-        <testng.version>7.4.0</testng.version>
-        <cucumber.version>6.10.4</cucumber.version>
-        <jackson.version>2.12.2</jackson.version>
-    </properties>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<selenium-java.version>3.141.59</selenium-java.version>
+		<browserstack-local-java.version>1.0.6</browserstack-local-java.version>
+		<json-simple.version>1.1.1</json-simple.version>
+		<comslang.version>3.11</comslang.version>
+		<alluretestng.version>2.12.0</alluretestng.version>
+		<allure.version>2.10.0</allure.version>
+		<slf4j.version>1.7.30</slf4j.version>
+		<cucumber.version>6.9.1</cucumber.version>
+		<logback.version>1.2.3</logback.version>
+		<testng.version>7.4.0</testng.version>
+		<cucumber.version>6.10.4</cucumber.version>
+		<jackson.version>2.12.2</jackson.version>
+		<capabilities.config.file>capabilities.yml</capabilities.config.file>
+		<parallel.count>5</parallel.count>
+	</properties>
 
-    <dependencies>
+	<dependencies>
 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.browserstack</groupId>
-            <artifactId>browserstack-local-java</artifactId>
-            <version>${browserstack-local-java.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium-java.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.browserstack</groupId>
+			<artifactId>browserstack-local-java</artifactId>
+			<version>${browserstack-local-java.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${comslang.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${comslang.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-core</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-picocontainer</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-jvm</artifactId>
-            <version>${cucumber.version}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-jvm</artifactId>
+			<version>${cucumber.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>${jackson.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>${jackson.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/conf/testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <properties>
-                        <property>
-                            <name>parallel</name>
-                            <value>methods</value>
-                        </property>
-                        <property>
-                            <name>dataproviderthreadcount</name>
-                            <value>20</value>
-                        </property>
-                    </properties>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/conf/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<properties>
+						<property>
+							<name>parallel</name>
+							<value>methods</value>
+						</property>
+						<property>
+							<name>dataproviderthreadcount</name>
+							<value>${parallel.count}</value>
+						</property>
+					</properties>
+					 <systemPropertyVariables>
+                        <capabilities.config>${capabilities.config.file}</capabilities.config>
+                    </systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
+
+
+	  <profiles>
+        <profile>
+            <id>docker-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-docker-parallel.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>bstack-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>on-prem-suite</id>
+            <properties>
+                <capabilities.config.file>capabilities-on-prem-suite.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>bstack-single</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>on-prem</id>
+            <properties>
+                <capabilities.config.file>capabilities-on-prem.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>docker</id>
+            <properties>
+                <capabilities.config.file>capabilities-docker.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>bstack-parallel-browsers</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-parallel-browsers.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>bstack-local</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-local.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>bstack-local-parallel-browsers</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-local-parallel-browsers.yml</capabilities.config.file>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>bstack-local-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-local-parallel.yml</capabilities.config.file>
+            </properties>
+        </profile>
+	</profiles>
 </project>
