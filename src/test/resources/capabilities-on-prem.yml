@@ -5,5 +5,5 @@ driverType: onPremDriver
 onPremDriver:
   platforms:
     - name: chrome
-      driverPath: /opt/libs/drivers/chromedriver
+      driverPath: /src/test/resources/chromedriver
       capabilities:

@@ -211,7 +211,7 @@ public class WebDriverFactory {
         WebDriver webDriver = null;
         switch (BrowserType.valueOf(platform.getName())) {
             case chrome:
-                System.setProperty(WEBDRIVER_CHROME_DRIVER, Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_CHROME_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(chromeOptions::setCapability);
@@ -220,7 +220,7 @@ public class WebDriverFactory {
                 webDriver = new ChromeDriver(chromeOptions);
                 break;
             case firefox:
-                System.setProperty(WEBDRIVER_GECKO_DRIVER, Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_GECKO_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(firefoxOptions::setCapability);
@@ -229,7 +229,7 @@ public class WebDriverFactory {
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;
             case ie:
-                System.setProperty(WEBDRIVER_IE_DRIVER, Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_IE_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
                 InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(internetExplorerOptions::setCapability);
@@ -238,7 +238,7 @@ public class WebDriverFactory {
                 webDriver = new InternetExplorerDriver(internetExplorerOptions);
                 break;
             case edge:
-                System.setProperty(WEBDRIVER_EDGE_DRIVER, Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_EDGE_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(edgeOptions::setCapability);
