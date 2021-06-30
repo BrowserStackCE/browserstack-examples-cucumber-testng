@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Test Suite" verbose="1" thread-count="20" parallel="methods" data-provider-thread-count="20">
+    <test name="Cucumber Tests">
+        <classes>
+            <class name="com.browserstack.examples.tests.RunWebDriverCucumberTests" />
+        </classes>
+    </test>
+</suite>
