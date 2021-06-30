@@ -3,7 +3,6 @@ package com.browserstack.examples.core;
 import org.openqa.selenium.WebDriver;
 
 import com.browserstack.examples.core.config.Platform;
-import com.browserstack.examples.core.WebDriverFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,10 +30,9 @@ public class ManagedWebDriver {
     }
 
     public WebDriver getWebDriver() {
-        String[] specificCapabilities = new String[0];
 
         if (this.webDriver == null) {
-            this.webDriver = this.webDriverFactory.createWebDriverForPlatform(platform, testName, specificCapabilities);
+            this.webDriver = this.webDriverFactory.createWebDriverForPlatform(platform, testName);
         }
         return this.webDriver;
     }

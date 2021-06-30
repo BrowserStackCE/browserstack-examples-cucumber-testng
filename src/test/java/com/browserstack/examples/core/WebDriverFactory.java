@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,17 +102,10 @@ public class WebDriverFactory {
         return webDriverConfiguration;
     }
 
-    public WebDriver createWebDriverForPlatform(Platform platform, String testName, String[] specificCapabilitiesKeys) {
+    public WebDriver createWebDriverForPlatform(Platform platform, String testName) {
         WebDriver webDriver = null;
         try {
             Map<String, Object> specificCapabilitiesMap = new LinkedHashMap<>();
-            if (webDriverConfiguration.getSpecificCapabilities() != null && specificCapabilitiesKeys.length > 0) {
-                Arrays.stream(specificCapabilitiesKeys)
-                  .forEach(specificCapabilityKey -> webDriverConfiguration
-                                                      .getSpecificCapabilities()
-                                                      .getSpecificCapabilities(specificCapabilityKey)
-                                                      .forEach(caps -> caps.getCapabilityMap().forEach(specificCapabilitiesMap::put)));
-            }
             switch (this.webDriverConfiguration.getDriverType()) {
                 case onPremDriver:
                     webDriver = createOnPremWebDriver(platform, specificCapabilitiesMap);

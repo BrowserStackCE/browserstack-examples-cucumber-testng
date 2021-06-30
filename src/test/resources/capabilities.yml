@@ -54,15 +54,3 @@ cloudDriver:
 #      os_version: '13.0'
 #      device: iPhone XS
 #      real_mobile: true
-
-specific_capabilities:
-  apply_auth_mask:
-    - browserstack.maskBasicAuth: true
-  apply_command_mask:
-    - browserstack.maskCommands: setValues, getValues, setCookies, getCookies
-  debug_test:
-    - browserstack.debug: true
-      browserstack.console: verbose
-      browserstack.networkLogs: true
-      browserstack.video: true
-      browserstack.seleniumLogs: true

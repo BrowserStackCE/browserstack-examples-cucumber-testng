@@ -25,9 +25,6 @@ public class WebDriverConfiguration {
     @JsonProperty("cloudDriver")
     private RemoteDriverConfig cloudDriverConfig;
 
-    @JsonProperty("specific_capabilities")
-    private SpecificCapabilities specificCapabilities;
-
     public List<Platform> getActivePlatforms() {
         List<Platform> activePlatforms = Collections.emptyList();
         switch (driverType) {
@@ -82,13 +79,5 @@ public class WebDriverConfiguration {
 
     public void setCloudDriverConfig(RemoteDriverConfig cloudDriverConfig) {
         this.cloudDriverConfig = cloudDriverConfig;
-    }
-
-    public SpecificCapabilities getSpecificCapabilities() {
-        return specificCapabilities;
-    }
-
-    public void setSpecificCapabilities(SpecificCapabilities specificCapabilities) {
-        this.specificCapabilities = specificCapabilities;
     }
 }
