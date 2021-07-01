@@ -53,18 +53,10 @@ version = '0.0.1-SNAPSHOT'
 description = 'browserstack-examples-cucumber-testng'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
-
 tasks.named('test') {
     useTestNG() {
         suites 'src/test/resources/conf/testng.xml'
         parallel = 'methods'
-        threadCount = 30
+        threadCount = 20
     }
 }
