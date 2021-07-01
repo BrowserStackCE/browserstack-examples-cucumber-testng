@@ -1,5 +1,6 @@
 target
 build
+reports
 .gradle
 .idea
 *.iml
