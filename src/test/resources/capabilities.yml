@@ -44,11 +44,11 @@ cloudDriver:
 #      os_version: Catalina
 #      browser: Safari
 #      browser_version: '13.0'
-#    - name: Android_Samsung Galaxy S21_11.0
-#      os: Android
-#      os_version: '11.0'
-#      device: Samsung Galaxy S21
-#      real_mobile: true
+    - name: Android_Samsung Galaxy S21_11.0
+      os: Android
+      os_version: '11.0'
+      device: Samsung Galaxy S21
+      real_mobile: true
 #    - name: iOS_iPhone XS_13.0
 #      os: iPhone
 #      os_version: '13.0'

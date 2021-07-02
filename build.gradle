@@ -11,25 +11,6 @@ repositories {
     mavenLocal()
     mavenCentral()
     google()
-//    maven {
-//        url = uri('https://repository.jboss.org/nexus/content/groups/public-jboss/')
-//    }
-//
-//    maven {
-//        url = uri('https://repo1.maven.org/maven2/')
-//    }
-//
-//    maven {
-//        url = uri('https://repository.jboss.org/nexus/content/groups/public')
-//    }
-//
-//    maven {
-//        url = uri('https://oss.sonatype.org/content/repositories/snapshots')
-//    }
-//
-//    maven {
-//        url = uri('https://repo.maven.apache.org/maven2/')
-//    }
 }
 
 dependencies {
@@ -54,9 +35,10 @@ description = 'browserstack-examples-cucumber-testng'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 tasks.named('test') {
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    systemProperty "dataproviderthreadcount", System.getProperty("num.parallels")
     useTestNG() {
         suites 'src/test/resources/conf/testng.xml'
         parallel = 'methods'
-        threadCount = 20
     }
 }
