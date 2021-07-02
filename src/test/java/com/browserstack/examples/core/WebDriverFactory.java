@@ -52,6 +52,7 @@ public class WebDriverFactory {
     private static final String WEBDRIVER_GECKO_DRIVER = "webdriver.gecko.driver";
     private static final String WEBDRIVER_IE_DRIVER = "webdriver.ie.driver";
     private static final String WEBDRIVER_EDGE_DRIVER = "webdriver.edge.driver";
+    String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
 
     private static WebDriverFactory instance;
 
@@ -161,6 +162,9 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
         platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
+        
+    
+       // platformCapabilities.setCapability("build", buildName);
 
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);

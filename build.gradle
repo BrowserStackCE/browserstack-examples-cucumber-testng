@@ -34,31 +34,20 @@ dependencies {
 	
 }
 
-ext.configure = {taskName,configFile->
-    def task = project.tasks.findByPath(taskName)
-  /*  useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
-       }*/
-    task.testLogging.setDisplayGranularity(-1)
-    task.testLogging.setShowCauses(true)
-    task.testLogging.setShowExceptions(true)
-    task.testLogging.setShowStackTraces(true)
-    task.testLogging.setShowStandardStreams(true)
-    task.outputs.upToDateWhen({false})
-    task.systemProperties 'capabilities.config': configFile
 
-}
+test{
+    useTestNG()
 
-test {
-    useTestNG {
-        suites 'src/test/resources/conf/testng.xml'
-    }
+    // Force tests to always run, even if they haven't been updated (using "gradle clean" ensures this anyway)
+    outputs.upToDateWhen { false }
+    testLogging.events "passed", "skipped", "failed"
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = "full"
+
 }
 	
 tasks.register('on-prem', Test) {
- 	useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
-       }
+ 	useTestNG() 
          if (System.getProperty("test-name") != null) {
         systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
     } else {
@@ -92,32 +81,24 @@ tasks.register('docker', Test) {
     
 }
 tasks.register('docker-parallel', Test) {
- 	useTestNG() {
-        suites 'src/test/resources/conf/TestNG_Parallel.xml'
-       }
-   
-    systemProperty "environment", "docker"
-    systemProperty "application_endpoint", "$APPLICATION_URL"
- 
+ 	useTestNG() 
+    systemProperty 'capabilities.config', 'capabilities-bstack-single.yml'
 }
+
+
+
 tasks.register('bstack-single', Test) {
- 	useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
-       }
-      
+useTestNG()
+
          if (System.getProperty("test-name") != null) {
         systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
     } else {
         systemProperty("cucumber.filter.name", "End to End Scenario")
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-single.yml'
-     outputs.upToDateWhen { false }
     
 }
 tasks.register('bstack-local', Test) {
- 	useTestNG() {
-        suites 'src/test/resources/conf/TestNG_Single.xml'
-       }
          if (System.getProperty("test-name") != null) {
         systemProperty("cucumber.filter.name", System.getProperty ("test-name"))
     } else {
@@ -145,9 +126,8 @@ useTestNG() {
         suites 'src/test/resources/conf/testng.xml'
        }
     systemProperty 'capabilities.config', 'capabilities-bstack-single.yml'
-     outputs.upToDateWhen { false }
-
 }
+
 
 
 tasks.register('bstack-local-parallel-browsers', Test) {
