@@ -1,10 +1,3 @@
-JAVA_TOOL = 'Java_7'
-JAVA_OPTS = ''
-GRADLE_TOOL = 'Gradle_2.13'
-
-
-supersedeBuilds
-
 node('master') {
     stage('Checkout') {
         sh "git checkout iteration2_develop_reporting"
