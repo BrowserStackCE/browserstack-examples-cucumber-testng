@@ -15,6 +15,8 @@ node('master') {
 		sh 'export BROWSERSTACK_USERNAME=""'
 		sh 'export BROWSERSTACK_ACCESSKEY=""'
 		sh 'chmod +x gradlew'
+		browserstack('mudassardemo') {
+        }
 		withGradle {
             sh './gradlew build'
         }
