@@ -1,6 +1,6 @@
 node('master') {
     stage('Checkout') {
-        sh "git checkout iteration2_develop_reporting"
+        sh "git branch: 'iteration2_develop_reporting', url: 'https://github.com/browserstack/browserstack-examples-cucumber-testng.git'"
     }
 
 
