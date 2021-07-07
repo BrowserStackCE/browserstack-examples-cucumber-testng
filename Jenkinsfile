@@ -18,7 +18,7 @@ node('master') {
 		browserstack('mudassardemo'){
 		}
 		withGradle {
-            sh './gradlew test --stacktrace'
+            sh './gradlew test -Dnum.parallels=20 --stacktrace'
         }
         slackSend channel: 'jenkins-vgm-alerts', message: '${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}', teamDomain: '/var/lib/jenkins/workspace/cucumberreporting', tokenCredentialId: 'slack-token'
     }
