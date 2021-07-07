@@ -47,6 +47,6 @@ try{
 
           def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-              slackSend(color: color, message: msg, tokenCredentialId: 'team_se_ci_alerts')
+              slackSend(color: color, message: msg, tokenCredentialId: 'slack-token'')
           //}
  }
