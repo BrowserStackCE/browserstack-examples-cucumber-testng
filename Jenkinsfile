@@ -23,11 +23,10 @@ try{
             sh './gradlew test -Dnum.parallels=20 --stacktrace'
         }
       }
-      }
-       } catch (e) {
+  }catch (e) {
               currentBuild.result = 'FAILURE'
               throw e
-          } finally {
+               } finally {
               notifySlack(currentBuild.result)
           }
       }
