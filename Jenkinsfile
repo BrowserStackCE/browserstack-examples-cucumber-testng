@@ -14,7 +14,10 @@ node('master') {
 		echo "Hello World"
 		sh 'export BROWSERSTACK_USERNAME=""'
 		sh 'export BROWSERSTACK_ACCESSKEY=""'
-        sh '/opt/gradle/gradle-5.6/bin/gradle test'
+		withGradle {
+            sh './gradlew build'
+        }
+
 
     }
 }
