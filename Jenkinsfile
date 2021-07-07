@@ -22,7 +22,7 @@ node('master') {
         }
     }
      stage('Notify on Slack') {
-            def notifySlack(String buildStatus = 'STARTED') {
+        def notifySlack(String buildStatus = 'STARTED') {
                 // Build status of null means success.
                 buildStatus = buildStatus ?: 'SUCCESS'
 
