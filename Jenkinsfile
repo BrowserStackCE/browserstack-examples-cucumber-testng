@@ -7,7 +7,7 @@ supersedeBuilds
 
 node('master') {
     stage('Checkout') {
-        checkout scm
+        sh "git checkout iteration2_develop_reporting"
     }
 
 
