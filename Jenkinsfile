@@ -43,3 +43,4 @@ node('master') {
                     slackSend channel: 'jenkins-vgm-alerts', message: msg, tokenCredentialId: 'slack-token'
         }
 }
+}
