@@ -21,7 +21,7 @@ while [ -h "$PRG" ] ; do
 done
 SAVED="`pwd`"
 cd "`dirname \"$PRG\"`/" >/dev/null
-APP_HOME="`pwd -P`"
+APP_HOME="/var/lib/jenkins/workspace/cucumberreporting"
 cd "$SAVED" >/dev/null
 
 APP_NAME="Gradle"
