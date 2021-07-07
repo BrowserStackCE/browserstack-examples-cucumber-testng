@@ -24,4 +24,4 @@ node('master') {
      stage('Notify on Slack') {
         slackSend channel: 'jenkins-vgm-alerts', message: '${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}', teamDomain: '/var/lib/jenkins/workspace/cucumberreporting', tokenCredentialId: 'slack-token'
     }
-
+}
