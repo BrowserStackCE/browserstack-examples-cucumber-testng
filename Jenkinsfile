@@ -51,5 +51,4 @@ try{
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
               slackSend(color: color, message: msg, tokenCredentialId: 'team_se_ci_alerts')
           //}
-      }
-}
+ }
