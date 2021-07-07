@@ -14,6 +14,7 @@ node('master') {
 		echo "Hello World"
 		sh 'export BROWSERSTACK_USERNAME=""'
 		sh 'export BROWSERSTACK_ACCESSKEY=""'
+		sh 'pwd -P'
 		withGradle {
             sh './gradlew build'
         }
