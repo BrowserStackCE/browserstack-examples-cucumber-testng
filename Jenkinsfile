@@ -13,8 +13,6 @@ try{
 
 
 		echo "Hello World"
-		sh 'export BROWSERSTACK_USERNAME="mudassardemo"'
-		sh 'export BROWSERSTACK_ACCESSKEY="Mz55zvYU9iCdyV9dvsKv"'
 		sh 'chmod +x gradlew'
 		browserstack('mudassardemo'){
 		}
