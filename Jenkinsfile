@@ -12,11 +12,9 @@ node('master') {
 
 
 		echo "Hello World"
-		sh 'export BROWSERSTACK_USERNAME=""'
-		sh 'export BROWSERSTACK_ACCESSKEY=""'
+		sh 'export BROWSERSTACK_USERNAME="mudassardemo"'
+		sh 'export BROWSERSTACK_ACCESSKEY="Mz55zvYU9iCdyV9dvsKv"'
 		sh 'chmod +x gradlew'
-		browserstack('mudassardemo') {
-        }
 		withGradle {
             sh './gradlew build'
         }
