@@ -16,7 +16,7 @@ node('master') {
 		sh 'export BROWSERSTACK_ACCESSKEY="Mz55zvYU9iCdyV9dvsKv"'
 		sh 'chmod +x gradlew'
 		withGradle {
-            sh './gradlew build'
+            sh './gradlew test --stacktrace'
         }
 
 
