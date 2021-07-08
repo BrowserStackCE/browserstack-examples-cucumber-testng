@@ -5,12 +5,19 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'io.qameta.allure' version '2.8.1'
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
     google()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+    maven {
+        url =uri('https://plugins.gradle.org/m2/')
+    }
 }
 
 dependencies {
@@ -28,7 +35,7 @@ dependencies {
     testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.2'
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
     // https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber6-jvm
-    implementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.14.0'
+    testImplementation 'io.qameta.allure:allure-gradle:2.8.1'
 
 }
 
@@ -44,4 +51,12 @@ tasks.named('test') {
         suites 'src/test/resources/conf/testng.xml'
         parallel = 'methods'
     }
+    finalizedBy {
+        'allure'
+    }
+
+}
+
+task 'allure'(type: Exec) {
+    commandLine './allure-generate.sh'
 }

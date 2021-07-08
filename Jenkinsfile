@@ -46,10 +46,19 @@ try{
           }
 
           def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+
+          def attachments = [
+            [
+              text: 'I find your lack of faith disturbing!',
+              fallback: 'Hey, Vader seems to be mad at you.',
+              color: '#ff0000'
+            ]
+          ]
+
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-              slackSend(color: color, message: msg,channel:"vgm")
+              slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
               sh "echo hey > blah.txt"
-              slackUploadFile filePath: "*.txt", initialComment:  "HEY HEY",credentialId: 'eclErmFQhZVPUAO7aVRO33S6'
+              //slackUploadFile filePath: "*.txt", initialComment:  "HEY HEY",credentialId: 'eclErmFQhZVPUAO7aVRO33S6'
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
  }
