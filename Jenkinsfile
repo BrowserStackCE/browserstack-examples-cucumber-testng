@@ -18,7 +18,7 @@ try{
 		}
 
 		withGradle {
-            //sh './gradlew test -Dnum.parallels=20 --stacktrace'
+            sh './gradlew test -Dnum.parallels=25'
         }
       }
   }catch (e) {
@@ -49,20 +49,14 @@ try{
 
           def attachments = [
             [
-              text: 'Previous text came with default  example!,https://plugins.jenkins.io/slack/',
+              text: 'Here is a report',
               fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
           ]
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-              //slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
-
-              jsonFilePath = "reports/tests/cucumber/json/cucumber.json"
-              filepath = "${env.WORKSPACE}" + "/" + jsonFilePath
-              echo filepath
-
-
+              slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
               def workspace = pwd()
               sh "echo $workspace/reports/tests/cucumber/json/cucumber.json"
               sh "echo hey > blah.txt"
