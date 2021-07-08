@@ -1,10 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd ">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.browserstack</groupId>
 	<artifactId>browserstack-examples-cucumber-testng</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<url>https://repo.maven.apache.org/maven2</url>
+
 
 
 	<properties>
@@ -26,6 +28,7 @@
 		<capabilities.config.file>capabilities.yml</capabilities.config.file>
 		<parallel.count>5</parallel.count>
 		<test-name>.*</test-name>
+
 	</properties>
 
 	<dependencies>
@@ -128,10 +131,13 @@
 			<scope>test</scope>
 		</dependency>
 
+
+
 	</dependencies>
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -145,6 +151,14 @@
 					<systemPropertyVariables>
 						<capabilities.config>${capabilities.config.file}</capabilities.config>
 					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>${allure.version}</version>
+				<configuration>
+					<resultsDirectory>${basedir}/allure-results</resultsDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -225,7 +239,6 @@
 		</profile>
 
 
-
 		<profile>
 			<id>bstack-parallel</id>
 			<build>
@@ -245,7 +258,6 @@
 				<capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
 			</properties>
 		</profile>
-
 
 
 		<profile>
