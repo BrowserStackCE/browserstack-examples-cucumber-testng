@@ -57,6 +57,14 @@ try{
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
               //slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
+              def files = findFiles glob: '**/reports/tests/cucumber/json/*.json'
+              for (def i=0; i<files.length; i++) {
+              jsonFilePath = "${files[i].path}"
+              jsonPath = "${env.WORKSPACE}" + "/" + jsonFilePath
+              echo jsonPath
+
+              def workspace = pwd()
+              sh "echo $workspace /reports/tests/cucumber/json/cucumber.json"
               sh "echo hey > blah.txt"
               slackUploadFile filePath: "*.txt", initialComment:  "HEY HEY"
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
