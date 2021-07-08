@@ -32,7 +32,7 @@ The Selenium tests are run on different platforms like on-prem, docker and Brows
 
   Gradle:
     ```sh
-    gradle build
+    ./gradlew build
     ```
 
 ## About the tests in this repository
@@ -112,7 +112,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Gradle:
     ```sh 
-  gradle on-prem
+  ./gradlew on-prem
   ```
 
   To run a specific test scenario, use the following command with the additional 'test-name' argument:
@@ -124,7 +124,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Gradle:
   ```sh
-  gradle on-prem -Dtest-name="<Test scenario name>"
+  ./gradlew on-prem -Dtest-name="<Test scenario name>"
   ```
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
@@ -149,7 +149,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Gradle:
   ```sh
-  gradle on-prem-suite
+  ./gradlew on-prem-suite
   ```
 
 - Output
@@ -190,7 +190,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Gradle:
     ```sh
-  gradle docker
+  ./gradlew docker
   ```
 
   To run a specific test scenario, use the following command with the additional 'test-name' argument:
@@ -202,7 +202,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Gradle:
   ```sh
-  gradle docker -Dtest-name="<Test scenario name>"
+  ./gradlew docker -Dtest-name="<Test scenario name>"
   ```
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
@@ -240,7 +240,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Gradle:
   ```sh
-  gradle docker-parallel
+  ./gradlew docker-parallel
   ```
 
   - After the tests are complete stop the Selenium grid by running the following command:
@@ -304,7 +304,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
 
   Gradle:
     ```sh
-  gradle bstack-single
+  ./gradlew bstack-single
   ```
 
   To run a specific test scenario, use the following command with the additional 'test-name' argument:
@@ -315,7 +315,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
 
   Gradle:
   ```sh
-  gradle bstack-single -Dtest-name="<Test scenario name>"
+  ./gradlew bstack-single -Dtest-name="<Test scenario name>"
   ```
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
@@ -342,7 +342,7 @@ In this section, we will run the tests in parallel on a single browser on Browse
   ```
   Gradle:
     ```sh
-  gradle bstack-parallel
+  ./gradlew bstack-parallel
   ```
 
 
@@ -368,7 +368,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   Gradle:
   ```sh
-  gradle bstack-parallel-browsers
+  ./gradlew bstack-parallel-browsers
   ```
 
 ### [Web application hosted on internal environment] Running your tests on BrowserStack using BrowserStackLocal
@@ -401,7 +401,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   Gradle:
     ```sh
-  gradle bstack-local
+  ./gradlew bstack-local
   ```
 
   To run a specific test scenario, use the following command with the additional test-name argument:
@@ -412,7 +412,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   Gradle:
   ```sh
-  gradle bstack-local -Dtest-name="<Test scenario name>"
+  ./gradlew bstack-local -Dtest-name="<Test scenario name>"
   ```
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
@@ -439,7 +439,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
   Gradle:
   ```sh
-  gradle bstack-local-parallel
+  ./gradlew bstack-local-parallel
   ```
 
 - Output
@@ -463,7 +463,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
   Gradle:
     ```sh
-  gradle bstack-local-parallel-browsers
+  ./gradlew bstack-local-parallel-browsers
   ```
 
 - Output
@@ -476,8 +476,14 @@ In this section, we will run the test cases to test the internally hosted websit
 
   In this section, we will generate and serve allure reports for maven test runs.
 
-- Generate Report using the following command: `mvn io.qameta.allure:allure-maven:report`
-- Serve the Allure report on a server: `mvn io.qameta.allure:allure-maven:serve`
+# maven
+- Generate Report using the following command: `mvn allure:report`
+- Serve the Allure report on a server: `mvn allure:serve`
+
+# gradle
+- Generate Report using the following command: `./gradlew allurereport`
+- Serve the Allure report on a server: `./gradlew allureserve`
+
 
 ## Additional Resources
 
@@ -490,5 +496,3 @@ In this section, we will run the test cases to test the internally hosted websit
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
 
 
-## Open Issues
-- Parallel thread count is not working via gradle command line arguments & gradle profiles , the thread count can be updated directly from the testng runner file
