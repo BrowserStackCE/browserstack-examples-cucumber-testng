@@ -58,7 +58,7 @@ try{
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
               //slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
 
-              jsonFilePath = "**/reports/tests/cucumber/json/cucumber.json"
+              jsonFilePath = "reports/tests/cucumber/json/cucumber.json"
               filepath = "${env.WORKSPACE}" + "/" + jsonFilePath
               echo filepath
 
@@ -66,7 +66,7 @@ try{
               def workspace = pwd()
               sh "echo $workspace /reports/tests/cucumber/json/cucumber.json"
               sh "echo hey > blah.txt"
-              slackUploadFile filePath: "*.txt", initialComment:  "HEY HEY"
+              slackUploadFile filePath: filepath, initialComment:  "HEY HEY"
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
  }
