@@ -56,9 +56,9 @@ try{
           ]
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-              slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
+              //slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
               sh "echo hey > blah.txt"
-              //slackUploadFile filePath: "*.txt", initialComment:  "HEY HEY",credentialId: 'eclErmFQhZVPUAO7aVRO33S6'
+              slackUploadFile filePath: "*.txt", initialComment:  "HEY HEY"
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
  }
