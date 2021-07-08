@@ -18,7 +18,7 @@ try{
 		}
 
 		withGradle {
-            sh './gradlew test -Dnum.parallels=20 --stacktrace'
+            //sh './gradlew test -Dnum.parallels=20 --stacktrace'
         }
       }
   }catch (e) {
