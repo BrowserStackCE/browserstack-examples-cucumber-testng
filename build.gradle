@@ -27,6 +27,9 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-testng:6.10.4'
     testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.2'
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+    // https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber6-jvm
+    implementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.14.0'
+
 }
 
 group = 'com.browserstack'

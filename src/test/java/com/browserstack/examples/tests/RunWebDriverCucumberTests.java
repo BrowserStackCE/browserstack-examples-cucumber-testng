@@ -26,7 +26,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 @CucumberOptions(
   features = "classpath:features",
   glue = "com.browserstack.examples.stepdefs",
-  plugin = {
+  plugin = {"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
     "pretty",
     "html:reports/tests/cucumber/html",
     "timeline:reports/tests/cucumber/timeline",
