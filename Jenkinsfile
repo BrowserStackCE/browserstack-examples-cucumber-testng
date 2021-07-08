@@ -62,6 +62,7 @@ try{
               jsonFilePath = "${files[i].path}"
               jsonPath = "${env.WORKSPACE}" + "/" + jsonFilePath
               echo jsonPath
+              }
 
               def workspace = pwd()
               sh "echo $workspace /reports/tests/cucumber/json/cucumber.json"
