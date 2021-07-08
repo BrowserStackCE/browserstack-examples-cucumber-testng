@@ -17,6 +17,7 @@ import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
+import io.qameta.allure.gradle.*;
 
 /**
  * Created with IntelliJ IDEA.

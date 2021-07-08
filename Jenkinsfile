@@ -49,8 +49,8 @@ try{
 
           def attachments = [
             [
-              text: 'I find your lack of faith disturbing!',
-              fallback: 'Hey, Vader seems to be mad at you.',
+              text: 'Previous text came with default  example!,https://plugins.jenkins.io/slack/',
+              fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
           ]
