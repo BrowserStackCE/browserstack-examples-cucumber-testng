@@ -66,7 +66,7 @@ try{
               def workspace = pwd()
               sh "echo $workspace /reports/tests/cucumber/json/cucumber.json"
               sh "echo hey > blah.txt"
-              sh "cp filePath ."
+              sh "cp $filePath ."
               slackUploadFile filePath: "cucumber.json", initialComment:  "HEY HEY"
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
