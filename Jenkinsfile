@@ -56,7 +56,7 @@ try{
           ]
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-              slackSend(color: color, message: msg,channel:"vgm",attachments: attachments)
+              slackSend(color: color, message: msg,attachments: attachments)
               def workspace = pwd()
               sh "echo $workspace/reports/tests/cucumber/json/cucumber.json"
               sh "echo hey > blah.txt"
