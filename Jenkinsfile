@@ -45,7 +45,7 @@ try{
               color = '#FF9FA1'
           }
 
-          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n build url: ${env.BUILD_URL} \n Test Report:"
 
           def attachments = [
             [
