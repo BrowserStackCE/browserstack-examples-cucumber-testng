@@ -60,6 +60,7 @@ cucumberReports {
     buildId = '0'
     reports = files('reports/tests/cucumber/json/cucumber.json')
     testTasksFinalizedByReport=false
+    runWithJenkins=true
 }
 
 test.finalizedBy(generateCucumberReports)
