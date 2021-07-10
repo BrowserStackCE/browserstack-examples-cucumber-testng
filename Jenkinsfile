@@ -45,11 +45,11 @@ try{
               color = '#FF9FA1'
           }
 
-          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n build url: ${env.BUILD_URL} \n Test Report:"
+          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n build url: ${env.BUILD_URL} \n Test Report:Download the zip and open 'cucumber-html-reports/overview-features.html'"
 
           def attachments = [
             [
-              text: 'Here is a report',
+              text: 'Here is a report:',
               fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
