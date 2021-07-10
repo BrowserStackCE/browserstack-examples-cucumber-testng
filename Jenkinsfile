@@ -49,7 +49,7 @@ try{
 
           def attachments = [
             [
-              text: 'Here is a report:',
+              text: 'Here is a report:${env.BUILD_URL}/execution/node/3/ws/reports/tests/cucumber/output/*zip*/output.zip',
               fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
@@ -57,8 +57,8 @@ try{
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
               slackSend(color: color, message: msg,attachments: attachments)
-              def workspace = pwd()
-              sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
+              //def workspace = pwd()
+              //sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
               //slackUploadFile filePath: "index.html", initialComment:  msg
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
