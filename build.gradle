@@ -56,7 +56,7 @@ tasks.named('test') {
 }
 
 cucumberReports {
-    outputDir = file('output')
+    outputDir = file('reports/tests/cucumber/output')
     buildId = '0'
     reports = files('reports/tests/cucumber/json/cucumber.json')
     testTasksFinalizedByReport=false
