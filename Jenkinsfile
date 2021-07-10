@@ -49,7 +49,7 @@ try{
 
           def attachments = [
             [
-              text: "Here is a report: ${env.BUILD_URL}/execution/node/3/ws/reports/tests/cucumber/output/*zip*/output.zip",
+              text: "Link: ${env.BUILD_URL}execution/node/3/ws/reports/tests/cucumber/output/*zip*/output.zip",
               fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
