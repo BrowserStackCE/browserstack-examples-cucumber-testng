@@ -59,7 +59,7 @@ try{
               slackSend(color: color, message: msg,attachments: attachments)
               def workspace = pwd()
               sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
-              slackUploadFile filePath: "cucumber.json", initialComment:  msg
+              slackUploadFile filePath: "index.html", initialComment:  msg
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
  }
