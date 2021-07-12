@@ -67,13 +67,13 @@ public class WebDriverFactory {
         if (isLocal) {
             Map<String, String> localOptions = webDriverConfiguration.getCloudDriverConfig().getLocalTunnel().getLocalOptions();
             String accessKey = webDriverConfiguration.getCloudDriverConfig().getAccessKey();
-            if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
-                accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
+    //        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+      //          accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
             }
-            localOptions.put("key", accessKey);
+           // localOptions.put("key", BROWSERSTACK_ACCESS_KEY1);
             LocalFactory.createInstance(webDriverConfiguration.getCloudDriverConfig().getLocalTunnel().getLocalOptions());
         }
-        LOGGER.debug("Running tests on {} active platforms.", platforms.size());
+       // LOGGER.debug("Running tests on {} active platforms.", platforms.size());
     }
 
     public static WebDriverFactory getInstance() {
