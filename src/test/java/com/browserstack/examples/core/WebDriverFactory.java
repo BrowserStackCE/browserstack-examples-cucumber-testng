@@ -161,13 +161,13 @@ public class WebDriverFactory {
             platform.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
         }
         String user = remoteDriverConfig.getUser();
-        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
+        //if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
             user = System.getenv(BROWSERSTACK_USERNAME);
-        }
+        //}
         String accessKey = remoteDriverConfig.getAccessKey();
-        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+        //if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
             accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
-        }
+        //}
         platformCapabilities.setCapability("browserstack.user",user);
         platformCapabilities.setCapability("browserstack.key", accessKey);
 
