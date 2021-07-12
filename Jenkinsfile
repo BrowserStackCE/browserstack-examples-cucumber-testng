@@ -1,6 +1,7 @@
 node('master') {
 try{
     properties([parameters([string(defaultValue: '', description: 'commaseperated tags', name: 'tags', trim: true)])])
+    properties([parameters([string(defaultValue: '', description: 'number of parallels', name: 'parallels', trim: true)])])
     stage('Pull repository from GitHub') {
         git branch: "iteration2_develop_reporting",url: 'https://github.com/browserstack/browserstack-examples-cucumber-testng.git'
     }
@@ -18,7 +19,7 @@ try{
 		}
 
 		withGradle {
-            sh './gradlew test -Dnum.parallels=25 -Dtags="${tags}"'
+            sh './gradlew test -Dnum.parallels=2"${parallels} -Dtags="${tags}"'
         }
       }
   }catch (e) {
