@@ -18,7 +18,7 @@ try{
 		}
 
 		withGradle {
-            sh './gradlew test -Dnum.parallels=25 -Dtags="${tags}"
+            sh './gradlew test -Dnum.parallels=25 -Dtags="${tags}"'
         }
       }
   }catch (e) {
