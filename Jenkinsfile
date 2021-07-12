@@ -20,7 +20,6 @@ try{
             		}
 
 		withGradle {
-            sh 'echo ${"env.BROWSERSTACK_USERNAME"}'
             sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
         }
       }
