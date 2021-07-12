@@ -46,7 +46,7 @@ description = 'browserstack-examples-cucumber-testng'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 tasks.named('test') {
-    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    systemProperty "cucumber.filter.tags", System.getProperty("tags")
     systemProperty "dataproviderthreadcount", System.getProperty("num.parallels")
     useTestNG() {
         suites 'src/test/resources/conf/testng.xml'
