@@ -19,6 +19,7 @@ try{
 
 		withGradle {
 		browserstack('mudassardemo'){
+		echo ${"BROWSERSTACK_USERNAME"}
         		}
             sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
         }
