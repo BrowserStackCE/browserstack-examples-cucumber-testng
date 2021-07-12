@@ -42,8 +42,8 @@ public class WebDriverFactory {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverFactory.class);
     private static final String CAPABILITIES_FILE_PROP = "capabilities.config";
     private static final String DEFAULT_CAPABILITIES_FILE = "capabilities.yml";
-    private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
-    private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+    //private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
+    //private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
     private static final String BUILD_ID = "BUILD_ID";
     private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit5";
 
