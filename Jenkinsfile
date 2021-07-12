@@ -20,7 +20,7 @@ try{
             def accessKey = "${env.BROWSERSTACK_ACCESS_KEY}"
             def buildName = "${env.BROWSERSTACK_BUILD_NAME}"
             def browserstackLocal = "${env.BROWSERSTACK_LOCAL}"
-            def browserstackLocalIdentifier = "${env.BROWSERSTACK_LOCAL_IDENTIFIER"}"
+            def browserstackLocalIdentifier = "${env.BROWSERSTACK_LOCAL_IDENTIFIER}"
             		}
         withEnv(['BROWSERSTACK_BUILD_NAME='+buildName]){
 
