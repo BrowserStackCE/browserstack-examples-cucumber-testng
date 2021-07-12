@@ -45,7 +45,7 @@ public class WebDriverFactory {
     private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
     private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
     private static final String BUILD_ID = "BUILD_ID";
-    private static final String BROWSERSTACK_BUILD_NAME = "BROWSERSTACK_BUILD_NAME";
+    //private static final String BROWSERSTACK_BUILD_NAME = "BROWSERSTACK_BUILD_NAME";
     private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit5";
 
     private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
