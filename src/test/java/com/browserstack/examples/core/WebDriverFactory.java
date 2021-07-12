@@ -168,8 +168,8 @@ public class WebDriverFactory {
         if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
             accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
         }
-        platformCapabilities.setCapability("browserstack.user",BROWSERSTACK_USERNAME);
-        platformCapabilities.setCapability("browserstack.key", BROWSERSTACK_ACCESS_KEY);
+        platformCapabilities.setCapability("browserstack.user",user);
+        platformCapabilities.setCapability("browserstack.key", accessKey);
 
         if (isLocal) {
             platformCapabilities.setCapability("browserstack.localIdentifier", LocalFactory.getInstance().getLocalIdentifier());
