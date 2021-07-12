@@ -15,13 +15,12 @@ try{
 
 		echo "Hello World"
 		sh 'chmod +x gradlew'
+    	browserstack('mudassardemo'){
 
+            		}
 
 		withGradle {
-		browserstack('mudassardemo'){
-
-        		}
-        		echo ${"env.BROWSERSTACK_USERNAME"}
+            sh 'echo ${"env.BROWSERSTACK_USERNAME"}'
             sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
         }
       }
