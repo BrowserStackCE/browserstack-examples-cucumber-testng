@@ -1,7 +1,7 @@
 node('master') {
 try{
     properties([parameters([string(defaultValue: '', description: 'commaseperated tags', name: 'tags', trim: true)])])
-    properties([parameters([string(defaultValue: '', description: 'number of parallels', name: 'parallels', trim: true)])])
+    properties([parameters([string(defaultValue: '25', description: 'number of parallels', name: 'parallels', trim: true)])])
     stage('Pull repository from GitHub') {
         git branch: "iteration2_develop_reporting",url: 'https://github.com/browserstack/browserstack-examples-cucumber-testng.git'
     }
@@ -57,7 +57,7 @@ try{
           ]
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-              //slackSend(color: color, message: msg,attachments: attachments)
+              slackSend(color: color, message: msg,attachments: attachments)
               //def workspace = pwd()
               //sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
               //slackUploadFile filePath: "index.html", initialComment:  msg
