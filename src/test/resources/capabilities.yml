@@ -4,8 +4,8 @@ driverType: cloudDriver
 
 cloudDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
-  user: BROWSERSTACK_USERNAME
-  accessKey: BROWSERSTACK_ACCESSKEY
+  user:
+  accessKey:
   localTunnel:
     enable: false
   common_capabilities:
