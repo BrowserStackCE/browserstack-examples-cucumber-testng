@@ -16,12 +16,17 @@ try{
 		echo "Hello World"
 		sh 'chmod +x gradlew'
     	browserstack('mudassardemo'){
-
+            def username = "${env.BROWSERSTACK_USERNAME}"
+            def accessKey = "${env.BROWSERSTACK_ACCESS_KEY}"
+            def buildName = "${env.BROWSERSTACK_BUILD_NAME}"
+            def browserstackLocal = "${env.BROWSERSTACK_LOCAL}"
+            def browserstackLocalIdentifier = "${env.BROWSERSTACK_LOCAL_IDENTIFIER"}"
             		}
+        withEnv(['BROWSERSTACK_BUILD_NAME='+buildName]){
 
-		withGradle {
-		    echo "The build name is ${[BrowserStack] BROWSERSTACK_BUILD_NAME}"
-            sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
+		    withGradle {
+                sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
+            }
         }
       }
   }catch (e) {
