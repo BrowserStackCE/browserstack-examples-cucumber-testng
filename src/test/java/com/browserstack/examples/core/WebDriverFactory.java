@@ -163,7 +163,7 @@ public class WebDriverFactory {
         String user = remoteDriverConfig.getUser();
         //if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
             user = System.getenv(BROWSERSTACK_USERNAME);
-            System.out.println(user);
+            System.out.println("mad"+user);
         //}
         String accessKey = remoteDriverConfig.getAccessKey();
         //if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
