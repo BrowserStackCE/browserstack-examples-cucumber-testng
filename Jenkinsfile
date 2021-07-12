@@ -21,14 +21,15 @@ try{
             def buildName = "${env.BROWSERSTACK_BUILD_NAME}"
             def browserstackLocal = "${env.BROWSERSTACK_LOCAL}"
             def browserstackLocalIdentifier = "${env.BROWSERSTACK_LOCAL_IDENTIFIER}"
-            		}
-        withEnv(['BROWSERSTACK_BUILD_NAME='+buildName]){
 
-		    withGradle {
-                sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
+            withEnv(['BROWSERSTACK_BUILD_NAME='+buildName]){
+
+		        withGradle {
+                    sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
+                }
             }
         }
-      }
+       }
   }catch (e) {
               currentBuild.result = 'FAILURE'
               throw e
