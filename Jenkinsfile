@@ -57,6 +57,7 @@ try{
           ]
 
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
+            browserStackReportPublisher 'automate'
               slackSend(color: color, message: msg,attachments: attachments)
               //def workspace = pwd()
               //sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
