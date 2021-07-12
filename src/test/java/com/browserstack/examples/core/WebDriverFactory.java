@@ -158,7 +158,7 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("os_version", platform.getOsVersion());
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        platformCapabilities.setCapability("build", buildName;
+        platformCapabilities.setCapability("build", buildName);
 
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
