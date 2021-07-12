@@ -42,8 +42,8 @@ public class WebDriverFactory {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverFactory.class);
     private static final String CAPABILITIES_FILE_PROP = "capabilities.config";
     private static final String DEFAULT_CAPABILITIES_FILE = "capabilities.yml";
-    private static final String BROWSERSTACK_USERNAME1 = "BROWSERSTACK_USERNAME";
-    private static final String BROWSERSTACK_ACCESS_KEY1 = "BROWSERSTACK_ACCESS_KEY";
+    private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
+    private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
     private static final String BUILD_ID = "BUILD_ID";
     private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit5";
 
@@ -161,14 +161,13 @@ public class WebDriverFactory {
             platform.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
         }
         String user = remoteDriverConfig.getUser();
-        //if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
+        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
             user = System.getenv(BROWSERSTACK_USERNAME);
-            System.out.println("mad"+System.getenv(BROWSERSTACK_ACCESS_KEY));
-        //}
+        }
         String accessKey = remoteDriverConfig.getAccessKey();
-        //if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
             accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
-        //}
+        }
         platformCapabilities.setCapability("browserstack.user","mudassardemo");
         platformCapabilities.setCapability("browserstack.key", "Mz55zvYU9iCdyV9dvsKv");
 
