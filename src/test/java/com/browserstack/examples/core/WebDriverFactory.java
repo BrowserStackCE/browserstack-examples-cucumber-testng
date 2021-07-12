@@ -53,6 +53,12 @@ public class WebDriverFactory {
     private static final String WEBDRIVER_IE_DRIVER = "webdriver.ie.driver";
     private static final String WEBDRIVER_EDGE_DRIVER = "webdriver.edge.driver";
 
+    String username = System.getenv("BROWSERSTACK_USERNAME");
+    String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+    String browserstackLocal = System.getenv("BROWSERSTACK_LOCAL");
+    String browserstackLocalIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
+
     private static WebDriverFactory instance;
 
     private final WebDriverConfiguration webDriverConfiguration;
@@ -152,7 +158,7 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("os_version", platform.getOsVersion());
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        platformCapabilities.setCapability("build", System.getenv(BROWSERSTACK_BUILD_NAME));
+        platformCapabilities.setCapability("build", buildName;
 
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
