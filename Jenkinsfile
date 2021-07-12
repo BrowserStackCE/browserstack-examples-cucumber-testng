@@ -22,7 +22,7 @@ try{
             def browserstackLocal = "${env.BROWSERSTACK_LOCAL}"
             def browserstackLocalIdentifier = "${env.BROWSERSTACK_LOCAL_IDENTIFIER}"
 
-            withEnv(['BROWSERSTACK_BUILD_NAME='+buildName],['BROWSERSTACK_USERNAME='+username],['BROWSERSTACK_ACCESS_KEY='+accessKey]){
+            withEnv(['BROWSERSTACK_BUILD_NAME='+buildName,'BROWSERSTACK_USERNAME='+username,'BROWSERSTACK_ACCESS_KEY='+accessKey]){
 
 		        withGradle {
                     sh './gradlew test -Dnum.parallels="${parallels}" -Dtags="${tags}"'
