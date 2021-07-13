@@ -29,6 +29,12 @@ try{
                 }
             }
         }
+         stage('Generate HTML report') {
+             cucumber buildStatus: 'UNSTABLE',
+                     reportTitle: 'My report',
+                     fileIncludePattern: '**/*.json',
+                     trendsLimit: 10
+         }
        }
   }catch (e) {
               currentBuild.result = 'FAILURE'
@@ -73,9 +79,4 @@ try{
               //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
           //}
  }
- stage('Generate HTML report') {
-     cucumber buildStatus: 'UNSTABLE',
-             reportTitle: 'My report',
-             fileIncludePattern: '**/*.json',
-             trendsLimit: 10
- }
+
