@@ -27,6 +27,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 @CucumberOptions(
   features = "classpath:features",
   glue = "com.browserstack.examples.stepdefs",
+  strict=true,
   plugin = {
     "pretty",
     "timeline:reports/tests/cucumber/timeline",
