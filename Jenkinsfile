@@ -69,7 +69,7 @@ try{
               color: '#ff0000'
             ]
           ]
-             cucumber jsonReportDirectory: 'reports/tests/cucumber/json/cucumber.json'
+             cucumber jsonReportDirectory: 'reports/tests/cucumber/json'
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
              browserStackReportPublisher 'automate'
              slackSend(color: color, message: msg,attachments: attachments)
