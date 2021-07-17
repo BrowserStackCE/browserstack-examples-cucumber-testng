@@ -45,20 +45,13 @@ public class WebDriverFactory {
     private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
     private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
     private static final String BUILD_ID = "BUILD_ID";
-    //private static final String BROWSERSTACK_BUILD_NAME = "BROWSERSTACK_BUILD_NAME";
-    private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit5";
+    private static final String DEFAULT_BUILD_NAME = "browserstack-examples-testng";
+    private static final String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
 
     private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
     private static final String WEBDRIVER_GECKO_DRIVER = "webdriver.gecko.driver";
     private static final String WEBDRIVER_IE_DRIVER = "webdriver.ie.driver";
     private static final String WEBDRIVER_EDGE_DRIVER = "webdriver.edge.driver";
-
-    String username = System.getenv("BROWSERSTACK_USERNAME");
-    String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-
-    String browserstackLocal = System.getenv("BROWSERSTACK_LOCAL");
-    String browserstackLocalIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
 
     private static WebDriverFactory instance;
 
@@ -159,8 +152,12 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("os_version", platform.getOsVersion());
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        platformCapabilities.setCapability("build", buildName);
-
+        if (StringUtils.isNotEmpty(buildName)){
+            platformCapabilities.setCapability("build", buildName);
+        }
+        else {
+            platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
+        }
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
         }
@@ -169,15 +166,16 @@ public class WebDriverFactory {
             platform.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
         }
         String user = remoteDriverConfig.getUser();
-        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
+        //if (StringUtils.isNotEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
             user = System.getenv(BROWSERSTACK_USERNAME);
-        }
+        //}
         String accessKey = remoteDriverConfig.getAccessKey();
-        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+        //if (StringUtils.isNotEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
             accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
-        }
-        platformCapabilities.setCapability("browserstack.user","mudassardemo");
-        platformCapabilities.setCapability("browserstack.key", "Mz55zvYU9iCdyV9dvsKv");
+        //}
+        platformCapabilities.setCapability("browserstack.user", user);
+        platformCapabilities.setCapability("browserstack.key", accessKey);
+        System.out.println(user+":"+accessKey);
 
         if (isLocal) {
             platformCapabilities.setCapability("browserstack.localIdentifier", LocalFactory.getInstance().getLocalIdentifier());
