@@ -29,13 +29,13 @@ try{
                 }
             }
         }
-         stage('Generate HTML report') {
-             cucumber buildStatus: 'UNSTABLE',
-                     reportTitle: 'My report',
-                     fileIncludePattern: '**/*.json',
-                     trendsLimit: 10
-         }
-       }
+     }
+    stage('Generate HTML report') {
+        cucumber buildStatus: 'UNSTABLE',
+        reportTitle: 'My report',
+        fileIncludePattern: '**/*.json',
+        trendsLimit: 10
+     }
   }catch (e) {
               currentBuild.result = 'FAILURE'
               throw e
