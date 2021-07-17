@@ -69,10 +69,10 @@ try{
               color: '#ff0000'
             ]
           ]
-
+             cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
-            browserStackReportPublisher 'automate'
-              slackSend(color: color, message: msg,attachments: attachments)
+             browserStackReportPublisher 'automate'
+             slackSend(color: color, message: msg,attachments: attachments)
               //def workspace = pwd()
               //sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
               //slackUploadFile filePath: "index.html", initialComment:  msg
