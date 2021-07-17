@@ -60,7 +60,7 @@ try{
               color = '#FF9FA1'
           }
 
-          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n Jenkins Report: ${env.BUILD_URL}/testReportBrowserStack/ \n Test Report:Download the zip and open 'cucumber-html-reports/overview-features.html'"
+          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n Jenkins Report: ${env.BUILD_URL}testReportBrowserStack/ \n Test Report:Download the zip and open 'cucumber-html-reports/overview-features.html'"
 
           def attachments = [
             [
@@ -69,7 +69,7 @@ try{
               color: '#ff0000'
             ]
           ]
-             cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+             cucumber jsonReportDirectory: 'reports/tests/cucumber/json/cucumber.json'
           //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
              browserStackReportPublisher 'automate'
              slackSend(color: color, message: msg,attachments: attachments)
