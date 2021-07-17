@@ -60,11 +60,11 @@ try{
               color = '#FF9FA1'
           }
 
-          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n Jenkins Report: ${env.BUILD_URL}testReportBrowserStack/ \n Test Report:Download the zip and open 'cucumber-html-reports/overview-features.html'"
+          def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:"
 
           def attachments = [
             [
-              text: "Link: ${env.BUILD_URL}cucumber-html-reports/overview-features.html",
+              text: "Jenkins Report: ${env.BUILD_URL}testReportBrowserStack/ \n Cucumber Report: ${env.BUILD_URL}cucumber-html-reports/overview-features.html",
               fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
