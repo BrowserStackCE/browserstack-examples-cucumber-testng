@@ -30,12 +30,7 @@ try{
             }
         }
      }
-    stage('Generate HTML report') {
-        cucumber buildStatus: 'UNSTABLE',
-        reportTitle: 'My report',
-        fileIncludePattern: '**/*.json',
-        trendsLimit: 10
-     }
+
   }catch (e) {
               currentBuild.result = 'FAILURE'
               throw e
@@ -64,19 +59,14 @@ try{
 
           def attachments = [
             [
-              text: "Jenkins Report: ${env.BUILD_URL}testReportBrowserStack/ \n Cucumber Report: ${env.BUILD_URL}cucumber-html-reports/overview-features.html",
+              text: "BrowserStack Report: ${env.BUILD_URL}testReportBrowserStack/ \n Cucumber Report: ${env.BUILD_URL}cucumber-html-reports/overview-features.html",
               fallback: 'this is a feedback message.',
               color: '#ff0000'
             ]
           ]
              cucumber jsonReportDirectory: 'reports/tests/cucumber/json'
-          //if (buildStatus != 'STARTED' && buildStatus !='SUCCESS') {
              browserStackReportPublisher 'automate'
              slackSend(color: color, message: msg,attachments: attachments)
-              //def workspace = pwd()
-              //sh "cp $workspace/reports/tests/cucumber/timeline/index.html ."
-              //slackUploadFile filePath: "index.html", initialComment:  msg
-              //slackUploadFile channel: 'vgm', filePath: '/var/lib/jenkins/workspace/cucumberreporting/reports/tests/cucumber/json/cucumber.json', initialComment: 'Here is the report'
-          //}
+
  }
 
