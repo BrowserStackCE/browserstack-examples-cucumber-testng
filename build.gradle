@@ -4,7 +4,6 @@
 
 plugins {
     id 'java'
-    id 'maven-publish'
     id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.1.22"
 }
 
@@ -12,9 +11,6 @@ repositories {
     mavenLocal()
     mavenCentral()
     google()
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
     maven {
         url =uri('https://plugins.gradle.org/m2/')
     }
@@ -34,10 +30,6 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-testng:6.10.4'
     testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.2'
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
-
-
-
-
 }
 
 group = 'com.browserstack'

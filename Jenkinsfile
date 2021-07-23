@@ -2,6 +2,7 @@ node('master') {
 try{
     properties([parameters([string(defaultValue: '@user', description: 'commaseperated tags', name: 'tags', trim: true)])])
     properties([parameters([string(defaultValue: '25', description: 'number of parallels', name: 'parallels', trim: true)])])
+    properties([parameters([credentials(credentialType: 'com.browserstack.automate.ci.jenkins.BrowserStackCredentials', description: 'Select your BrowserStack Username', name: 'BROWSERSTACK_USERNAME', required: true),
     stage('Pull repository from GitHub') {
         git branch: "iteration2_develop_reporting",url: 'https://github.com/browserstack/browserstack-examples-cucumber-testng.git'
     }
@@ -11,11 +12,8 @@ try{
 
 
     stage('Build') {
-
-
-		echo "Hello World"
 		sh 'chmod +x gradlew'
-    	browserstack('mudassardemo'){
+    	browserstack(credentialsId: '<browserstackCredentialsId>'){
             def username = "${env.BROWSERSTACK_USERNAME}"
             def accessKey = "${env.BROWSERSTACK_ACCESS_KEY}"
             def buildName = "${env.BROWSERSTACK_BUILD_NAME}"
