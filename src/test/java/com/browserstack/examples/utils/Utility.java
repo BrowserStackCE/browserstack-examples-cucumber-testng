@@ -73,18 +73,5 @@ public class Utility {
 		return wait.until(jsLoad);
 	}
 
-	public static void moveFolder()
-	{
-		File from = new File(System.getProperty("user.dir")+"/allure-results");
-        File to = new File(System.getProperty("user.dir")+"/target/"+"allure-results");
-
-        try {
-            FileUtils.copyDirectory(from, to);
-            FileUtils.deleteDirectory(new File(System.getProperty("user.dir")+"/allure-results"));
-
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
-	}
+	
 }

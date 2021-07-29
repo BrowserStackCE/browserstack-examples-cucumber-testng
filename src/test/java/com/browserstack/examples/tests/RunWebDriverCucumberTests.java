@@ -27,7 +27,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
  * @author Anirudha Khanna
  */
 @CucumberOptions(features = "classpath:features", glue = "com.browserstack.examples.stepdefs", plugin = {
-		"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm", "pretty", "json:allure-results/report.json" })
+		"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm", "pretty", "json:allure-results/report.json"},tags= "@e2e")
 public class RunWebDriverCucumberTests {
 
 	private TestNGCucumberRunner testNGCucumberRunner;

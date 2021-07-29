@@ -1,5 +1,6 @@
 Feature: Offers Feature
 
+  @offers @regression
   Scenario: Offers for Mumbai location
     Given I navigate to website
     And I SignIn as "fav_user" with "testingisfun99" password
