@@ -15,13 +15,9 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<selenium-java.version>3.141.59</selenium-java.version>
 		<browserstack-local-java.version>1.0.6</browserstack-local-java.version>
-		<json-simple.version>1.1.1</json-simple.version>
-		<comslang.version>3.11</comslang.version>
 		 <allure-cucumber6-jvm.version>2.14.0</allure-cucumber6-jvm.version>
         <allure.version>2.10.0</allure.version>
-		<slf4j.version>1.7.30</slf4j.version>
 		<cucumber.version>6.9.1</cucumber.version>
-		<logback.version>1.2.3</logback.version>
 		<testng.version>7.4.0</testng.version>
 		<cucumber.version>6.10.4</cucumber.version>
 		<jackson.version>2.12.2</jackson.version>
@@ -47,27 +43,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${comslang.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
@@ -86,14 +61,6 @@
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-picocontainer</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-jvm</artifactId>
@@ -123,7 +90,6 @@
             <artifactId>allure-maven</artifactId>
             <version>${allure.version}</version>
         </dependency>
-
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -180,7 +146,6 @@
 
 		<profile>
 			<id>on-prem-suite</id>
-
 			<properties>
 				<capabilities.config.file>capabilities-on-prem.yml</capabilities.config.file>
 			</properties>

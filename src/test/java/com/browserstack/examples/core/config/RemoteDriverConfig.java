@@ -1,10 +1,6 @@
 package com.browserstack.examples.core.config;
 
 import java.util.List;
-
-import com.browserstack.examples.core.config.CommonCapabilities;
-import com.browserstack.examples.core.config.LocalTunnelConfig;
-import com.browserstack.examples.core.config.Platform;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RemoteDriverConfig {

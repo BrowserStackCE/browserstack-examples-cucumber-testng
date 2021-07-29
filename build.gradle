@@ -14,9 +14,7 @@ buildscript {
         TESTNG_VERSION="7.4.0"
         CUCUMBER_VERSION = "6.10.4"
         JACKSON_DATABIND_VERSION = "2.12.2"
-
-
-        THREAD_COUNT = "8"
+      	THREAD_COUNT = "8"
        	
     }
 }
@@ -40,21 +38,14 @@ repositories {
 dependencies {
     testImplementation group:'org.seleniumhq.selenium', name:'selenium-java', version:"$SELENIUM_VERSION"
     testImplementation group:'com.browserstack', name:'browserstack-local-java', version:"$BROWSERSTACK_LOCAL_VERSION"
-    testImplementation group:'org.apache.commons', name:'commons-lang3', version:"$APACHE_COMMON_VERSION"
-    testImplementation group:'org.slf4j', name:'slf4j-api', version:"$SL4J_VERSION"
-    testImplementation group:'ch.qos.logback', name:'logback-classic',version:"$LOGBACK_VERSION"
     testImplementation group:'org.testng', name:'testng', version:"$TESTNG_VERSION"
     testImplementation group:'io.cucumber', name:'cucumber-java', version:"$CUCUMBER_VERSION"
     testImplementation group:'io.cucumber', name:'cucumber-core', version:"$CUCUMBER_VERSION"
-    testImplementation group:'io.cucumber', name:'cucumber-picocontainer', version:"$CUCUMBER_VERSION"
     testImplementation group:'io.cucumber', name:'cucumber-testng', version:"$CUCUMBER_VERSION"
     testImplementation group:'com.fasterxml.jackson.dataformat', name:'jackson-dataformat-yaml', version:"$JACKSON_DATABIND_VERSION"
     testImplementation group:'com.fasterxml.jackson.core', name:'jackson-databind', version:"$JACKSON_DATABIND_VERSION"
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: "$ALLURE_VERSION"
     implementation group: 'io.qameta.allure', name: 'allure-gradle', version: "$ALLURE_GRADLE_VERSION"
-
-
-
 
 
 }

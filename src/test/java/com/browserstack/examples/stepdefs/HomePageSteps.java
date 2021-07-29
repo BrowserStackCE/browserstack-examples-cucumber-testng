@@ -1,7 +1,5 @@
 package com.browserstack.examples.stepdefs;
 
-
-
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.By;

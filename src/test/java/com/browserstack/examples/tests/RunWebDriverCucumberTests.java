@@ -7,12 +7,9 @@ import java.util.List;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import com.browserstack.examples.core.config.Platform;
-import com.browserstack.examples.utils.Utility;
 import com.browserstack.examples.core.WebDriverFactory;
 import com.browserstack.examples.core.ManagedWebDriver;
 import com.browserstack.examples.core.WebDriverManager;

@@ -3,7 +3,6 @@ package com.browserstack.examples.core;
 import org.openqa.selenium.WebDriver;
 
 import com.browserstack.examples.core.config.Platform;
-import com.browserstack.examples.core.WebDriverFactory;
 
 /**
  * Created with IntelliJ IDEA.
