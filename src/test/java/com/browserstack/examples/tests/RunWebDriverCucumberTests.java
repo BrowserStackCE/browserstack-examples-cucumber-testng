@@ -69,9 +69,4 @@ public class RunWebDriverCucumberTests {
 		testNGCucumberRunner.finish();
 	}
 
-	@AfterSuite
-	public void ReportGeneration() {
-		//Utility.moveFolder();
-	}
-
 }

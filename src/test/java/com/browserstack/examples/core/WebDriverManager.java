@@ -5,11 +5,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.openqa.selenium.WebDriver;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public class WebDriverManager {
 
     private static WebDriverManager instance;

@@ -5,11 +5,7 @@ import org.openqa.selenium.WebDriver;
 import com.browserstack.examples.core.WebDriverFactory;
 import com.browserstack.examples.core.WebDriverManager;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
+
 public abstract class AbstractBaseSteps {
 
     private WebDriverManager webDriverManager;

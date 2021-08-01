@@ -9,11 +9,6 @@ import com.browserstack.examples.core.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public class WebDriverHooks {
 
     private static final String TEST_STATUS_SCRIPT = "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}";

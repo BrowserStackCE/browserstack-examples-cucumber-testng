@@ -4,11 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 import com.browserstack.examples.core.config.Platform;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public class ManagedWebDriver {
 
     private final WebDriverFactory webDriverFactory;
