@@ -18,11 +18,6 @@ import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 @CucumberOptions(features = "classpath:features", glue = "com.browserstack.examples.stepdefs", plugin = {
 		"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm", "pretty", "json:allure-results/report.json"})
 public class RunWebDriverCucumberTests {

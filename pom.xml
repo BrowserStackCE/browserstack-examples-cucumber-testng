@@ -22,6 +22,7 @@
 		<capabilities.config.file>capabilities.yml</capabilities.config.file>
 		<parallel.count>5</parallel.count>
 		<test-name>.*</test-name>
+		<commons-lang3.version>3.12.0</commons-lang3.version>
 	</properties>
 	
 	<dependencies>
@@ -89,6 +90,12 @@
 			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

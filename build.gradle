@@ -14,8 +14,9 @@ buildscript {
         TESTNG_VERSION="7.4.0"
         CUCUMBER_VERSION = "6.10.4"
         JACKSON_DATABIND_VERSION = "2.12.2"
-      	THREAD_COUNT = "8"
-       	
+        APACHE_COMMON_VERSION = "3.12.0"
+      	THREAD_COUNT = "5"
+
     }
 }
 
@@ -46,6 +47,8 @@ dependencies {
     testImplementation group:'com.fasterxml.jackson.core', name:'jackson-databind', version:"$JACKSON_DATABIND_VERSION"
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: "$ALLURE_VERSION"
     implementation group: 'io.qameta.allure', name: 'allure-gradle', version: "$ALLURE_GRADLE_VERSION"
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: "$APACHE_COMMON_VERSION"
+
 
 
 }
@@ -73,6 +76,7 @@ task 'on-prem-suite' (type: Test){
         suites 'src/test/resources/conf/testng.xml'
     }
     systemProperty 'capabilities.config', 'capabilities-on-prem.yml'
+    jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
 
 }
 task 'docker' (type: Test) {

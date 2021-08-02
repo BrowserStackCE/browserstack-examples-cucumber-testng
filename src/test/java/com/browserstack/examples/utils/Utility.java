@@ -60,8 +60,6 @@ public class Utility {
 
 	public static boolean waitForJSLoad(WebDriver driver) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-
-
 		// wait for Javascript to load
 		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
 			@Override
