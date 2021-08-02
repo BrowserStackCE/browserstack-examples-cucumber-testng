@@ -159,9 +159,6 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
         platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
-        
-    
-       //platformCapabilities.setCapability("build", buildName);
 
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
@@ -268,16 +265,21 @@ public class WebDriverFactory {
     }
 
     private String createBuildName(String buildPrefix) {
-        if (StringUtils.isEmpty(buildPrefix)) {
-            buildPrefix = DEFAULT_BUILD_NAME;
-        }
-        String buildName = buildPrefix;
 
-        String buildSuffix = this.defaultBuildSuffix;
-        if (StringUtils.isNotEmpty(System.getenv(BUILD_ID))) {
-            buildSuffix = System.getenv(BUILD_ID);
+        if (StringUtils.isNotEmpty(buildName)){
+            return buildName;
         }
-        return buildName + "-" + buildSuffix;
+        else {
+            if (StringUtils.isEmpty(buildPrefix)) {
+                buildPrefix = DEFAULT_BUILD_NAME;
+            }
+            String buildName = buildPrefix;
+            String buildSuffix = this.defaultBuildSuffix;
+            if (StringUtils.isNotEmpty(System.getenv(BUILD_ID))) {
+                buildSuffix = System.getenv(BUILD_ID);
+            }
+            return buildName + "-" + buildSuffix;
+        }
     }
 
 }
