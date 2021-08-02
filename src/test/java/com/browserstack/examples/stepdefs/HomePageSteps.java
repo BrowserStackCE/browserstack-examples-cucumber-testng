@@ -88,11 +88,8 @@ public class HomePageSteps extends AbstractBaseSteps {
 
     @Then("I should see prices in ascending order")
     public void iShouldSeePricesInAscendingOrder() {
-        WebDriverWait wait = new WebDriverWait(getWebDriver(), 10);
-        try {
-            WebDriverWait webDriverWait = new WebDriverWait(getWebDriver(), 10);
-            Utility.waitForJSLoad(getWebDriver());
-            // webDriverWait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".shelf-item__price > div.val > b"))));
+        try { 
+            Utility.waitForJSLoad(getWebDriver()); 
             List<WebElement> priceWebElement = getWebDriver().findElements(By.cssSelector(".shelf-item__price > div.val > b"));
             Utility.waitForJSLoad(getWebDriver());
             Assert.assertTrue(Utility.isAscendingOrder(priceWebElement, priceWebElement.size()));

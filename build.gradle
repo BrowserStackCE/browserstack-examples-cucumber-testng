@@ -9,13 +9,14 @@ buildscript {
         SELENIUM_VERSION = "3.141.59"
         BROWSERSTACK_LOCAL_VERSION="1.0.6"
         APACHE_COMMON_VERSION = "3.11"
-        SL4J_VERSION = "1.7.30"
         LOGBACK_VERSION = "1.2.3"
         TESTNG_VERSION="7.4.0"
         CUCUMBER_VERSION = "6.10.4"
         JACKSON_DATABIND_VERSION = "2.12.2"
         APACHE_COMMON_VERSION = "3.12.0"
       	THREAD_COUNT = "5"
+        SL4J_VERSION = "1.7.32"
+
 
     }
 }
@@ -48,6 +49,10 @@ dependencies {
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: "$ALLURE_VERSION"
     implementation group: 'io.qameta.allure', name: 'allure-gradle', version: "$ALLURE_GRADLE_VERSION"
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: "$APACHE_COMMON_VERSION"
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: "$SL4J_VERSION"
+    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: "$SL4J_VERSION"
+
+
 
 
 
@@ -96,10 +101,7 @@ task 'docker-parallel' (type: Test) {
     }
     systemProperty 'capabilities.config', 'capabilities-docker.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
-
 }
-
-
 
 
 task 'bstack-single' (type: Test) {

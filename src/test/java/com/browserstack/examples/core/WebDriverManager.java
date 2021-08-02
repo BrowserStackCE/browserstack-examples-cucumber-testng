@@ -1,8 +1,6 @@
 package com.browserstack.examples.core;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverManager {

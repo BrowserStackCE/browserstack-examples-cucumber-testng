@@ -3,14 +3,10 @@ package com.browserstack.examples.core.config;
 import java.util.Collections;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WebDriverConfiguration {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverConfiguration.class);
 
     private String testEndpoint;
 
