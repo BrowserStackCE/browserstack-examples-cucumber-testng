@@ -41,7 +41,7 @@ This repository contains the following Selenium tests:
 
 | Module   | Test name                          | Description |
   | ---   | ---                                   | --- |
-| E2E      | End to End Scenario                | This test scenario verifies successful product purchase lifecycle end-to-end. It demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
+| E2E      | End to End Scenario                | This test scenario verifies successful product purchase lifecycle end-to-end and is also the default test executed in all the single test run profiles. |
 | Login    | Login with given username          | This test verifies the login workflow with different types of valid login users. |
 | Login    | Login as Locked User               | This test verifies the login workflow error for a locked user. |
 | Offers   | Offers for Mumbai location     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
