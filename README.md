@@ -472,6 +472,19 @@ In this section, we will run the test cases to test the internally hosted websit
 
 - Note: By default, this execution would run maximum 5 test threads in parallel on BrowserStack. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
 
+### Using cucumber tags
+tags are used to associate a test like smoke, regression etc. with a particular scenario.
+
+Tag fulfils the following purposes:
+ -  If we have many scenarios in the feature file, to keep them in one group, we use tags in Cucumber, through which we will be able to prepare reports for specific scenarios under the same tag.
+-  By default, Cucumber executes all the scenarios inside the feature file, but if we need to execute or skip any specific scenario under a specific test, so we can declare scenarios within a tag.
+
+Command : 
+```sh
+  mvn test -Dcucumber.filter.tags="@tagname"
+  ```
+For this repositroy you can use two tags > @userfeature, @regression > This is will run scenarios with this tags on browserstack 
+
 ## Generating Allure Reports
 
   In this section, we will generate and serve allure reports for maven test runs.
