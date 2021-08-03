@@ -483,7 +483,7 @@ Command :
 ```sh
   mvn test -Dcucumber.filter.tags="@tagname"
   ```
-For this repostiroy you can use two tags > @userfeature, @regression > This is will run scenarios with this tags on browserstack 
+For this repository you can use two tags > @userfeature, @regression > This is will run scenarios with this tags on browserstack 
 
 ## Generating Allure Reports
 
