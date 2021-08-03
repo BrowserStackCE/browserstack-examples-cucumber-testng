@@ -483,7 +483,7 @@ Command :
 ```sh
   mvn test -Dcucumber.filter.tags="@tagname"
   ```
-For this repositroy you can use two tags > @userfeature, @regression > This is will run scenarios with this tags on browserstack 
+For this repostiroy you can use two tags > @userfeature, @regression > This is will run scenarios with this tags on browserstack 
 
 ## Generating Allure Reports
 
@@ -512,4 +512,4 @@ For this repositroy you can use two tags > @userfeature, @regression > This is w
 
 - cucumber tags not working with gradle
 - Allure Reports on jenkins are not generated
-- Cucucmber Reports not verified 
+
