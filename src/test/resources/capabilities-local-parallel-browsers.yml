@@ -15,7 +15,7 @@ cloudDriver:
       logFile: local_test.log
   common_capabilities:
     project: BrowserStack Demo Repository
-    buildPrefix: browserstack-examples-junit5
+    buildPrefix: browserstack-examples-cucumber-testng
     capabilities:
       browserstack.debug: true
       browserstack.networkLogs: true

@@ -16,8 +16,7 @@ buildscript {
         APACHE_COMMON_VERSION = "3.12.0"
       	THREAD_COUNT = "5"
         SL4J_VERSION = "1.7.32"
-
-
+        XML_FILENANE ="src/test/resources/conf/testng.xml"
     }
 }
 
@@ -51,11 +50,6 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: "$APACHE_COMMON_VERSION"
     implementation group: 'org.slf4j', name: 'slf4j-api', version: "$SL4J_VERSION"
     implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: "$SL4J_VERSION"
-
-
-
-
-
 }
 
 
@@ -78,7 +72,7 @@ task 'on-prem' (type: Test){
 }
 task 'on-prem-suite' (type: Test){
     useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
+        suites "$XML_FILENANE"
     }
     systemProperty 'capabilities.config', 'capabilities-on-prem.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
@@ -97,7 +91,7 @@ task 'docker' (type: Test) {
 }
 task 'docker-parallel' (type: Test) {
     useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
+        suites "$XML_FILENANE"
     }
     systemProperty 'capabilities.config', 'capabilities-docker.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
@@ -129,7 +123,7 @@ task 'bstack-local' (type: Test) {
 }
 task 'bstack-local-parallel' (type: Test) {
     useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
+        suites "$XML_FILENANE"
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-local-single.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
@@ -139,7 +133,7 @@ task 'bstack-local-parallel' (type: Test) {
 
 task 'bstack-parallel' (type: Test)  {
     useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
+        suites "$XML_FILENANE"
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-single.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
@@ -150,23 +144,24 @@ task 'bstack-parallel' (type: Test)  {
 
 task 'bstack-local-parallel-browsers' (type: Test){
     useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
+        suites "$XML_FILENANE"
     }
-    systemProperty 'capabilities.config', 'capabilities-local-parallel-browsers.yml'
+    systemProperty 'capabilities.config', 'capabilities-bstack-parallel-browsers.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
 
 }
 task 'bstack-parallel-browsers' (type: Test) {
     useTestNG() {
-        suites 'src/test/resources/conf/testng.xml'
+        suites "$XML_FILENANE"
     }
-    systemProperty 'capabilities.config', 'capabilities-parallel-browsers.yml'
+    systemProperty 'capabilities.config', 'capabilities-bstack-parallel-browsers.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
 
 }
 
 allure {
-    version = '2.8.1'
+    version = "$ALLURE_VERSION"
+
 }
 
 

@@ -10,7 +10,7 @@ cloudDriver:
     enable: false
   common_capabilities:
     project: BrowserStack Demo Repository
-    buildPrefix: browserstacktestng
+    buildPrefix: browserstack-examples-cucumber-testng
     capabilities:
       browserstack.debug: true
       browserstack.networkLogs: true
