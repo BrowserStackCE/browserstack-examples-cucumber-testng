@@ -2,6 +2,7 @@ package com.browserstack.examples.stepdefs;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,7 @@ import io.cucumber.java.en.Then;
 public class HomePageSteps extends AbstractBaseSteps {
 
     WebDriverWait wait;
+
     @And("I add two products to cart")
     public void iAddProductsToCart() {
         WebDriverWait wait = new WebDriverWait(getWebDriver(), 10);
@@ -36,8 +38,7 @@ public class HomePageSteps extends AbstractBaseSteps {
         try {
             getWebDriver().findElement(By.cssSelector(".filters-available-size:nth-child(2) .checkmark")).click();
             Utility.waitForJSLoad(getWebDriver());
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new AssertionError();
         }
     }
@@ -67,7 +68,7 @@ public class HomePageSteps extends AbstractBaseSteps {
         String src = "";
         try {
             src = getWebDriver().findElement(By.cssSelector("img[alt='iPhone 12']")).getAttribute("src");
-            Assert.assertEquals(src.isEmpty(),false);
+            Assert.assertEquals(src.isEmpty(), false);
         } catch (NoSuchElementException e) {
             throw new AssertionError("No Images are loaded");
         }
@@ -88,8 +89,8 @@ public class HomePageSteps extends AbstractBaseSteps {
 
     @Then("I should see prices in ascending order")
     public void iShouldSeePricesInAscendingOrder() {
-        try { 
-            Utility.waitForJSLoad(getWebDriver()); 
+        try {
+            Utility.waitForJSLoad(getWebDriver());
             List<WebElement> priceWebElement = getWebDriver().findElements(By.cssSelector(".shelf-item__price > div.val > b"));
             Utility.waitForJSLoad(getWebDriver());
             Assert.assertTrue(Utility.isAscendingOrder(priceWebElement, priceWebElement.size()));

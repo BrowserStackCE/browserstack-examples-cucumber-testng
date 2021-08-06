@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -108,10 +109,10 @@ public class WebDriverFactory {
             Map<String, Object> specificCapabilitiesMap = new LinkedHashMap<>();
             if (webDriverConfiguration.getSpecificCapabilities() != null && specificCapabilitiesKeys.length > 0) {
                 Arrays.stream(specificCapabilitiesKeys)
-                  .forEach(specificCapabilityKey -> webDriverConfiguration
-                                                      .getSpecificCapabilities()
-                                                      .getSpecificCapabilities(specificCapabilityKey)
-                                                      .forEach(caps -> caps.getCapabilityMap().forEach(specificCapabilitiesMap::put)));
+                        .forEach(specificCapabilityKey -> webDriverConfiguration
+                                .getSpecificCapabilities()
+                                .getSpecificCapabilities(specificCapabilityKey)
+                                .forEach(caps -> caps.getCapabilityMap().forEach(specificCapabilitiesMap::put)));
             }
             switch (this.webDriverConfiguration.getDriverType()) {
                 case onPremDriver:
@@ -209,7 +210,7 @@ public class WebDriverFactory {
         WebDriver webDriver = null;
         switch (BrowserType.valueOf(platform.getName())) {
             case chrome:
-                System.setProperty(WEBDRIVER_CHROME_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_CHROME_DRIVER, System.getProperty("user.dir") + Paths.get(platform.getDriverPath()).toString());
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(chromeOptions::setCapability);
@@ -218,7 +219,7 @@ public class WebDriverFactory {
                 webDriver = new ChromeDriver(chromeOptions);
                 break;
             case firefox:
-                System.setProperty(WEBDRIVER_GECKO_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_GECKO_DRIVER, System.getProperty("user.dir") + Paths.get(platform.getDriverPath()).toString());
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(firefoxOptions::setCapability);
@@ -227,7 +228,7 @@ public class WebDriverFactory {
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;
             case ie:
-                System.setProperty(WEBDRIVER_IE_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_IE_DRIVER, System.getProperty("user.dir") + Paths.get(platform.getDriverPath()).toString());
                 InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(internetExplorerOptions::setCapability);
@@ -236,7 +237,7 @@ public class WebDriverFactory {
                 webDriver = new InternetExplorerDriver(internetExplorerOptions);
                 break;
             case edge:
-                System.setProperty(WEBDRIVER_EDGE_DRIVER, System.getProperty("user.dir") +Paths.get(platform.getDriverPath()).toString());
+                System.setProperty(WEBDRIVER_EDGE_DRIVER, System.getProperty("user.dir") + Paths.get(platform.getDriverPath()).toString());
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(edgeOptions::setCapability);
@@ -266,10 +267,9 @@ public class WebDriverFactory {
 
     private String createBuildName(String buildPrefix) {
 
-        if (StringUtils.isNotEmpty(buildName)){
+        if (StringUtils.isNotEmpty(buildName)) {
             return buildName;
-        }
-        else {
+        } else {
             if (StringUtils.isEmpty(buildPrefix)) {
                 buildPrefix = DEFAULT_BUILD_NAME;
             }

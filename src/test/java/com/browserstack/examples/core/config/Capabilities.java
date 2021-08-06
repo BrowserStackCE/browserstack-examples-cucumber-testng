@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class Capabilities {
 
-    private final Map<String, Object> capabilityMap = new LinkedHashMap<>();
+	private final Map<String, Object> capabilityMap = new LinkedHashMap<>();
 
-    @JsonAnySetter
-    public void setCapabilities(String key, Object value) {
-        this.capabilityMap.put(key, value);
-    }
+	@JsonAnySetter
+	public void setCapabilities(String key, Object value) {
+		this.capabilityMap.put(key, value);
+	}
 
-    public Map<String, Object> getCapabilityMap() {
-        return capabilityMap;
-    }
+	public Map<String, Object> getCapabilityMap() {
+		return capabilityMap;
+	}
 }
