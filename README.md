@@ -55,7 +55,7 @@ This repository contains the following Selenium tests:
 
 ## Test infrastructure environments
 
-- [On-premise/self-hosted](#On-Premise/Self-Hosted)
+- [On-premise/self-hosted](#On-Premise(Self-Hosted))
 - [Docker](#docker)
 - [BrowserStack](#browserstack)
 
