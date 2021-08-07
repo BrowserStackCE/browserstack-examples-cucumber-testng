@@ -482,6 +482,7 @@ Tag fulfils the following purposes:
 -  By default, Cucumber executes all the scenarios inside the feature file, but if we need to execute or skip any specific scenario under a specific test, so we can declare scenarios within a tag.
 
 Command : 
+  Maven:
 ```sh
   mvn test -Dcucumber.filter.tags="@tagname"
   ```
@@ -495,11 +496,11 @@ For this repository you can use two tags > @regression, @e2e, @loginValid, @logi
 
   In this section, we will generate and serve allure reports for maven test runs.
 
- Maven
+ Maven:
 - Generate Report using the following command: `mvn allure:report`
 - Serve the Allure report on a server: `mvn allure:serve`
 
- Gradle
+ Gradle:
 - Generate Report using the following command: `./gradlew allurereport`
 - Serve the Allure report on a server: `./gradlew allureserve`
 
