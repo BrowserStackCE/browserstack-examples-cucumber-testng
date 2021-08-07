@@ -486,7 +486,7 @@ Command :
   mvn test -Dcucumber.filter.tags="@tagname"
   ```
   Gradle:
-    ```sh
+```sh
   gradlew test -Dcucumber.filter.tags="@tagname"
   ```
 For this repository you can use two tags > @regression, @e2e, @loginValid, @loginInvalid, @offers, @vendorFilter, @userfeature > This is will run scenarios with this tags on browserstack 
