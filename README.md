@@ -514,8 +514,3 @@ For this repository you can use two tags > @regression, @e2e, @loginValid, @logi
 - Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
 
-## Known issues 
-
-- cucumber tags not working with gradle
-- Allure Reports on jenkins are not generated
-
