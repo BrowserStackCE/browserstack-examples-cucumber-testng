@@ -79,8 +79,8 @@ For all the parallel run configuration profiles, you can configure the maximum p
     [pom.xml](pom.xml)
 
     parallel-count = 5
-    
-    [CommandLine Arguments]
+  
+  - Command Line args:
     
     -Ddataproviderthreadcount= Thread-count
 
