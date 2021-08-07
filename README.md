@@ -131,7 +131,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
 
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+  E.g. "Login with given 'fav_user' user", "Login as Locked User", "Offers for Mumbai location"  or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 - Output
 
@@ -209,7 +209,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
 
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+  E.g. "Login with given 'fav_user' user", "Login as Locked User", "Offers for Mumbai location"  or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 
 - After tests are complete, you can stop the Docker by running the following command:
