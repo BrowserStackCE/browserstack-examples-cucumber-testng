@@ -55,7 +55,7 @@ This repository contains the following Selenium tests:
 
 ## Test infrastructure environments
 
-- [On-premise/self-hosted](#on-premise-self-hosted)
+- [On-premise/self-hosted](#OnPremise)
 - [Docker](#docker)
 - [BrowserStack](#browserstack)
 
@@ -76,9 +76,11 @@ For all the parallel run configuration profiles, you can configure the maximum p
 
   - Maven:
 
-    [pom.xml](pom.xml)
-
-    parallel-count = 5
+    [pom.xml](pom.xml)  parallel-count = 5
+  
+  - Command Line args:
+    
+    -Ddataproviderthreadcount= Thread-count
 
 
 ## Test Reporting
@@ -87,7 +89,7 @@ For all the parallel run configuration profiles, you can configure the maximum p
 
 ---
 
-# On Premise / Self Hosted
+# OnPremise
 
 This infrastructure points to running the tests on your own machine using a browser (e.g. Chrome) using the browser's driver executables (e.g. ChromeDriver for Chrome). Selenium enables this functionality using WebDriver for many popular browsers.
 
@@ -129,7 +131,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
 
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+  E.g. "Login with given 'fav_user' user", "Login as Locked User", "Offers for Mumbai location"  or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 - Output
 
@@ -207,7 +209,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
 
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+  E.g. "Login with given 'fav_user' user", "Login as Locked User", "Offers for Mumbai location"  or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 
 - After tests are complete, you can stop the Docker by running the following command:
@@ -280,10 +282,10 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
   set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
 
-  Alternatively, you can also hardcode username and access_key objects in the [bs.json](resources/config/bs.json) file.
+  Alternatively, you can also hardcode username and access_key objects in the capabilities [.yml] file.
 
 Note:
-- We have configured a list of test capabilities in the [bs.json](resources/config/bs.json) file. You can certainly update them based on your device / browser test requirements.
+- We have configured a list of test capabilities in the [.yml] file. You can certainly update them based on your device / browser test requirements.
 - The exact test capability values can be easily identified using the [Browserstack Capability Generator](https://browserstack.com/automate/capabilities)
 
 
@@ -291,7 +293,7 @@ Note:
 
 ### Run a specific test on BrowserStack
 
-In this section, we will run a single test on Chrome browser on Browserstack. To change test capabilities for this configuration, please refer to the `single` object in `bs.json` file.
+In this section, we will run a single test on Chrome browser on Browserstack. To change test capabilities for this configuration, please refer to the `single` object in `capabilities-bstack-single.yml` file.
 
 - How to run the test?
 
@@ -320,7 +322,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
 
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+  E.g. "Login with given 'fav_user' user", "Login as Locked User", "Offers for Mumbai location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 
 - Output
@@ -330,7 +332,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
 
 ### Run the entire test suite in parallel on a single BrowserStack browser
 
-In this section, we will run the tests in parallel on a single browser on Browserstack. Refer to `single` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the tests in parallel on a single browser on Browserstack. Refer to `single` object in `capabilities-bstack-single.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -355,7 +357,7 @@ In this section, we will run the tests in parallel on a single browser on Browse
 
 ### Run the entire test suite in parallel on multiple BrowserStack browsers
 
-In this section, we will run the tests in parallel on multiple browsers on Browserstack. Refer to the `parallel` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the tests in parallel on multiple browsers on Browserstack. Refer to the `parallel` object in `capabilities-bstack-parallel-browsers.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -380,7 +382,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
   git clone https://github.com/browserstack/browserstack-demo-app
   ``` 
 - Please follow the README.md on the BrowserStack demo application repository to install and start the dev server on localhost.
-- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. Refer to the `single_local` object in `bs.json` file to change test capabilities for this configuration.
+- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. Refer to the `single_local` object in `capabilities-bstack-local-single.yml` file to change test capabilities for this configuration.
 - Note: You may need to provide additional BrowserStackLocal arguments to successfully connect your localhost environment with BrowserStack infrastructure. (e.g if you are behind firewalls, proxy or VPN).
 - Further details for successfully creating a BrowserStackLocal connection can be found here:
 
@@ -427,7 +429,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
 ### [Web application hosted on internal environment] Run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal
 
-In this section, we will run the test cases to test the internally hosted website in parallel on a single browser on Browserstack. Refer to the `single_local` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the test cases to test the internally hosted website in parallel on a single browser on Browserstack. Refer to the `single_local` object in `capabilities-bstack-local-single.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -450,7 +452,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
 ### [Web application hosted on internal environment] Run the entire test suite in parallel on multiple BrowserStack browser using BrowserStackLocal
 
-In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. Refer to the `parallel_local` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. Refer to the `parallel_local` object in `capabilities-local-parallel-browsers.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -480,20 +482,25 @@ Tag fulfils the following purposes:
 -  By default, Cucumber executes all the scenarios inside the feature file, but if we need to execute or skip any specific scenario under a specific test, so we can declare scenarios within a tag.
 
 Command : 
+  Maven:
 ```sh
   mvn test -Dcucumber.filter.tags="@tagname"
   ```
-For this repository you can use two tags > @userfeature, @regression > This is will run scenarios with this tags on browserstack 
+  Gradle:
+```sh
+  ./gradlew test -Dcucumber.filter.tags="@tagname"
+  ```
+For this repository you can use following tags > @regression, @e2e, @loginValid, @loginInvalid, @offers, @vendorFilter, @userfeature > This is will run scenarios with this tags on browserstack 
 
 ## Generating Allure Reports
 
   In this section, we will generate and serve allure reports for maven test runs.
 
-# maven
+ Maven:
 - Generate Report using the following command: `mvn allure:report`
 - Serve the Allure report on a server: `mvn allure:serve`
 
-# gradle
+ Gradle:
 - Generate Report using the following command: `./gradlew allurereport`
 - Serve the Allure report on a server: `./gradlew allureserve`
 
@@ -507,9 +514,4 @@ For this repository you can use two tags > @userfeature, @regression > This is w
 - [Using Automate REST API](https://www.browserstack.com/automate/rest-api) to access information about your tests via the command-line interface
 - Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
-
-## Known issues 
-
-- cucumber tags not working with gradle
-- Allure Reports on jenkins are not generated
 
