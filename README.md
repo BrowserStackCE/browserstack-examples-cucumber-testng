@@ -282,10 +282,10 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
   set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
 
-  Alternatively, you can also hardcode username and access_key objects in the [bs.json](resources/config/bs.json) file.
+  Alternatively, you can also hardcode username and access_key objects in the capabilities [.yml] file.
 
 Note:
-- We have configured a list of test capabilities in the [bs.json](resources/config/bs.json) file. You can certainly update them based on your device / browser test requirements.
+- We have configured a list of test capabilities in the [.yml] file. You can certainly update them based on your device / browser test requirements.
 - The exact test capability values can be easily identified using the [Browserstack Capability Generator](https://browserstack.com/automate/capabilities)
 
 
@@ -293,7 +293,7 @@ Note:
 
 ### Run a specific test on BrowserStack
 
-In this section, we will run a single test on Chrome browser on Browserstack. To change test capabilities for this configuration, please refer to the `single` object in `bs.json` file.
+In this section, we will run a single test on Chrome browser on Browserstack. To change test capabilities for this configuration, please refer to the `single` object in `capabilities-bstack-single.yml` file.
 
 - How to run the test?
 
@@ -332,7 +332,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
 
 ### Run the entire test suite in parallel on a single BrowserStack browser
 
-In this section, we will run the tests in parallel on a single browser on Browserstack. Refer to `single` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the tests in parallel on a single browser on Browserstack. Refer to `single` object in `capabilities-bstack-single.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -357,7 +357,7 @@ In this section, we will run the tests in parallel on a single browser on Browse
 
 ### Run the entire test suite in parallel on multiple BrowserStack browsers
 
-In this section, we will run the tests in parallel on multiple browsers on Browserstack. Refer to the `parallel` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the tests in parallel on multiple browsers on Browserstack. Refer to the `parallel` object in `capabilities-bstack-parallel-browsers.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -382,7 +382,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
   git clone https://github.com/browserstack/browserstack-demo-app
   ``` 
 - Please follow the README.md on the BrowserStack demo application repository to install and start the dev server on localhost.
-- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. Refer to the `single_local` object in `bs.json` file to change test capabilities for this configuration.
+- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. Refer to the `single_local` object in `capabilities-bstack-local-single.yml` file to change test capabilities for this configuration.
 - Note: You may need to provide additional BrowserStackLocal arguments to successfully connect your localhost environment with BrowserStack infrastructure. (e.g if you are behind firewalls, proxy or VPN).
 - Further details for successfully creating a BrowserStackLocal connection can be found here:
 
@@ -429,7 +429,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
 ### [Web application hosted on internal environment] Run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal
 
-In this section, we will run the test cases to test the internally hosted website in parallel on a single browser on Browserstack. Refer to the `single_local` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the test cases to test the internally hosted website in parallel on a single browser on Browserstack. Refer to the `single_local` object in `capabilities-bstack-local-single.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
@@ -452,7 +452,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
 ### [Web application hosted on internal environment] Run the entire test suite in parallel on multiple BrowserStack browser using BrowserStackLocal
 
-In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. Refer to the `parallel_local` object in `bs.json` file to change test capabilities for this configuration.
+In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. Refer to the `parallel_local` object in `capabilities-bstack-local-single.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
