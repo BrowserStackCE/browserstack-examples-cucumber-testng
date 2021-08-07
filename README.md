@@ -452,7 +452,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
 ### [Web application hosted on internal environment] Run the entire test suite in parallel on multiple BrowserStack browser using BrowserStackLocal
 
-In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. Refer to the `parallel_local` object in `capabilities-bstack-local-single.yml` file to change test capabilities for this configuration.
+In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. Refer to the `parallel_local` object in `capabilities-local-parallel-browsers.yml` file to change test capabilities for this configuration.
 
 - How to run the test?
 
