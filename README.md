@@ -42,7 +42,7 @@ This repository contains the following Selenium tests:
 | Module   | Test name                          | Description |
   | ---   | ---                                   | --- |
 | E2E      | End to End Scenario                | This test scenario verifies successful product purchase lifecycle end-to-end and is also the default test executed in all the single test run profiles. |
-| Login    | Login with given username user         | This test verifies the login workflow with different types of valid login users. |
+| Login    | Login with given 'username' user         | This test verifies the login workflow with different types of valid login users. |
 | Login    | Login as Locked User               | This test verifies the login workflow error for a locked user. |
 | Offers   | Offers for Mumbai location     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
 | Product  | Apply Apple Vendor Filter          | This test verifies that 9 Apple products are only shown if the Apple vendor filter option is applied. |
@@ -423,7 +423,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
 
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+  E.g.  "Login with given 'fav_user' user", "Login as Locked User", "Offers for Mumbai location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 
 - Output
