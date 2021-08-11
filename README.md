@@ -78,7 +78,8 @@ For all the parallel run configuration profiles, you can configure the maximum p
 
     [pom.xml](pom.xml) 
     ```sh
-    parallel-count = 5  ```
+    parallel-count = 5 
+    ```
   
   - Command Line args:
     
