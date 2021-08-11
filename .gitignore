@@ -3,10 +3,8 @@ build
 .gradle
 .idea
 *.iml
-/test-output/*
 /target/*
 /allure-results/*
-/Screenshots/*
 .classpath
 *.project
 *.jar

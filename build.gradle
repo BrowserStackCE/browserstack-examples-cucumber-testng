@@ -1,17 +1,13 @@
 buildscript {
     ext {
-        TESTNG_VERSION = '7.3.0'
-        CUCUMBER_VERSION = '6.7.0'
-       	APPLICATION_URL = 'http://bstackdemo.com/'
+        TESTNG_VERSION = '7.4.0'
+        CUCUMBER_VERSION = '6.11.0'
+       	APPLICATION_URL = 'https://bstackdemo.com/'
        	APPLICATION_LOCAL_URL = 'http://localhost:3000/'
         ALLURE_VERSION = "2.14.0"
         ALLURE_GRADLE_VERSION = "2.8.1"
         SELENIUM_VERSION = "3.141.59"
         BROWSERSTACK_LOCAL_VERSION="1.0.6"
-        APACHE_COMMON_VERSION = "3.11"
-        LOGBACK_VERSION = "1.2.3"
-        TESTNG_VERSION="7.4.0"
-        CUCUMBER_VERSION = "6.10.4"
         JACKSON_DATABIND_VERSION = "2.12.2"
         APACHE_COMMON_VERSION = "3.12.0"
       	THREAD_COUNT = "5"
@@ -24,9 +20,10 @@ buildscript {
 
 plugins {
     id 'java'
-    id "io.qameta.allure" version "2.8.1"
+    id "io.qameta.allure" version "$ALLURE_GRADLE_VERSION"
 
 }
+
 
 
 version '1.0-SNAPSHOT'
@@ -125,9 +122,6 @@ task 'bstack-local' (type: Test) {
         systemProperty("cucumber.filter.name", "End to End Scenario")
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-local-single.yml'
-
-
-
 }
 task 'bstack-local-parallel' (type: Test) {
     useTestNG() {
@@ -135,7 +129,6 @@ task 'bstack-local-parallel' (type: Test) {
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-local-single.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
-
 }
 
 
@@ -145,10 +138,7 @@ task 'bstack-parallel' (type: Test)  {
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-single.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
-
 }
-
-
 
 task 'bstack-local-parallel-browsers' (type: Test){
     useTestNG() {
@@ -156,7 +146,6 @@ task 'bstack-local-parallel-browsers' (type: Test){
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-parallel-browsers.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
-
 }
 task 'bstack-parallel-browsers' (type: Test) {
     useTestNG() {
@@ -164,13 +153,10 @@ task 'bstack-parallel-browsers' (type: Test) {
     }
     systemProperty 'capabilities.config', 'capabilities-bstack-parallel-browsers.yml'
     jvmArgs "-Ddataproviderthreadcount=$THREAD_COUNT"
-
 }
 
 allure {
     version = "$ALLURE_REPORT_VERSION"
-
-
 }
 
 

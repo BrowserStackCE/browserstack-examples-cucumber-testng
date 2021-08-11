@@ -93,7 +93,7 @@ public class HomePageSteps extends AbstractBaseSteps {
             Utility.waitForJSLoad(getWebDriver());
             List<WebElement> priceWebElement = getWebDriver().findElements(By.cssSelector(".shelf-item__price > div.val > b"));
             Utility.waitForJSLoad(getWebDriver());
-            Assert.assertTrue(Utility.isAscendingOrder(priceWebElement, priceWebElement.size()));
+           Assert.assertTrue(Utility.isAscendingOrder(priceWebElement, priceWebElement.size()));
         } catch (NoSuchElementException e) {
             throw new AssertionError("Error in page load");
         }
