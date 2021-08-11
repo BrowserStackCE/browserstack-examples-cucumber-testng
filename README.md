@@ -80,7 +80,7 @@ For all the parallel run configuration profiles, you can configure the maximum p
   
   - Command Line args:
     
-    -Ddataproviderthreadcount= Thread-count
+    -Ddataproviderthreadcount= <<Thread-count>>
 
 
 ## Test Reporting
