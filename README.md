@@ -76,7 +76,9 @@ For all the parallel run configuration profiles, you can configure the maximum p
 
   - Maven:
 
-    [pom.xml](pom.xml)  ```sh parallel-count = 5  ```
+    [pom.xml](pom.xml) 
+    ```sh
+    parallel-count = 5  ```
   
   - Command Line args:
     
