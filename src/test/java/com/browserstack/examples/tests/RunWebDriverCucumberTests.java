@@ -1,18 +1,16 @@
 package com.browserstack.examples.tests;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.browserstack.examples.core.config.Platform;
-import com.browserstack.examples.core.WebDriverFactory;
-import com.browserstack.examples.core.ManagedWebDriver;
-import com.browserstack.examples.core.WebDriverManager;
+import com.browserstack.webdriver.testng.LazyInitWebDriverIterator;
+import com.browserstack.webdriver.testng.ManagedWebDriver;
+import com.browserstack.webdriver.testng.listeners.WebDriverListener;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
@@ -35,40 +33,36 @@ import io.cucumber.testng.TestNGCucumberRunner;
     "json:reports/tests/cucumber/json/cucumber.json"
   }
 )
+@Listeners({WebDriverListener.class})
 public class RunWebDriverCucumberTests {
 
     private TestNGCucumberRunner testNGCucumberRunner;
-    private WebDriverFactory webDriverFactory;
-    private WebDriverManager webDriverManager;
+    private static final ThreadLocal<ManagedWebDriver> threadLocalWebDriver = new ThreadLocal<>();
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-        this.webDriverFactory = WebDriverFactory.getInstance();
-        this.webDriverManager = WebDriverManager.getInstance();
+    }
+
+    private synchronized static void setThreadLocalWebDriver(ManagedWebDriver managedWebDriver) {
+        threadLocalWebDriver.set(managedWebDriver);
+    }
+
+    public synchronized static ManagedWebDriver getManagedWebDriver() {
+        return threadLocalWebDriver.get();
     }
 
     @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "scenarios")
     public void feature(PickleWrapper pickleWrapper, FeatureWrapper featureWrapper, ManagedWebDriver managedWebDriver) {
         managedWebDriver.setTestName(pickleWrapper.getPickle().getName());
-        webDriverManager.setThreadLocalWebDriver(managedWebDriver);
+        setThreadLocalWebDriver(managedWebDriver);
         testNGCucumberRunner.runScenario(pickleWrapper.getPickle());
     }
 
     @DataProvider(name = "scenarios", parallel = true)
-    public Object[][] scenarios() {
-        List<Object[]> browserScenarioParams = new ArrayList<>();
-
+    public Iterator<Object[]> scenarios() {
         Object[][] scenarios = testNGCucumberRunner.provideScenarios();
-        for (Object[] testParams : scenarios) {
-            for (Platform platform : webDriverFactory.getPlatforms()) {
-                Object[] newTestParams = Arrays.copyOf(testParams, testParams.length + 1);
-                ManagedWebDriver managedWebDriver = new ManagedWebDriver(platform, webDriverFactory);
-                newTestParams[testParams.length] = managedWebDriver;
-                browserScenarioParams.add(newTestParams);
-            }
-        }
-        return browserScenarioParams.toArray(new Object[0][0]);
+        return new LazyInitWebDriverIterator(true, scenarios);
     }
 
     @AfterClass(alwaysRun = true)

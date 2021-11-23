@@ -2,8 +2,8 @@ package com.browserstack.examples.stepdefs;
 
 import org.openqa.selenium.WebDriver;
 
-import com.browserstack.examples.core.WebDriverFactory;
-import com.browserstack.examples.core.WebDriverManager;
+import com.browserstack.examples.tests.RunWebDriverCucumberTests;
+import com.browserstack.webdriver.core.WebDriverFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,16 +12,14 @@ import com.browserstack.examples.core.WebDriverManager;
  */
 public abstract class AbstractBaseSteps {
 
-    private WebDriverManager webDriverManager;
     private WebDriver webDriver;
 
     public AbstractBaseSteps() {
-        this.webDriverManager = WebDriverManager.getInstance();
     }
 
     public WebDriver getWebDriver() {
         if (this.webDriver == null) {
-            this.webDriver = webDriverManager.getWebDriver();
+            this.webDriver = RunWebDriverCucumberTests.getManagedWebDriver().getWebDriver();
         }
         return this.webDriver;
     }
