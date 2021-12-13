@@ -1,7 +1,5 @@
 package com.browserstack.examples.stepdefs;
 
-
-
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.By;
@@ -14,15 +12,16 @@ import com.browserstack.examples.utils.Utility;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-
 public class HomePageSteps extends AbstractBaseSteps {
 
     WebDriverWait wait;
+
     @And("I add two products to cart")
     public void iAddProductsToCart() {
         WebDriverWait wait = new WebDriverWait(getWebDriver(), 10);
         Utility.waitForJSLoad(getWebDriver());
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 > .shelf-item__buy-btn"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 > .shelf-item__buy-btn")))
+                .click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.float-cart__close-btn"))).click();
         getWebDriver().findElement(By.cssSelector("#\\32 > .shelf-item__buy-btn")).click();
         Utility.waitForJSLoad(getWebDriver());
@@ -38,8 +37,7 @@ public class HomePageSteps extends AbstractBaseSteps {
         try {
             getWebDriver().findElement(By.cssSelector(".filters-available-size:nth-child(2) .checkmark")).click();
             Utility.waitForJSLoad(getWebDriver());
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new AssertionError();
         }
     }
@@ -55,7 +53,8 @@ public class HomePageSteps extends AbstractBaseSteps {
         WebDriverWait wait = new WebDriverWait(getWebDriver(), 10);
         Utility.waitForJSLoad(getWebDriver());
         try {
-            String loggedInUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".username"))).getText();
+            String loggedInUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".username")))
+                    .getText();
             Assert.assertEquals(user, loggedInUser);
         } catch (NoSuchElementException e) {
             throw new AssertionError(user + " is not logged in");
@@ -69,7 +68,7 @@ public class HomePageSteps extends AbstractBaseSteps {
         String src = "";
         try {
             src = getWebDriver().findElement(By.cssSelector("img[alt='iPhone 12']")).getAttribute("src");
-            Assert.assertEquals(src.isEmpty(),false);
+            Assert.assertEquals(src.isEmpty(), false);
         } catch (NoSuchElementException e) {
             throw new AssertionError("No Images are loaded");
         }
@@ -80,8 +79,10 @@ public class HomePageSteps extends AbstractBaseSteps {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(getWebDriver(), 10);
             Utility.waitForJSLoad(getWebDriver());
-            webDriverWait.until(ExpectedConditions.visibilityOf(getWebDriver().findElement(By.cssSelector(".shelf-item__title"))));
-            List<String> values = getWebDriver().findElements(By.cssSelector(".shelf-item__title")).stream().map(WebElement::getText).collect(Collectors.toList());
+            webDriverWait.until(
+                    ExpectedConditions.visibilityOf(getWebDriver().findElement(By.cssSelector(".shelf-item__title"))));
+            List<String> values = getWebDriver().findElements(By.cssSelector(".shelf-item__title")).stream()
+                    .map(WebElement::getText).collect(Collectors.toList());
             Assert.assertEquals(productCount, values.size());
         } catch (NoSuchElementException e) {
             throw new AssertionError("Error in page load");
@@ -90,12 +91,10 @@ public class HomePageSteps extends AbstractBaseSteps {
 
     @Then("I should see prices in ascending order")
     public void iShouldSeePricesInAscendingOrder() {
-        WebDriverWait wait = new WebDriverWait(getWebDriver(), 10);
         try {
-            WebDriverWait webDriverWait = new WebDriverWait(getWebDriver(), 10);
             Utility.waitForJSLoad(getWebDriver());
-            // webDriverWait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.getWebDriver().findElement(By.cssSelector(".shelf-item__price > div.val > b"))));
-            List<WebElement> priceWebElement = getWebDriver().findElements(By.cssSelector(".shelf-item__price > div.val > b"));
+            List<WebElement> priceWebElement = getWebDriver()
+                    .findElements(By.cssSelector(".shelf-item__price > div.val > b"));
             Utility.waitForJSLoad(getWebDriver());
             Assert.assertTrue(Utility.isAscendingOrder(priceWebElement, priceWebElement.size()));
         } catch (NoSuchElementException e) {

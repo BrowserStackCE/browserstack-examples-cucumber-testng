@@ -15,7 +15,6 @@ cloudDriver:
       browserstack.debug: true
       browserstack.networkLogs: true
       browserstack.console: debug
-#      browserstack.idleTimeout: 300
   platforms:
     - name: Win10_Chrome_Latest-1
       os: Windows
