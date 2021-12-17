@@ -59,7 +59,7 @@ node {
             if("${params.TEST_TYPE}".contains('bstack')){
                 browserStackReportPublisher 'automate'
             }
-            allure includeProperties: false, jdk: '',reportBuildPolicy: 'ALWAYS', results: [[path: 'target/allure-results']]
+            allure includeProperties: false, jdk: '',reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
         }
 
 
