@@ -23,7 +23,7 @@ node {
 
     stage('Pull code from Github') {
         dir('test') {
-            git branch: 'new_enhancements', changelog: false, poll: false, url: 'https://github.com/browserstack/browserstack-examples-cucumber-testng'
+            git branch: 'main', changelog: false, poll: false, url: 'https://github.com/browserstack/browserstack-examples-cucumber-testng'
         }
     }
 
@@ -56,11 +56,23 @@ node {
         }
     }
     stage('Generate Report'){
-            if("${params.TEST_TYPE}".contains('bstack')){
+           if("${params.TEST_TYPE}".contains('bstack')){
                 browserStackReportPublisher 'automate'
             }
-            allure includeProperties: false, jdk: '',reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
-        }
+          allure([
+                   includeProperties: false,
+                   jdk: '',
+                   reportBuildPolicy: 'ALWAYS',
+                   results: [[path: 'target/allure-results'], [path: '**/test/allure-results']]
+                    ])
+            }
+       stage('Generate cucumber report') {
+           cucumber buildStatus: 'UNSTABLE',
+                   reportTitle: 'My report',
+                   fileIncludePattern: "**/cucumber.json",
+                   trendsLimit: 10
+   }
+
 
 
   }catch (e) {

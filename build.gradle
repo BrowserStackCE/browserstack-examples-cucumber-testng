@@ -5,13 +5,32 @@
 buildscript {
     ext {
         THREAD_COUNT = "5"
+        ESTNG_VERSION = '7.3.0'
+        CUCUMBER_VERSION = '6.7.0'
+        APPLICATION_URL = 'http://bstackdemo.com/'
+        APPLICATION_LOCAL_URL = 'http://localhost:3000/'
+        ALLURE_VERSION = "2.14.0"
+        ALLURE_GRADLE_VERSION = "2.8.1"
+        SELENIUM_VERSION = "3.141.59"
+        BROWSERSTACK_LOCAL_VERSION="1.0.6"
+        APACHE_COMMON_VERSION = "3.11"
+        LOGBACK_VERSION = "1.2.3"
+        TESTNG_VERSION="7.4.0"
+        CUCUMBER_VERSION = "6.10.4"
+        JACKSON_DATABIND_VERSION = "2.12.2"
+        APACHE_COMMON_VERSION = "3.12.0"
+        THREAD_COUNT = "5"
+        SL4J_VERSION = "1.7.32"
+        BROWSERSTACK_WEBDRIVER_VERSION = "0.0.1"
     }
 }
 
 plugins {
     id 'java'
     id 'maven-publish'
+    id "io.qameta.allure" version "2.8.1"
 }
+
 
 repositories {
     jcenter()
@@ -25,21 +44,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.cucumber:cucumber-jvm:6.10.4'
-    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
-    testImplementation 'com.browserstack:browserstack-local-java:1.0.6'
-    testImplementation 'org.apache.commons:commons-lang3:3.11'
-    testImplementation 'org.slf4j:slf4j-api:1.7.30'
-    testImplementation 'ch.qos.logback:logback-classic:1.2.3'
-    testImplementation 'org.testng:testng:7.4.0'
-    testImplementation 'io.cucumber:cucumber-java:6.10.4'
-    testImplementation 'io.cucumber:cucumber-core:6.10.4'
-    testImplementation 'io.cucumber:cucumber-picocontainer:6.10.4'
-    testImplementation 'io.cucumber:cucumber-testng:6.10.4'
-    testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.2'
-    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
-    testImplementation 'com.browserstack:webdriver-framework-testng:0.0.1'
-    testImplementation 'io.qameta.allure:allure-cucumber6-jvm:2.17.2'
+    testImplementation group:'io.cucumber', name:'cucumber-jvm', version:"$CUCUMBER_VERSION"
+    testImplementation group:'org.seleniumhq.selenium', name:'selenium-java', version:"$SELENIUM_VERSION"
+    testImplementation group:'com.browserstack', name:'browserstack-local-java', version:"$BROWSERSTACK_LOCAL_VERSION"
+    testImplementation group:'org.apache.commons', name:'commons-lang3', version:"$APACHE_COMMON_VERSION"
+    testImplementation group:'org.slf4j', name:'slf4j-api', version:"$SL4J_VERSION"
+    testImplementation group:'ch.qos.logback', name:'logback-classic', version:"$LOGBACK_VERSION"
+    testImplementation group:'org.testng', name:'testng', version:"$TESTNG_VERSION"
+    testImplementation group:'io.cucumber', name:'cucumber-java', version:"$CUCUMBER_VERSION"
+    testImplementation group:'io.cucumber', name:'cucumber-core', version:"$CUCUMBER_VERSION"
+    testImplementation group:'io.cucumber', name:'cucumber-picocontainer', version:"$CUCUMBER_VERSION"
+    testImplementation group:'io.cucumber', name:'cucumber-testng', version:"$CUCUMBER_VERSION"
+    testImplementation group:'com.fasterxml.jackson.dataformat', name:'jackson-dataformat-yaml', version:"$JACKSON_DATABIND_VERSION"
+    testImplementation group:'com.fasterxml.jackson.core', name:'jackson-databind', version:"$JACKSON_DATABIND_VERSION"
+    testImplementation group:'com.browserstack', name:'webdriver-framework-testng', version:"$BROWSERSTACK_WEBDRIVER_VERSION"
+    testImplementation group:'io.qameta.allure', name:'allure-cucumber6-jvm', version:"$ALLURE_VERSION"
+    testImplementation group:'io.qameta.allure', name:'allure-gradle', version:"$ALLURE_GRADLE_VERSION"
 
 
 }
@@ -50,11 +70,16 @@ description = 'browserstack-examples-cucumber-testng'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 
+
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     outputs.upToDateWhen { false }
 }
 
+configurations {
+    testCompile
+}
 
 task 'on-prem'(type: Test) {
     useTestNG()
@@ -153,3 +178,6 @@ task 'bstack-parallel-browsers'(type: Test) {
 
 }
 
+allure {
+    version = '2.8.1'
+}

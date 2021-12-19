@@ -147,9 +147,6 @@
                             <value>${parallel.config}</value>
                         </property>
                     </properties>
-                    <systemPropertyVariables>
-                        <capabilities.config>${capabilities.config.file}</capabilities.config>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
