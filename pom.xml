@@ -5,8 +5,6 @@
     <groupId>com.browserstack</groupId>
     <artifactId>browserstack-examples-cucumber-testng</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -25,6 +23,15 @@
         <cucumber.version>6.10.4</cucumber.version>
         <jackson.version>2.12.2</jackson.version>
         <webdriver-framework.version>0.0.1</webdriver-framework.version>
+        <allure.version>2.14.0</allure.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
+
+        <testng.suiteXml>src/test/resources/conf/testng.xml</testng.suiteXml>
+        <dataprovider.parallel-count>10</dataprovider.parallel-count>
+        <capabilities.config.file>capabilities.yml</capabilities.config.file>
+        <scenario-name>.*</scenario-name>
+        <parallel.config>methods</parallel.config>
+
     </properties>
 
     <dependencies>
@@ -109,6 +116,12 @@
             <version>${webdriver-framework.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber6-jvm</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -119,21 +132,108 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/conf/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${testng.suiteXml}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -Dcucumber.filter.name="${scenario-name}" -Ddataproviderthreadcount=${dataprovider.parallel-count}
+                    </argLine>
                     <properties>
                         <property>
-                            <name>parallel</name>
-                            <value>methods</value>
+                            <name>threadcount</name>
+                            <value>10</value>
                         </property>
                         <property>
-                            <name>dataproviderthreadcount</name>
-                            <value>20</value>
+                            <name>parallel</name>
+                            <value>${parallel.config}</value>
                         </property>
                     </properties>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
+                <configuration>
+                    <resultsDirectory>${basedir}/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>on-prem</id>
+            <properties>
+                <capabilities.config.file>capabilities-on-prem.yml</capabilities.config.file>
+                <scenario-name>End to End Scenario</scenario-name>
+            </properties>
+        </profile>
+        <profile>
+            <id>on-prem-suite</id>
+            <properties>
+                <capabilities.config.file>capabilities-on-prem-suite.yml</capabilities.config.file>
+                <dataprovider.parallel-count>5</dataprovider.parallel-count>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <capabilities.config.file>capabilities-docker.yml</capabilities.config.file>
+                <scenario-name>End to End Scenario</scenario-name>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-docker-parallel.yml</capabilities.config.file>
+                <dataprovider.parallel-count>5</dataprovider.parallel-count>
+            </properties>
+        </profile>
+        <profile>
+            <id>bstack-single</id>
+            <properties>
+                <capabilities.config.file>capabilities-single.yml</capabilities.config.file>
+                <scenario-name>End to End Scenario</scenario-name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>bstack-local</id>
+            <properties>
+                <capabilities.config.file>capabilities-local.yml</capabilities.config.file>
+                <scenario-name>End to End Scenario</scenario-name>
+            </properties>
+        </profile>
+        <profile>
+            <id>bstack-local-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-local-parallel.yml</capabilities.config.file>
+                <dataprovider.parallel-count>5</dataprovider.parallel-count>
+            </properties>
+        </profile>
+        <profile>
+            <id>bstack-local-parallel-browsers</id>
+            <properties>
+                <capabilities.config.file>capabilities-local-parallel-browsers.yml</capabilities.config.file>
+                <dataprovider.parallel-count>5</dataprovider.parallel-count>
+            </properties>
+        </profile>
+        <profile>
+            <id>bstack-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-parallel.yml</capabilities.config.file>
+                <dataprovider.parallel-count>5</dataprovider.parallel-count>
+            </properties>
+        </profile>
+        <profile>
+            <id>bstack-parallel-browsers</id>
+            <properties>
+                <capabilities.config.file>capabilities-parallel-browsers.yml</capabilities.config.file>
+                <dataprovider.parallel-count>5</dataprovider.parallel-count>
+            </properties>
+        </profile>
+
+    </profiles>
 
 </project>
