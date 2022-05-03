@@ -27,12 +27,12 @@ The Selenium tests are run on different platforms like on-prem, docker and Brows
 
   Maven:
     ```sh
-    mvn install
+    mvn install -DskipTests
     ```
 
   Gradle:
     ```sh
-    gradle build
+    gradle build -x test
     ```
 
 ## About the tests in this repository

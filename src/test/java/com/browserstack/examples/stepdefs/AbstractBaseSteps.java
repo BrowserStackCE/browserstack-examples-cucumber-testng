@@ -5,11 +5,6 @@ import org.openqa.selenium.WebDriver;
 import com.browserstack.examples.tests.RunWebDriverCucumberTests;
 import com.browserstack.webdriver.core.WebDriverFactory;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public abstract class AbstractBaseSteps {
 
     private WebDriver webDriver;
