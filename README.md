@@ -8,7 +8,7 @@ TestNG is a testing framework designed to simplify a broad range of testing need
 
 This BrowserStack Example repository demonstrates a Selenium test framework written in Cucumber and TestNG with parallel testing capabilties. The Selenium test scripts are written for the open source [BrowserStack Demo web application](https://bstackdemo.com) ([Github](https://github.com/browserstack/browserstack-demo-app)). This BrowserStack Demo App is an e-commerce web application which showcases multiple real-world user scenarios, written in Next and React. The app is bundled with offers data, orders data and products data that contains everything you need to start using the app and run tests out-of-the-box.
 
-The Selenium tests are run on different platforms like on-prem, docker and BrowserStack using various run configurations and test capabilities.
+The Selenium tests are run on different platforms like on-prem, docker and BrowserStack using various run configurations and test capabilities
 
 
 
