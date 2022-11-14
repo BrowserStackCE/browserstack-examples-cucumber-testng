@@ -1,0 +1,26 @@
+23:39:51.944 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+23:39:51.951 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+16:09:08.281 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:09:08.289 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+16:12:59.431 [main] ERROR c.b.config.BrowserStackConfig - Malformed browserstack.yml file - java.nio.file.NoSuchFileException: /Users/princeton99/Desktop/Repos/Project/browserstack-examples-cucumber-testng/browserstack.yml.
+16:12:59.434 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:12:59.437 [main] INFO  c.b.config.BrowserStackConfig - Few SDK features were not activated as platforms object was not defined
+16:15:58.339 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:15:58.345 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+16:20:12.731 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:20:12.738 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+16:22:28.949 [main] ERROR c.b.config.BrowserStackConfig - Malformed browserstack.yml file - java.nio.file.NoSuchFileException: /Users/princeton99/Desktop/Repos/Project/browserstack-examples-cucumber-testng/browserstack.yml.
+16:22:28.952 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:22:28.954 [main] INFO  c.b.config.BrowserStackConfig - Few SDK features were not activated as platforms object was not defined
+16:22:52.349 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:22:52.355 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+16:28:16.705 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:28:16.710 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+16:31:16.041 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+16:31:16.046 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+17:05:32.727 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+17:05:32.732 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+17:08:03.440 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+17:08:03.454 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
+17:10:53.922 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+17:10:53.928 [main] WARN  c.b.config.BrowserStackConfig - Framework Detected Mismatch, Framework Detected - testng but Framework provided in browserstack.yml - cucumber-testng
