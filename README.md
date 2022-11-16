@@ -339,7 +339,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
   Gradle:
   - For \*nix based and Mac machines:
-    ```sh
+  ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local-parallel-browsers.yml browserstack.yml & gradle bstack-local-parallel-browsers
   ```
   - For Windows:
