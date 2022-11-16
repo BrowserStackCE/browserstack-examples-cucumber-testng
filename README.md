@@ -249,7 +249,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   Gradle:
   - For \*nix based and Mac machines:
-    ```sh
+  ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local.yml browserstack.yml & gradle bstack-local
   ```
   - For Windows:
