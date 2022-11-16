@@ -18,8 +18,6 @@ The Selenium tests are run on different platforms like on-prem, docker and Brows
 
 - Clone the repository
 
-- For this infrastructure configuration (i.e on-premise) ensure that the ChromeDriver executable is placed in the `/src/test/resources/` folder.
-
 - Ensure you have the following dependencies installed on the machine
   - Java >= 8
   - Maven >= 3.1+
@@ -108,7 +106,8 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
 
   Gradle:
   - For \*nix based and Mac machines:
-    ```sh
+
+  ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-single.yml browserstack.yml & gradle bstack-single
   ```
   - For Windows:
@@ -118,6 +117,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
   ```
 
   To run a specific test scenario, use the following command with the additional 'test-name' argument:
+  
   Maven:
   ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-single.yml browserstack.yml & mvn test -P bstack-single -Dtest-name="<Test scenario name>"
@@ -161,7 +161,7 @@ In this section, we will run the tests in parallel on a single browser on Browse
 
   Gradle:
   - For \*nix based and Mac machines:
-    ```sh
+  ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-parallel.yml browserstack.yml & gradle bstack-parallel
   ```
   - For Windows:
@@ -202,7 +202,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   Gradle:
   - For \*nix based and Mac machines:
-    ```sh
+  ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-parallel-browsers.yml browserstack.yml & gradle bstack-parallel-browsers
   ```
   - For Windows:
@@ -301,7 +301,7 @@ In this section, we will run the test cases to test the internally hosted websit
 
   Gradle:
   - For \*nix based and Mac machines:
-    ```sh
+  ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local-parallel.yml browserstack.yml & gradle bstack-local-parallel
   ```
   - For Windows:
