@@ -54,7 +54,7 @@ public class Utility {
 	}
 
 	public static boolean waitForJSLoad(WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
 
 		// wait for Javascript to load

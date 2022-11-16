@@ -121,7 +121,6 @@ public class BStackDemoSteps {
     public void iShouldSeePricesInAscendingOrder() {
          
         try {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
             Utility.waitForJSLoad(driver);
             // webDriverWait.until(ExpectedConditions.visibilityOf(ThreadLocalDriver.driver.findElement(By.cssSelector(".shelf-item__price > div.val > b"))));
             List<WebElement> priceWebElement = driver.findElements(By.cssSelector(".shelf-item__price > div.val > b"));

@@ -52,211 +52,7 @@ This repository contains the following Selenium tests:
   
 ---
 
-
-## Test infrastructure environments
-
-- [On-premise/self-hosted](#on-premise-self-hosted)
-- [Docker](#docker)
-- [BrowserStack](#browserstack)
-
-
-## Configuring the maximum parallel test threads for this repository
-
-For all the parallel run configuration profiles, you can configure the maximum parallel test threads by changing the settings below.
-
-- Docker
-
-  [docker-compose.yml](docker-compose.yml)
-  
-  NODE_MAX_INSTANCES = 5
-  GRID_MAX_SESSION = 5
- 
-
-- BrowserStack
-
-  - Maven:
-
-    [pom.xml](pom.xml)
-
-    parallel-count = 5
-
-
-## Test Reporting
-
-- [Allure reports](#generating-allure-reports)
-
 ---
-
-# On Premise / Self Hosted
-
-This infrastructure points to running the tests on your own machine using a browser (e.g. Chrome) using the browser's driver executables (e.g. ChromeDriver for Chrome). Selenium enables this functionality using WebDriver for many popular browsers.
-
-## Prerequisites
-
-- For this infrastructure configuration (i.e on-premise) ensure that the ChromeDriver executable is placed in the `/src/test/resources/` folder.
-
-Note: The ChromeDriver version must match the Chrome browser version on your machine.
-
-## Running Your Tests
-
-### Run a specific test on your own machine
-
-- How to run the test?
-
-  To run the default test scenario (e.g. End to End Scenario) on your own machine, use the following command:
-
-  Maven:
-    ```sh
-  mvn test -P on-prem
-  ```
-
-  Gradle:
-    ```sh 
-  gradle on-prem
-  ```
-
-  To run a specific test scenario, use the following command with the additional 'test-name' argument:
-
-  Maven:
-  ```sh
-  mvn test -P on-prem -Dtest-name="<Test scenario name>"
-  ```
-
-  Gradle:
-  ```sh
-  gradle on-prem -Dtest-name="<Test scenario name>"
-  ```
-
-  where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
-
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
-
-- Output
-
-  This run profile executes a specific test scenario on a single browser instance on your own machine.
-
-
-### Run the entire test suite on your own machine
-
-- How to run the test?
-
-  To run the entire test suite on your own machine, use the following command:
-
-  Maven:
-  ```sh
-  mvn test -P on-prem-suite
-  ```
-
-  Gradle:
-  ```sh
-  gradle on-prem-suite
-  ```
-
-- Output
-
-  This run profile executes the entire test suite sequentially on a single browser, on your own machine.
-
-  
----
-
-# Docker
-
-[Docker](https://docs.docker.com/get-started/overview/) is an open source platform that provides the ability to package and test applications in an isolated environment called containers.
-
-## Prerequisites
-
-- Install and start [Docker](https://docs.docker.com/get-docker/).
-- Note: Docker should be running on the test machine. Ensure Docker Compose is installed as well.
-- Run `docker-compose pull` from the current directory of the repository.
-
-## Running Your Tests
-
-### Run a specific test on the docker infrastructure
-
-- How to run the test?
-
-  - Start the Docker by running the following command:
-
-  ```sh
-  docker-compose up -d
-  ```
-
-  - To run the default test scenario (e.g. End to End Scenario) on your own machine, use the following command:
-
-  Maven:
-  ```sh
-  mvn test -P docker
-  ```
-
-  Gradle:
-    ```sh
-  gradle docker
-  ```
-
-  To run a specific test scenario, use the following command with the additional 'test-name' argument:
-
-  Maven:
-  ```sh
-  mvn test -P docker -Dtest-name="<Test scenario name>"
-  ```
-
-  Gradle:
-  ```sh
-  gradle docker -Dtest-name="<Test scenario name>"
-  ```
-
-  where,  the argument 'test-name' can be any Cucumber scenario name configured in this repository.
-
-  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
-
-
-- After tests are complete, you can stop the Docker by running the following command:
-
-  ```sh
-  docker-compose down
-  ```
-
-- Output
-
-  This run profile executes a specific test scenario on a single browser deployed on a docker image.
-
-
-### Run the entire test suite in parallel using Docker
-
-- How to run the test?
-
-  - Start the docker image first by running the following command:
-
-  ```sh
-  docker-compose up -d
-  ```
-
-  - To run the entire test suite in parallel on the docker image, use the following command:
-
-  Maven:
-  ```sh
-  mvn test -P docker-parallel
-  ```
-
-  Gradle:
-  ```sh
-  gradle docker-parallel
-  ```
-
-  - After the tests are complete stop the Selenium grid by running the following command:
-
-  ```sh
-  docker-compose down
-  ```
-
-- Output
-
-  This run profile executes the entire test suite in parallel on a single browser, deployed on a docker image.
-
-- Note: By default, this execution would run maximum 5 test threads in parallel on Docker. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
-
----
-
 # BrowserStack
 
 [BrowserStack](https://browserstack.com) provides instant access to 2,000+ real mobile devices and browsers on a highly reliable cloud infrastructure that effortlessly scales as testing needs grow.
@@ -298,13 +94,27 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
   - To run the default test scenario (e.g. End to End Scenario) on your own machine, use the following command:
 
   Maven:
+  - For \*nix based and Mac machines:
+
   ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-single.yml browserstack.yml & mvn test -P bstack-single
   ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-single.yml browserstack.yml & mvn test -P bstack-single
+  ```
+
 
   Gradle:
+  - For \*nix based and Mac machines:
     ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-single.yml browserstack.yml & gradle bstack-single
+  ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-single.yml browserstack.yml & gradle bstack-single
   ```
 
   To run a specific test scenario, use the following command with the additional 'test-name' argument:
@@ -336,14 +146,30 @@ In this section, we will run the tests in parallel on a single browser on Browse
 
   To run the entire test suite in parallel on a single BrowserStack browser, use the following command:
 
-  Maven:
+    Maven:
+  - For \*nix based and Mac machines:
+
   ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-parallel.yml browserstack.yml & mvn test -P bstack-parallel
   ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-parallel.yml browserstack.yml & mvn test -P bstack-parallel
+  ```
+
+
   Gradle:
+  - For \*nix based and Mac machines:
     ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-parallel.yml browserstack.yml & gradle bstack-parallel
   ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-parallel.yml browserstack.yml & gradle bstack-parallel
+  ```
+
 
 
 - Output
@@ -361,14 +187,28 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   To run the entire test suite in parallel on multiple BrowserStack browsers, use the following command:
 
-  Maven:
+    Maven:
+  - For \*nix based and Mac machines:
+
   ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-parallel-browsers.yml browserstack.yml & mvn test -P bstack-parallel-browsers
   ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-parallel-browsers.yml browserstack.yml & mvn test -P bstack-parallel-browsers
+  ```
+
 
   Gradle:
-  ```sh
+  - For \*nix based and Mac machines:
+    ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-parallel-browsers.yml browserstack.yml & gradle bstack-parallel-browsers
+  ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-parallel-browsers.yml browserstack.yml & gradle bstack-parallel-browsers
   ```
 
 ### [Web application hosted on internal environment] Running your tests on BrowserStack using BrowserStackLocal
@@ -394,14 +234,28 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   - To run the default test scenario (e.g. End to End Scenario) on a single BrowserStack browser using BrowserStackLocal, use the following command:
 
-  Maven:
+   Maven:
+  - For \*nix based and Mac machines:
+
   ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local.yml browserstack.yml & mvn test -P bstack-local
   ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-local.yml browserstack.yml & mvn test -P bstack-local
+  ```
+
 
   Gradle:
+  - For \*nix based and Mac machines:
     ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local.yml browserstack.yml & gradle bstack-local
+  ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-local.yml browserstack.yml & gradle bstack-local
   ```
 
   To run a specific test scenario, use the following command with the additional test-name argument:
@@ -432,14 +286,28 @@ In this section, we will run the test cases to test the internally hosted websit
 - How to run the test?
 
   To run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal, use the following command:
-  Maven:
+   Maven:
+  - For \*nix based and Mac machines:
+
   ```sh
-  mvn test -P bstack-local-parallel
+  rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local-parallel.yml browserstack.yml & mvn test -P bstack-local-parallel
+  ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-local-parallel.yml browserstack.yml & mvn test -P bstack-local-parallel
   ```
 
+
   Gradle:
+  - For \*nix based and Mac machines:
+    ```sh
+  rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local-parallel.yml browserstack.yml & gradle bstack-local-parallel
+  ```
+  - For Windows:
+
   ```sh
-  gradle bstack-local-parallel
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-local-parallel.yml browserstack.yml & gradle bstack-local-parallel
   ```
 
 - Output
@@ -456,14 +324,28 @@ In this section, we will run the test cases to test the internally hosted websit
 
   To run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal, use the following command:
 
-  Maven:
+   Maven:
+  - For \*nix based and Mac machines:
+
   ```sh
-  mvn test -P bstack-local-parallel-browsers
+  rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local-parallel-browsers.yml browserstack.yml & mvn test -P bstack-local-parallel-browsers
+  ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-parallel-browsers.yml browserstack.yml & mvn test -P bstack-local-parallel-browsers
   ```
 
+
   Gradle:
+  - For \*nix based and Mac machines:
     ```sh
-  gradle bstack-local-parallel-browsers
+  rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local-parallel-browsers.yml browserstack.yml & gradle bstack-local-parallel-browsers
+  ```
+  - For Windows:
+
+  ```sh
+  del /f "browserstack.yml" && copy /y .\src\test\resources\conf\browserstack-local-parallel-browsers.yml browserstack.yml & gradle bstack-local-parallel-browsers
   ```
 
 - Output
