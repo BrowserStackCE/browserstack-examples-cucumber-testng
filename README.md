@@ -259,6 +259,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
   ```
 
   To run a specific test scenario, use the following command with the additional test-name argument:
+  
   Maven:
   ```sh
   rm -f -- browserstack.yml & ln src/test/resources/conf/browserstack-local.yml browserstack.yml & mvn test -P bstack-local -Dtest-name="<Test scenario name>"
@@ -314,7 +315,6 @@ In this section, we will run the test cases to test the internally hosted websit
 
   This run profile executes the entire test suite on an internally hosted web application on a single browser on BrowserStack. Please refer to your [BrowserStack dashboard](https://automate.browserstack.com/) for test results.
 
-- Note: By default, this execution would run maximum 5 test threads in parallel on BrowserStack. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
 
 ### [Web application hosted on internal environment] Run the entire test suite in parallel on multiple BrowserStack browser using BrowserStackLocal
 
@@ -369,7 +369,3 @@ In this section, we will run the test cases to test the internally hosted websit
 - [Using Automate REST API](https://www.browserstack.com/automate/rest-api) to access information about your tests via the command-line interface
 - Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
-
-
-## Open Issues
-- Parallel thread count is not working via gradle command line arguments & gradle profiles , the thread count can be updated directly from the testng runner file
