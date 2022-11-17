@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
+import java.time.Duration;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -37,12 +38,6 @@ public class Utility {
 		return epochTime;
 	}
 
-	public static void setSessionStatus(WebDriver webDriver, String status, String reason) {
-		JavascriptExecutor jse = (JavascriptExecutor) webDriver;
-		jse.executeScript(String.format(
-				"browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}",
-				status, reason));
-	}
 
 	public static void mockGPS(WebDriver webDriver) {
 		String locationScript = String.format(LOCATION_SCRIPT_FORMAT, OFFER_LATITUDE, OFFER_LONGITUDE);
@@ -59,7 +54,7 @@ public class Utility {
 	}
 
 	public static boolean waitForJSLoad(WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
 
 		// wait for Javascript to load
@@ -75,16 +70,17 @@ public class Utility {
 
 	public static void moveFolder()
 	{
+		try {
 		File from = new File(System.getProperty("user.dir")+"/allure-results");
         File to = new File(System.getProperty("user.dir")+"/target/"+"allure-results");
 
-        try {
+        
             FileUtils.copyDirectory(from, to);
             FileUtils.deleteDirectory(new File(System.getProperty("user.dir")+"/allure-results"));
 
         }
-        catch (IOException ex) {
-            ex.printStackTrace();
+        catch (Exception ex) {
+			System.out.println(ex.getStackTrace());
         }
 	}
 }

@@ -4,6 +4,7 @@ reports
 .gradle
 .idea
 *.iml
+logs
 /test-output/*
 /target/*
 /allure-results/*
